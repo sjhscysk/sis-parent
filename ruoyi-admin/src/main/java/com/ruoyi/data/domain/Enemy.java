@@ -71,6 +71,14 @@ public class Enemy extends BaseEntity
     @Excel(name = "状态")
     private Integer status;
 
+    /** 图片地址 */
+    @Excel(name = "图片地址")
+    private String pic;
+
+    /** 视频地址 */
+    @Excel(name = "视频地址")
+    private String video;
+
     public void setId(Long id) 
     {
         this.id = id;
@@ -197,6 +205,24 @@ public class Enemy extends BaseEntity
     {
         return status;
     }
+    public void setPic(String pic) 
+    {
+        this.pic = pic;
+    }
+
+    public String getPic() 
+    {
+        return pic;
+    }
+    public void setVideo(String video) 
+    {
+        this.video = video;
+    }
+
+    public String getVideo() 
+    {
+        return video;
+    }
 
     @Override
     public String toString() {
@@ -215,6 +241,8 @@ public class Enemy extends BaseEntity
             .append("endTime", getEndTime())
             .append("intention", getIntention())
             .append("status", getStatus())
+            .append("pic", getPic())
+            .append("video", getVideo())
             .toString();
     }
 }

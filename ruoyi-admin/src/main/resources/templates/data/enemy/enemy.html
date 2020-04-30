@@ -15,6 +15,69 @@
                                 <input type="text" name="name"/>
                             </li>
                             <li>
+                                <label>经度：</label>
+                                <input type="text" name="longitue"/>
+                            </li>
+                            <li>
+                                <label>纬度：</label>
+                                <input type="text" name="latitude"/>
+                            </li>
+                            <li>
+                                <label>海拔：</label>
+                                <input type="text" name="altitude"/>
+                            </li>
+                            <li>
+                                <label>速度：</label>
+                                <input type="text" name="speed"/>
+                            </li>
+                            <li>
+                                <label>方向：</label>
+                                <input type="text" name="direction"/>
+                            </li>
+                            <li>
+                                <label>频段：</label>
+                                <input type="text" name="bands"/>
+                            </li>
+                            <li>
+                                <label>频率：</label>
+                                <input type="text" name="frequency"/>
+                            </li>
+                            <li>
+                                <label>功率：</label>
+                                <input type="text" name="power"/>
+                            </li>
+                            <li class="select-time">
+                                <label>开始时间：</label>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginStartTime]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endStartTime]"/>
+                            </li>
+                            <li class="select-time">
+                                <label>结束时间：</label>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginEndTime]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endEndTime]"/>
+                            </li>
+                            <li>
+                                <label>目标企图：</label>
+                                <input type="text" name="intention"/>
+                            </li>
+                            <li>
+                                <label>状态：</label>
+                                <select name="status" th:with="type=${@dict.getType('enemy_status')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>图片地址：</label>
+                                <input type="text" name="pic"/>
+                            </li>
+                            <li>
+                                <label>视频地址：</label>
+                                <input type="text" name="video"/>
+                            </li>
+                            <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
                                 <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
                             </li>
@@ -119,6 +182,14 @@
                     formatter: function(value, row, index) {
                        return $.table.selectDictLabel(statusDatas, value);
                     }
+                },
+                {
+                    field: 'pic', 
+                    title: '图片地址'
+                },
+                {
+                    field: 'video', 
+                    title: '视频地址'
                 },
                 {
                     title: '操作',

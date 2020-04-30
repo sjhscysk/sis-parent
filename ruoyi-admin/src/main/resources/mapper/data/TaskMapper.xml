@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="source"    column="source"    />
         <result property="startTime"    column="start_time"    />
         <result property="endTime"    column="end_time"    />
-        <result property="desc"    column="desc"    />
+        <result property="description"    column="description"    />
         <result property="remarks"    column="remarks"    />
         <result property="status"    column="status"    />
         <result property="pic"    column="pic"    />
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectTaskVo">
-        select id, sn, name, type, purpose, region, source, start_time, end_time, desc, remarks, status, pic, video from t_task
+        select id, sn, name, type, purpose, region, source, start_time, end_time, description, remarks, status, pic, video from t_task
     </sql>
 
     <select id="selectTaskList" parameterType="Task" resultMap="TaskResult">
@@ -38,10 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertTask" parameterType="Task">
+    <insert id="insertTask" parameterType="Task" useGeneratedKeys="true" keyProperty="id">
         insert into t_task
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
             <if test="sn != null  and sn != ''">sn,</if>
             <if test="name != null  and name != ''">name,</if>
             <if test="type != null ">type,</if>
@@ -50,14 +49,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="source != null  and source != ''">source,</if>
             <if test="startTime != null ">start_time,</if>
             <if test="endTime != null ">end_time,</if>
-            <if test="desc != null  and desc != ''">desc,</if>
+            <if test="description != null  and description != ''">description,</if>
             <if test="remarks != null  and remarks != ''">remarks,</if>
             <if test="status != null ">status,</if>
             <if test="pic != null  and pic != ''">pic,</if>
             <if test="video != null  and video != ''">video,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
             <if test="sn != null  and sn != ''">#{sn},</if>
             <if test="name != null  and name != ''">#{name},</if>
             <if test="type != null ">#{type},</if>
@@ -66,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="source != null  and source != ''">#{source},</if>
             <if test="startTime != null ">#{startTime},</if>
             <if test="endTime != null ">#{endTime},</if>
-            <if test="desc != null  and desc != ''">#{desc},</if>
+            <if test="description != null  and description != ''">#{description},</if>
             <if test="remarks != null  and remarks != ''">#{remarks},</if>
             <if test="status != null ">#{status},</if>
             <if test="pic != null  and pic != ''">#{pic},</if>
@@ -85,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="source != null  and source != ''">source = #{source},</if>
             <if test="startTime != null ">start_time = #{startTime},</if>
             <if test="endTime != null ">end_time = #{endTime},</if>
-            <if test="desc != null  and desc != ''">desc = #{desc},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
             <if test="remarks != null  and remarks != ''">remarks = #{remarks},</if>
             <if test="status != null ">status = #{status},</if>
             <if test="pic != null  and pic != ''">pic = #{pic},</if>

@@ -53,7 +53,7 @@ public class Task extends BaseEntity
 
     /** 任务描述 */
     @Excel(name = "任务描述")
-    private String desc;
+    private String description;
 
     /** 备注 */
     @Excel(name = "备注")
@@ -152,14 +152,14 @@ public class Task extends BaseEntity
     {
         return endTime;
     }
-    public void setDesc(String desc) 
+    public void setDescription(String description) 
     {
-        this.desc = desc;
+        this.description = description;
     }
 
-    public String getDesc() 
+    public String getDescription() 
     {
-        return desc;
+        return description;
     }
     public void setRemarks(String remarks) 
     {
@@ -210,7 +210,7 @@ public class Task extends BaseEntity
             .append("source", getSource())
             .append("startTime", getStartTime())
             .append("endTime", getEndTime())
-            .append("desc", getDesc())
+            .append("description", getDescription())
             .append("remarks", getRemarks())
             .append("status", getStatus())
             .append("pic", getPic())
