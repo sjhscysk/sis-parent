@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.TaskDetailMapper">
+    
+    <resultMap type="TaskDetail" id="TaskDetailResult">
+        <result property="id"    column="id"    />
+        <result property="taskId"    column="task_id"    />
+        <result property="execUnit"    column="exec_unit"    />
+        <result property="equipmentType"    column="equipment_type"    />
+        <result property="equipmentId"    column="equipment_id"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endTime"    column="end_time"    />
+    </resultMap>
+
+    <sql id="selectTaskDetailVo">
+        select id, task_id, exec_unit, equipment_type, equipment_id, start_time, end_time from t_task_detail
+    </sql>
+
+    <select id="selectTaskDetailList" parameterType="TaskDetail" resultMap="TaskDetailResult">
+        <include refid="selectTaskDetailVo"/>
+        <where>  
+            <if test="taskId != null "> and task_id = #{taskId}</if>
+            <if test="startTime != null "> and start_time = #{startTime}</if>
+            <if test="endTime != null "> and end_time = #{endTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectTaskDetailById" parameterType="Long" resultMap="TaskDetailResult">
+        <include refid="selectTaskDetailVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTaskDetail" parameterType="TaskDetail">
+        insert into t_task_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="taskId != null ">task_id,</if>
+            <if test="execUnit != null  and execUnit != ''">exec_unit,</if>
+            <if test="equipmentType != null ">equipment_type,</if>
+            <if test="equipmentId != null ">equipment_id,</if>
+            <if test="startTime != null ">start_time,</if>
+            <if test="endTime != null ">end_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="taskId != null ">#{taskId},</if>
+            <if test="execUnit != null  and execUnit != ''">#{execUnit},</if>
+            <if test="equipmentType != null ">#{equipmentType},</if>
+            <if test="equipmentId != null ">#{equipmentId},</if>
+            <if test="startTime != null ">#{startTime},</if>
+            <if test="endTime != null ">#{endTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTaskDetail" parameterType="TaskDetail">
+        update t_task_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="taskId != null ">task_id = #{taskId},</if>
+            <if test="execUnit != null  and execUnit != ''">exec_unit = #{execUnit},</if>
+            <if test="equipmentType != null ">equipment_type = #{equipmentType},</if>
+            <if test="equipmentId != null ">equipment_id = #{equipmentId},</if>
+            <if test="startTime != null ">start_time = #{startTime},</if>
+            <if test="endTime != null ">end_time = #{endTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTaskDetailById" parameterType="Long">
+        delete from t_task_detail where id = #{id}
+    </delete>
+
+    <delete id="deleteTaskDetailByIds" parameterType="String">
+        delete from t_task_detail where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.TransmittingMapper">
+    
+    <resultMap type="Transmitting" id="TransmittingResult">
+        <result property="id"    column="id"    />
+        <result property="power"    column="power"    />
+        <result property="bands"    column="bands"    />
+        <result property="frequency"    column="frequency"    />
+        <result property="range"    column="range"    />
+        <result property="direction"    column="direction"    />
+    </resultMap>
+
+    <sql id="selectTransmittingVo">
+        select id, power, bands, frequency, range, direction from t_transmitting
+    </sql>
+
+    <select id="selectTransmittingList" parameterType="Transmitting" resultMap="TransmittingResult">
+        <include refid="selectTransmittingVo"/>
+        <where>  
+            <if test="power != null  and power != ''"> and power = #{power}</if>
+        </where>
+    </select>
+    
+    <select id="selectTransmittingById" parameterType="Long" resultMap="TransmittingResult">
+        <include refid="selectTransmittingVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTransmitting" parameterType="Transmitting">
+        insert into t_transmitting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="power != null  and power != ''">power,</if>
+            <if test="bands != null  and bands != ''">bands,</if>
+            <if test="frequency != null  and frequency != ''">frequency,</if>
+            <if test="range != null  and range != ''">range,</if>
+            <if test="direction != null  and direction != ''">direction,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="power != null  and power != ''">#{power},</if>
+            <if test="bands != null  and bands != ''">#{bands},</if>
+            <if test="frequency != null  and frequency != ''">#{frequency},</if>
+            <if test="range != null  and range != ''">#{range},</if>
+            <if test="direction != null  and direction != ''">#{direction},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTransmitting" parameterType="Transmitting">
+        update t_transmitting
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="power != null  and power != ''">power = #{power},</if>
+            <if test="bands != null  and bands != ''">bands = #{bands},</if>
+            <if test="frequency != null  and frequency != ''">frequency = #{frequency},</if>
+            <if test="range != null  and range != ''">range = #{range},</if>
+            <if test="direction != null  and direction != ''">direction = #{direction},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTransmittingById" parameterType="Long">
+        delete from t_transmitting where id = #{id}
+    </delete>
+
+    <delete id="deleteTransmittingByIds" parameterType="String">
+        delete from t_transmitting where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

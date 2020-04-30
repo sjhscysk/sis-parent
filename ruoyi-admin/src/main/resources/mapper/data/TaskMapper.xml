@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.TaskMapper">
+    
+    <resultMap type="Task" id="TaskResult">
+        <result property="id"    column="id"    />
+        <result property="sn"    column="sn"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="purpose"    column="purpose"    />
+        <result property="region"    column="region"    />
+        <result property="source"    column="source"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="desc"    column="desc"    />
+        <result property="remarks"    column="remarks"    />
+        <result property="status"    column="status"    />
+        <result property="pic"    column="pic"    />
+        <result property="video"    column="video"    />
+    </resultMap>
+
+    <sql id="selectTaskVo">
+        select id, sn, name, type, purpose, region, source, start_time, end_time, desc, remarks, status, pic, video from t_task
+    </sql>
+
+    <select id="selectTaskList" parameterType="Task" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="type != null "> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectTaskById" parameterType="Long" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTask" parameterType="Task">
+        insert into t_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="sn != null  and sn != ''">sn,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="type != null ">type,</if>
+            <if test="purpose != null  and purpose != ''">purpose,</if>
+            <if test="region != null  and region != ''">region,</if>
+            <if test="source != null  and source != ''">source,</if>
+            <if test="startTime != null ">start_time,</if>
+            <if test="endTime != null ">end_time,</if>
+            <if test="desc != null  and desc != ''">desc,</if>
+            <if test="remarks != null  and remarks != ''">remarks,</if>
+            <if test="status != null ">status,</if>
+            <if test="pic != null  and pic != ''">pic,</if>
+            <if test="video != null  and video != ''">video,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="sn != null  and sn != ''">#{sn},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="purpose != null  and purpose != ''">#{purpose},</if>
+            <if test="region != null  and region != ''">#{region},</if>
+            <if test="source != null  and source != ''">#{source},</if>
+            <if test="startTime != null ">#{startTime},</if>
+            <if test="endTime != null ">#{endTime},</if>
+            <if test="desc != null  and desc != ''">#{desc},</if>
+            <if test="remarks != null  and remarks != ''">#{remarks},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="pic != null  and pic != ''">#{pic},</if>
+            <if test="video != null  and video != ''">#{video},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTask" parameterType="Task">
+        update t_task
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sn != null  and sn != ''">sn = #{sn},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="type != null ">type = #{type},</if>
+            <if test="purpose != null  and purpose != ''">purpose = #{purpose},</if>
+            <if test="region != null  and region != ''">region = #{region},</if>
+            <if test="source != null  and source != ''">source = #{source},</if>
+            <if test="startTime != null ">start_time = #{startTime},</if>
+            <if test="endTime != null ">end_time = #{endTime},</if>
+            <if test="desc != null  and desc != ''">desc = #{desc},</if>
+            <if test="remarks != null  and remarks != ''">remarks = #{remarks},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="pic != null  and pic != ''">pic = #{pic},</if>
+            <if test="video != null  and video != ''">video = #{video},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTaskById" parameterType="Long">
+        delete from t_task where id = #{id}
+    </delete>
+
+    <delete id="deleteTaskByIds" parameterType="String">
+        delete from t_task where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

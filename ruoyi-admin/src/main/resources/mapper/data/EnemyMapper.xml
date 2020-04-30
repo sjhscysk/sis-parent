@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.EnemyMapper">
+    
+    <resultMap type="Enemy" id="EnemyResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="longitue"    column="longitue"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="altitude"    column="altitude"    />
+        <result property="speed"    column="speed"    />
+        <result property="direction"    column="direction"    />
+        <result property="bands"    column="bands"    />
+        <result property="frequency"    column="frequency"    />
+        <result property="power"    column="power"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="intention"    column="intention"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectEnemyVo">
+        select id, name, longitue, latitude, altitude, speed, direction, bands, frequency, power, start_time, end_time, intention, status from t_enemy
+    </sql>
+
+    <select id="selectEnemyList" parameterType="Enemy" resultMap="EnemyResult">
+        <include refid="selectEnemyVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectEnemyById" parameterType="Long" resultMap="EnemyResult">
+        <include refid="selectEnemyVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertEnemy" parameterType="Enemy">
+        insert into t_enemy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="longitue != null  and longitue != ''">longitue,</if>
+            <if test="latitude != null  and latitude != ''">latitude,</if>
+            <if test="altitude != null  and altitude != ''">altitude,</if>
+            <if test="speed != null  and speed != ''">speed,</if>
+            <if test="direction != null  and direction != ''">direction,</if>
+            <if test="bands != null  and bands != ''">bands,</if>
+            <if test="frequency != null  and frequency != ''">frequency,</if>
+            <if test="power != null  and power != ''">power,</if>
+            <if test="startTime != null ">start_time,</if>
+            <if test="endTime != null ">end_time,</if>
+            <if test="intention != null  and intention != ''">intention,</if>
+            <if test="status != null ">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="longitue != null  and longitue != ''">#{longitue},</if>
+            <if test="latitude != null  and latitude != ''">#{latitude},</if>
+            <if test="altitude != null  and altitude != ''">#{altitude},</if>
+            <if test="speed != null  and speed != ''">#{speed},</if>
+            <if test="direction != null  and direction != ''">#{direction},</if>
+            <if test="bands != null  and bands != ''">#{bands},</if>
+            <if test="frequency != null  and frequency != ''">#{frequency},</if>
+            <if test="power != null  and power != ''">#{power},</if>
+            <if test="startTime != null ">#{startTime},</if>
+            <if test="endTime != null ">#{endTime},</if>
+            <if test="intention != null  and intention != ''">#{intention},</if>
+            <if test="status != null ">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEnemy" parameterType="Enemy">
+        update t_enemy
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="longitue != null  and longitue != ''">longitue = #{longitue},</if>
+            <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
+            <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>
+            <if test="speed != null  and speed != ''">speed = #{speed},</if>
+            <if test="direction != null  and direction != ''">direction = #{direction},</if>
+            <if test="bands != null  and bands != ''">bands = #{bands},</if>
+            <if test="frequency != null  and frequency != ''">frequency = #{frequency},</if>
+            <if test="power != null  and power != ''">power = #{power},</if>
+            <if test="startTime != null ">start_time = #{startTime},</if>
+            <if test="endTime != null ">end_time = #{endTime},</if>
+            <if test="intention != null  and intention != ''">intention = #{intention},</if>
+            <if test="status != null ">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEnemyById" parameterType="Long">
+        delete from t_enemy where id = #{id}
+    </delete>
+
+    <delete id="deleteEnemyByIds" parameterType="String">
+        delete from t_enemy where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

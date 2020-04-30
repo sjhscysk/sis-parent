@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.StationMapper">
+    
+    <resultMap type="Station" id="StationResult">
+        <result property="id"    column="id"    />
+        <result property="sn"    column="sn"    />
+        <result property="name"    column="name"    />
+        <result property="belongsto"    column="belongsto"    />
+        <result property="owner"    column="owner"    />
+        <result property="type"    column="type"    />
+        <result property="location"    column="location"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="altitude"    column="altitude"    />
+        <result property="channelName"    column="channel_name"    />
+        <result property="runTime"    column="run_time"    />
+        <result property="language"    column="language"    />
+        <result property="pic"    column="pic"    />
+        <result property="video"    column="video"    />
+    </resultMap>
+
+    <sql id="selectStationVo">
+        select id, sn, name, belongsto, owner, type, location, longitude, latitude, altitude, channel_name, run_time, language, pic, video from t_station
+    </sql>
+
+    <select id="selectStationList" parameterType="Station" resultMap="StationResult">
+        <include refid="selectStationVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="belongsto != null  and belongsto != ''"> and belongsto = #{belongsto}</if>
+        </where>
+    </select>
+    
+    <select id="selectStationById" parameterType="Long" resultMap="StationResult">
+        <include refid="selectStationVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStation" parameterType="Station" useGeneratedKeys="true" keyProperty="id">
+        insert into t_station
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sn != null  and sn != ''">sn,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="belongsto != null  and belongsto != ''">belongsto,</if>
+            <if test="owner != null ">owner,</if>
+            <if test="type != null ">type,</if>
+            <if test="location != null  and location != ''">location,</if>
+            <if test="longitude != null  and longitude != ''">longitude,</if>
+            <if test="latitude != null  and latitude != ''">latitude,</if>
+            <if test="altitude != null  and altitude != ''">altitude,</if>
+            <if test="channelName != null  and channelName != ''">channel_name,</if>
+            <if test="runTime != null ">run_time,</if>
+            <if test="language != null  and language != ''">language,</if>
+            <if test="pic != null  and pic != ''">pic,</if>
+            <if test="video != null  and video != ''">video,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sn != null  and sn != ''">#{sn},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="belongsto != null  and belongsto != ''">#{belongsto},</if>
+            <if test="owner != null ">#{owner},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="location != null  and location != ''">#{location},</if>
+            <if test="longitude != null  and longitude != ''">#{longitude},</if>
+            <if test="latitude != null  and latitude != ''">#{latitude},</if>
+            <if test="altitude != null  and altitude != ''">#{altitude},</if>
+            <if test="channelName != null  and channelName != ''">#{channelName},</if>
+            <if test="runTime != null ">#{runTime},</if>
+            <if test="language != null  and language != ''">#{language},</if>
+            <if test="pic != null  and pic != ''">#{pic},</if>
+            <if test="video != null  and video != ''">#{video},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStation" parameterType="Station">
+        update t_station
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sn != null  and sn != ''">sn = #{sn},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="belongsto != null  and belongsto != ''">belongsto = #{belongsto},</if>
+            <if test="owner != null ">owner = #{owner},</if>
+            <if test="type != null ">type = #{type},</if>
+            <if test="location != null  and location != ''">location = #{location},</if>
+            <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
+            <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
+            <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>
+            <if test="channelName != null  and channelName != ''">channel_name = #{channelName},</if>
+            <if test="runTime != null ">run_time = #{runTime},</if>
+            <if test="language != null  and language != ''">language = #{language},</if>
+            <if test="pic != null  and pic != ''">pic = #{pic},</if>
+            <if test="video != null  and video != ''">video = #{video},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStationById" parameterType="Long">
+        delete from t_station where id = #{id}
+    </delete>
+
+    <delete id="deleteStationByIds" parameterType="String">
+        delete from t_station where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

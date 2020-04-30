@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.EquipsysMapper">
+    
+    <resultMap type="Equipsys" id="EquipsysResult">
+        <result property="id"    column="id"    />
+        <result property="sn"    column="sn"    />
+        <result property="name"    column="name"    />
+        <result property="belongsto"    column="belongsto"    />
+        <result property="onwer"    column="onwer"    />
+        <result property="location"    column="location"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="altitude"    column="altitude"    />
+        <result property="pic"    column="pic"    />
+        <result property="video"    column="video"    />
+    </resultMap>
+
+    <sql id="selectEquipsysVo">
+        select id, sn, name, belongsto, onwer, location, longitude, latitude, altitude, pic, video from t_equipsys
+    </sql>
+
+    <select id="selectEquipsysList" parameterType="Equipsys" resultMap="EquipsysResult">
+        <include refid="selectEquipsysVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="belongsto != null  and belongsto != ''"> and belongsto like concat('%', #{belongsto}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectEquipsysById" parameterType="Long" resultMap="EquipsysResult">
+        <include refid="selectEquipsysVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertEquipsys" parameterType="Equipsys">
+        insert into t_equipsys
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="sn != null  and sn != ''">sn,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="belongsto != null  and belongsto != ''">belongsto,</if>
+            <if test="onwer != null ">onwer,</if>
+            <if test="location != null  and location != ''">location,</if>
+            <if test="longitude != null  and longitude != ''">longitude,</if>
+            <if test="latitude != null  and latitude != ''">latitude,</if>
+            <if test="altitude != null  and altitude != ''">altitude,</if>
+            <if test="pic != null  and pic != ''">pic,</if>
+            <if test="video != null  and video != ''">video,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="sn != null  and sn != ''">#{sn},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="belongsto != null  and belongsto != ''">#{belongsto},</if>
+            <if test="onwer != null ">#{onwer},</if>
+            <if test="location != null  and location != ''">#{location},</if>
+            <if test="longitude != null  and longitude != ''">#{longitude},</if>
+            <if test="latitude != null  and latitude != ''">#{latitude},</if>
+            <if test="altitude != null  and altitude != ''">#{altitude},</if>
+            <if test="pic != null  and pic != ''">#{pic},</if>
+            <if test="video != null  and video != ''">#{video},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEquipsys" parameterType="Equipsys">
+        update t_equipsys
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sn != null  and sn != ''">sn = #{sn},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="belongsto != null  and belongsto != ''">belongsto = #{belongsto},</if>
+            <if test="onwer != null ">onwer = #{onwer},</if>
+            <if test="location != null  and location != ''">location = #{location},</if>
+            <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
+            <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
+            <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>
+            <if test="pic != null  and pic != ''">pic = #{pic},</if>
+            <if test="video != null  and video != ''">video = #{video},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEquipsysById" parameterType="Long">
+        delete from t_equipsys where id = #{id}
+    </delete>
+
+    <delete id="deleteEquipsysByIds" parameterType="String">
+        delete from t_equipsys where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

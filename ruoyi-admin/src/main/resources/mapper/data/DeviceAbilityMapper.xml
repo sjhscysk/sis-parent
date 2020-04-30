@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.DeviceAbilityMapper">
+    
+    <resultMap type="DeviceAbility" id="DeviceAbilityResult">
+        <result property="id"    column="id"    />
+        <result property="deviceId"    column="device_id"    />
+        <result property="abilityId"    column="ability_id"    />
+    </resultMap>
+
+    <sql id="selectDeviceAbilityVo">
+        select id, device_id, ability_id from t_device_ability
+    </sql>
+
+    <select id="selectDeviceAbilityList" parameterType="DeviceAbility" resultMap="DeviceAbilityResult">
+        <include refid="selectDeviceAbilityVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectDeviceAbilityById" parameterType="Long" resultMap="DeviceAbilityResult">
+        <include refid="selectDeviceAbilityVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDeviceAbility" parameterType="DeviceAbility">
+        insert into t_device_ability
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="deviceId != null ">device_id,</if>
+            <if test="abilityId != null ">ability_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="deviceId != null ">#{deviceId},</if>
+            <if test="abilityId != null ">#{abilityId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDeviceAbility" parameterType="DeviceAbility">
+        update t_device_ability
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deviceId != null ">device_id = #{deviceId},</if>
+            <if test="abilityId != null ">ability_id = #{abilityId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDeviceAbilityById" parameterType="Long">
+        delete from t_device_ability where id = #{id}
+    </delete>
+
+    <delete id="deleteDeviceAbilityByIds" parameterType="String">
+        delete from t_device_ability where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

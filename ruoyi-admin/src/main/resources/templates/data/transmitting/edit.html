@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改发射系统')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-transmitting-edit" th:object="${transmitting}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">输出功率：</label>
+                <div class="col-sm-8">
+                    <input name="power" th:field="*{power}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">频段：</label>
+                <div class="col-sm-8">
+                    <input name="bands" th:field="*{bands}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">频率：</label>
+                <div class="col-sm-8">
+                    <input name="frequency" th:field="*{frequency}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">覆盖范围，与功率相关：</label>
+                <div class="col-sm-8">
+                    <input name="range" th:field="*{range}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">方向：</label>
+                <div class="col-sm-8">
+                    <input name="direction" th:field="*{direction}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script type="text/javascript">
+        var prefix = ctx + "data/transmitting";
+        $("#form-transmitting-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-transmitting-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

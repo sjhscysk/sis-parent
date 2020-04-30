@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.data.mapper.StationDeviceMapper">
+    
+    <resultMap type="StationDevice" id="StationDeviceResult">
+        <result property="id"    column="id"    />
+        <result property="stationId"    column="station_id"    />
+        <result property="deviceId"    column="device_id"    />
+    </resultMap>
+
+    <sql id="selectStationDeviceVo">
+        select id, station_id, device_id from t_station_device
+    </sql>
+
+    <select id="selectStationDeviceList" parameterType="StationDevice" resultMap="StationDeviceResult">
+        <include refid="selectStationDeviceVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectStationDeviceById" parameterType="Long" resultMap="StationDeviceResult">
+        <include refid="selectStationDeviceVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStationDevice" parameterType="StationDevice">
+        insert into t_station_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="stationId != null ">station_id,</if>
+            <if test="deviceId != null ">device_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="stationId != null ">#{stationId},</if>
+            <if test="deviceId != null ">#{deviceId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStationDevice" parameterType="StationDevice">
+        update t_station_device
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="stationId != null ">station_id = #{stationId},</if>
+            <if test="deviceId != null ">device_id = #{deviceId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStationDeviceById" parameterType="Long">
+        delete from t_station_device where id = #{id}
+    </delete>
+
+    <delete id="deleteStationDeviceByIds" parameterType="String">
+        delete from t_station_device where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
