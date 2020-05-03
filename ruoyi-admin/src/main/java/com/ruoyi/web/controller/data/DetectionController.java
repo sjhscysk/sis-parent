@@ -23,7 +23,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 侦测Controller
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 @Controller
 @RequestMapping("/data/detection")

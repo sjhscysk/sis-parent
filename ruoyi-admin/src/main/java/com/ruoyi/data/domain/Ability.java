@@ -6,17 +6,21 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 侦测对象 t_detection
+ * 设备能力对象 t_ability
  * 
  * @author xusisheng
- * @date 2020-05-02
+ * @date 2020-05-03
  */
-public class Detection extends BaseEntity
+public class Ability extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 自增主键 */
     private Long id;
+
+    /** 能力分类 */
+    @Excel(name = "能力分类")
+    private Integer type;
 
     /** 频段 */
     @Excel(name = "频段")
@@ -26,6 +30,10 @@ public class Detection extends BaseEntity
     @Excel(name = "频率")
     private String frequency;
 
+    /** 功率 */
+    @Excel(name = "功率")
+    private String power;
+
     /** 范围 */
     @Excel(name = "范围")
     private String scope;
@@ -33,6 +41,10 @@ public class Detection extends BaseEntity
     /** 方向 */
     @Excel(name = "方向")
     private String direction;
+
+    /** 干扰方式 */
+    @Excel(name = "干扰方式")
+    private String mode;
 
     public void setId(Long id) 
     {
@@ -42,6 +54,15 @@ public class Detection extends BaseEntity
     public Long getId() 
     {
         return id;
+    }
+    public void setType(Integer type) 
+    {
+        this.type = type;
+    }
+
+    public Integer getType() 
+    {
+        return type;
     }
     public void setBands(String bands) 
     {
@@ -61,6 +82,15 @@ public class Detection extends BaseEntity
     {
         return frequency;
     }
+    public void setPower(String power) 
+    {
+        this.power = power;
+    }
+
+    public String getPower() 
+    {
+        return power;
+    }
     public void setScope(String scope) 
     {
         this.scope = scope;
@@ -79,15 +109,27 @@ public class Detection extends BaseEntity
     {
         return direction;
     }
+    public void setMode(String mode) 
+    {
+        this.mode = mode;
+    }
+
+    public String getMode() 
+    {
+        return mode;
+    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
+            .append("type", getType())
             .append("bands", getBands())
             .append("frequency", getFrequency())
+            .append("power", getPower())
             .append("scope", getScope())
             .append("direction", getDirection())
+            .append("mode", getMode())
             .toString();
     }
 }

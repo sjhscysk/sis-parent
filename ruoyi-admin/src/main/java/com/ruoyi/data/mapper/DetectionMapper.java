@@ -2,12 +2,13 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.Detection;
+import com.ruoyi.data.domain.DeviceAbility;
 
 /**
  * 侦测Mapper接口
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public interface DetectionMapper 
 {
@@ -58,4 +59,20 @@ public interface DetectionMapper
      * @return 结果
      */
     public int deleteDetectionByIds(String[] ids);
+
+    /**
+     * 根据条件分页查询已分配设备能力列表
+     *
+     * @param deviceAbility 设备能力
+     * @return 设备能力集合信息
+     */
+    public List<DeviceAbility> selectAllocatedList(DeviceAbility deviceAbility);
+
+    /**
+     * 根据条件分页查询未分配设备能力列表
+     *
+     * @param deviceAbility 设备能力
+     * @return 设备能力集合信息
+     */
+    public List<DeviceAbility> selectUnallocatedList(DeviceAbility deviceAbility);
 }

@@ -1,6 +1,13 @@
 package com.ruoyi.web.controller.data;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.Ability;
+import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.service.AbilityService;
+import com.ruoyi.data.service.DeviceAbilityService;
+import com.ruoyi.system.domain.SysUser;
+import com.ruoyi.system.domain.SysUserRole;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +40,10 @@ class DeviceController extends BaseController
 
     @Autowired
     private DeviceService deviceService;
+    @Autowired
+    private DeviceAbilityService deviceAbilityService;
+    @Autowired
+    private AbilityService abilityService;
 
     @RequiresPermissions("data:device:view")
     @GetMapping()
@@ -122,5 +133,74 @@ class DeviceController extends BaseController
     public AjaxResult remove(String ids)
     {
         return toAjax(deviceService.deleteDeviceByIds(ids));
+    }
+
+    /**
+     * 分配能力
+     */
+    @RequiresPermissions("data:device:edit")
+    @GetMapping("/ability/{deviceId}")
+    public String ability(@PathVariable("deviceId") Long deviceId, ModelMap mmap)
+    {
+        mmap.put("device", deviceService.selectDeviceById(deviceId));
+        return prefix + "/ability";
+    }
+
+    /**
+     * 选择能力
+     */
+    @GetMapping("/ability/selectAbility/{deviceId}")
+    public String selectAbility(@PathVariable("deviceId") Long deviceId, ModelMap mmap)
+    {
+        mmap.put("device", deviceService.selectDeviceById(deviceId));
+        return prefix + "/selectAbility";
+    }
+
+    /**
+     * 取消能力
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/ability/cancel")
+    @ResponseBody
+    public AjaxResult cancelAbility(DeviceAbility deviceAbility)
+    {
+        return toAjax(deviceAbilityService.deleteAbility(deviceAbility.getId()));
+    }
+
+    /**
+     * 批量取消能力
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/ability/cancelAll")
+    @ResponseBody
+    public AjaxResult cancelAbilityAll(String[] ids)
+    {
+        return toAjax(deviceAbilityService.deleteAbilityAll(ids));
+    }
+
+    /**
+     * 查询已分配设备能力列表
+     */
+    @RequiresPermissions("data:device:list")
+    @PostMapping("/ability/allocatedList")
+    @ResponseBody
+    public TableDataInfo allocatedList(DeviceAbility deviceAbility)
+    {
+        startPage();
+        List<Ability> list = abilityService.selectAllocatedList(deviceAbility);
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询未分配设备能力列表
+     */
+    @RequiresPermissions("data:device:list")
+    @PostMapping("/ability/unallocatedList")
+    @ResponseBody
+    public TableDataInfo unallocatedList(DeviceAbility deviceAbility)
+    {
+        startPage();
+        List<Ability> list = abilityService.selectUnallocatedList(deviceAbility);
+        return getDataTable(list);
     }
 }

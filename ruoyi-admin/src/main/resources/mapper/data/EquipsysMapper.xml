@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="belongsto"    column="belongsto"    />
         <result property="onwer"    column="onwer"    />
         <result property="location"    column="location"    />
+        <result property="scope"    column="scope"    />
         <result property="longitude"    column="longitude"    />
         <result property="latitude"    column="latitude"    />
         <result property="altitude"    column="altitude"    />
@@ -19,14 +20,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectEquipsysVo">
-        select id, sn, name, belongsto, onwer, location, longitude, latitude, altitude, pic, video from t_equipsys
+        select id, sn, name, belongsto, onwer, location, scope, longitude, latitude, altitude, pic, video from t_equipsys
     </sql>
 
     <select id="selectEquipsysList" parameterType="Equipsys" resultMap="EquipsysResult">
         <include refid="selectEquipsysVo"/>
         <where>  
+            <if test="sn != null  and sn != ''"> and sn = #{sn}</if>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="belongsto != null  and belongsto != ''"> and belongsto like concat('%', #{belongsto}, '%')</if>
+            <if test="belongsto != null  and belongsto != ''"> and belongsto = #{belongsto}</if>
+            <if test="onwer != null "> and onwer = #{onwer}</if>
+            <if test="location != null  and location != ''"> and location = #{location}</if>
+            <if test="scope != null  and scope != ''"> and scope = #{scope}</if>
+            <if test="longitude != null  and longitude != ''"> and longitude = #{longitude}</if>
+            <if test="latitude != null  and latitude != ''"> and latitude = #{latitude}</if>
+            <if test="altitude != null  and altitude != ''"> and altitude = #{altitude}</if>
+            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
+            <if test="video != null  and video != ''"> and video = #{video}</if>
         </where>
     </select>
     
@@ -35,15 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertEquipsys" parameterType="Equipsys">
+    <insert id="insertEquipsys" parameterType="Equipsys" useGeneratedKeys="true" keyProperty="id">
         insert into t_equipsys
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
             <if test="sn != null  and sn != ''">sn,</if>
             <if test="name != null  and name != ''">name,</if>
             <if test="belongsto != null  and belongsto != ''">belongsto,</if>
             <if test="onwer != null ">onwer,</if>
             <if test="location != null  and location != ''">location,</if>
+            <if test="scope != null  and scope != ''">scope,</if>
             <if test="longitude != null  and longitude != ''">longitude,</if>
             <if test="latitude != null  and latitude != ''">latitude,</if>
             <if test="altitude != null  and altitude != ''">altitude,</if>
@@ -51,12 +61,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="video != null  and video != ''">video,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
             <if test="sn != null  and sn != ''">#{sn},</if>
             <if test="name != null  and name != ''">#{name},</if>
             <if test="belongsto != null  and belongsto != ''">#{belongsto},</if>
             <if test="onwer != null ">#{onwer},</if>
             <if test="location != null  and location != ''">#{location},</if>
+            <if test="scope != null  and scope != ''">#{scope},</if>
             <if test="longitude != null  and longitude != ''">#{longitude},</if>
             <if test="latitude != null  and latitude != ''">#{latitude},</if>
             <if test="altitude != null  and altitude != ''">#{altitude},</if>
@@ -73,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="belongsto != null  and belongsto != ''">belongsto = #{belongsto},</if>
             <if test="onwer != null ">onwer = #{onwer},</if>
             <if test="location != null  and location != ''">location = #{location},</if>
+            <if test="scope != null  and scope != ''">scope = #{scope},</if>
             <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
             <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
             <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>

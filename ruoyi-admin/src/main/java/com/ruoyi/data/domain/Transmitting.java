@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 发射系统对象 t_transmitting
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public class Transmitting extends BaseEntity
 {
@@ -30,9 +30,9 @@ public class Transmitting extends BaseEntity
     @Excel(name = "频率")
     private String frequency;
 
-    /** 覆盖范围，与功率相关 */
-    @Excel(name = "覆盖范围，与功率相关")
-    private String range;
+    /** 覆盖范围 */
+    @Excel(name = "覆盖范围")
+    private String scope;
 
     /** 方向 */
     @Excel(name = "方向")
@@ -74,14 +74,14 @@ public class Transmitting extends BaseEntity
     {
         return frequency;
     }
-    public void setRange(String range) 
+    public void setScope(String scope) 
     {
-        this.range = range;
+        this.scope = scope;
     }
 
-    public String getRange() 
+    public String getScope() 
     {
-        return range;
+        return scope;
     }
     public void setDirection(String direction) 
     {
@@ -100,7 +100,7 @@ public class Transmitting extends BaseEntity
             .append("power", getPower())
             .append("bands", getBands())
             .append("frequency", getFrequency())
-            .append("range", getRange())
+            .append("scope", getScope())
             .append("direction", getDirection())
             .toString();
     }

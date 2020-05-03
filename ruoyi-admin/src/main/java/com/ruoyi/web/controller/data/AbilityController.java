@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.data.domain.DeviceAbility;
-import com.ruoyi.data.service.DeviceAbilityService;
+import com.ruoyi.data.domain.Ability;
+import com.ruoyi.data.service.AbilityService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
@@ -23,16 +23,16 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 设备能力Controller
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-03
  */
 @Controller
 @RequestMapping("/data/ability")
-public class DeviceAbilityController extends BaseController
+public class AbilityController extends BaseController
 {
     private String prefix = "data/ability";
 
     @Autowired
-    private DeviceAbilityService deviceAbilityService;
+    private AbilityService abilityService;
 
     @RequiresPermissions("data:ability:view")
     @GetMapping()
@@ -42,34 +42,20 @@ public class DeviceAbilityController extends BaseController
     }
 
     /**
-     * 查询设备能力列表
+     * 查询干扰功能列表
      */
     @RequiresPermissions("data:ability:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(DeviceAbility deviceAbility)
+    public TableDataInfo list(Ability ability)
     {
         startPage();
-        List<DeviceAbility> list = deviceAbilityService.selectDeviceAbilityList(deviceAbility);
+        List<Ability> list = abilityService.selectAbilityList(ability);
         return getDataTable(list);
     }
 
     /**
-     * 导出设备能力列表
-     */
-    @RequiresPermissions("data:ability:export")
-    @Log(title = "设备能力", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    @ResponseBody
-    public AjaxResult export(DeviceAbility deviceAbility)
-    {
-        List<DeviceAbility> list = deviceAbilityService.selectDeviceAbilityList(deviceAbility);
-        ExcelUtil<DeviceAbility> util = new ExcelUtil<DeviceAbility>(DeviceAbility.class);
-        return util.exportExcel(list, "ability");
-    }
-
-    /**
-     * 新增设备能力
+     * 新增干扰功能
      */
     @GetMapping("/add")
     public String add()
@@ -78,49 +64,49 @@ public class DeviceAbilityController extends BaseController
     }
 
     /**
-     * 新增保存设备能力
+     * 新增保存干扰功能
      */
     @RequiresPermissions("data:ability:add")
-    @Log(title = "设备能力", businessType = BusinessType.INSERT)
+    @Log(title = "干扰功能", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(DeviceAbility deviceAbility)
+    public AjaxResult addSave(Ability ability)
     {
-        return toAjax(deviceAbilityService.insertDeviceAbility(deviceAbility));
+        return toAjax(abilityService.insertAbility(ability));
     }
 
     /**
-     * 修改设备能力
+     * 修改干扰功能
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
     {
-        DeviceAbility deviceAbility = deviceAbilityService.selectDeviceAbilityById(id);
-        mmap.put("deviceAbility", deviceAbility);
+        Ability ability = abilityService.selectAbilityById(id);
+        mmap.put("ability", ability);
         return prefix + "/edit";
     }
 
     /**
-     * 修改保存设备能力
+     * 修改保存干扰功能
      */
     @RequiresPermissions("data:ability:edit")
-    @Log(title = "设备能力", businessType = BusinessType.UPDATE)
+    @Log(title = "干扰功能", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(DeviceAbility deviceAbility)
+    public AjaxResult editSave(Ability ability)
     {
-        return toAjax(deviceAbilityService.updateDeviceAbility(deviceAbility));
+        return toAjax(abilityService.updateAbility(ability));
     }
 
     /**
-     * 删除设备能力
+     * 删除干扰功能
      */
     @RequiresPermissions("data:ability:remove")
-    @Log(title = "设备能力", businessType = BusinessType.DELETE)
+    @Log(title = "干扰功能", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
     {
-        return toAjax(deviceAbilityService.deleteDeviceAbilityByIds(ids));
+        return toAjax(abilityService.deleteAbilityByIds(ids));
     }
 }

@@ -34,7 +34,7 @@ public class EquipsysDetailController extends BaseController
     @Autowired
     private EquipsysDetailService equipsysDetailService;
 
-    @RequiresPermissions("data:detail:view")
+    @RequiresPermissions("data:equipsys:view")
     @GetMapping()
     public String detail()
     {
@@ -44,7 +44,7 @@ public class EquipsysDetailController extends BaseController
     /**
      * 查询装备系统详情列表
      */
-    @RequiresPermissions("data:detail:list")
+    @RequiresPermissions("data:equipsys:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(EquipsysDetail equipsysDetail)
@@ -57,7 +57,7 @@ public class EquipsysDetailController extends BaseController
     /**
      * 导出装备系统详情列表
      */
-    @RequiresPermissions("data:detail:export")
+    @RequiresPermissions("data:equipsys:export")
     @Log(title = "装备系统详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +80,7 @@ public class EquipsysDetailController extends BaseController
     /**
      * 新增保存装备系统详情
      */
-    @RequiresPermissions("data:detail:add")
+    @RequiresPermissions("data:equipsys:add")
     @Log(title = "装备系统详情", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +103,7 @@ public class EquipsysDetailController extends BaseController
     /**
      * 修改保存装备系统详情
      */
-    @RequiresPermissions("data:detail:edit")
+    @RequiresPermissions("data:equipsys:edit")
     @Log(title = "装备系统详情", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -115,7 +115,7 @@ public class EquipsysDetailController extends BaseController
     /**
      * 删除装备系统详情
      */
-    @RequiresPermissions("data:detail:remove")
+    @RequiresPermissions("data:equipsys:remove")
     @Log(title = "装备系统详情", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

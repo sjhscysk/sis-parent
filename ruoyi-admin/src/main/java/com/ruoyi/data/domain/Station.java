@@ -9,17 +9,17 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 台站信息对象 t_station
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public class Station extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 主键，自增 */
+    /** 自增主键 */
     private Long id;
 
-    /** 编号，唯一性 */
-    @Excel(name = "编号，唯一性")
+    /** 编号 */
+    @Excel(name = "编号")
     private String sn;
 
     /** 名称 */
@@ -41,6 +41,10 @@ public class Station extends BaseEntity
     /** 部署地 */
     @Excel(name = "部署地")
     private String location;
+
+    /** 覆盖区域 */
+    @Excel(name = "覆盖区域")
+    private String scope;
 
     /** 经度 */
     @Excel(name = "经度")
@@ -137,6 +141,15 @@ public class Station extends BaseEntity
     {
         return location;
     }
+    public void setScope(String scope) 
+    {
+        this.scope = scope;
+    }
+
+    public String getScope() 
+    {
+        return scope;
+    }
     public void setLongitude(String longitude) 
     {
         this.longitude = longitude;
@@ -220,6 +233,7 @@ public class Station extends BaseEntity
             .append("owner", getOwner())
             .append("type", getType())
             .append("location", getLocation())
+            .append("scope", getScope())
             .append("longitude", getLongitude())
             .append("latitude", getLatitude())
             .append("altitude", getAltitude())

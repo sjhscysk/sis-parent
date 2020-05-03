@@ -8,17 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="bands"    column="bands"    />
         <result property="frequency"    column="frequency"    />
-        <result property="range"    column="range"    />
+        <result property="scope"    column="scope"    />
         <result property="direction"    column="direction"    />
     </resultMap>
 
     <sql id="selectDetectionVo">
-        select id, bands, frequency, range, direction from t_detection
+        select id, bands, frequency, scope, direction from t_detection
     </sql>
 
     <select id="selectDetectionList" parameterType="Detection" resultMap="DetectionResult">
         <include refid="selectDetectionVo"/>
         <where>  
+            <if test="scope != null  and scope != ''"> and scope = #{scope}</if>
             <if test="direction != null  and direction != ''"> and direction = #{direction}</if>
         </where>
     </select>
@@ -28,20 +29,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertDetection" parameterType="Detection">
+    <insert id="insertDetection" parameterType="Detection" useGeneratedKeys="true" keyProperty="id">
         insert into t_detection
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
             <if test="bands != null  and bands != ''">bands,</if>
             <if test="frequency != null  and frequency != ''">frequency,</if>
-            <if test="range != null  and range != ''">range,</if>
+            <if test="scope != null  and scope != ''">scope,</if>
             <if test="direction != null  and direction != ''">direction,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
             <if test="bands != null  and bands != ''">#{bands},</if>
             <if test="frequency != null  and frequency != ''">#{frequency},</if>
-            <if test="range != null  and range != ''">#{range},</if>
+            <if test="scope != null  and scope != ''">#{scope},</if>
             <if test="direction != null  and direction != ''">#{direction},</if>
          </trim>
     </insert>
@@ -51,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="bands != null  and bands != ''">bands = #{bands},</if>
             <if test="frequency != null  and frequency != ''">frequency = #{frequency},</if>
-            <if test="range != null  and range != ''">range = #{range},</if>
+            <if test="scope != null  and scope != ''">scope = #{scope},</if>
             <if test="direction != null  and direction != ''">direction = #{direction},</if>
         </trim>
         where id = #{id}

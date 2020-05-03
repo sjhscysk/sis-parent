@@ -1,6 +1,9 @@
 package com.ruoyi.data.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.mapper.DeviceAbilityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.data.mapper.DeviceMapper;

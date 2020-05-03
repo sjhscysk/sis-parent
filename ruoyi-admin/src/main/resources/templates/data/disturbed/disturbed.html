@@ -11,6 +11,18 @@
                     <div class="select-list">
                         <ul>
                             <li>
+                                <label>干扰范围：</label>
+                                <input type="text" name="scope"/>
+                            </li>
+                            <li>
+                                <label>干扰方向：</label>
+                                <input type="text" name="direction"/>
+                            </li>
+                            <li>
+                                <label>干扰方式：</label>
+                                <input type="text" name="mode"/>
+                            </li>
+                            <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
                                 <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
                             </li>
@@ -60,25 +72,25 @@
                     title: '自增主键',
                     visible: false
                 },
-                {
-                    field: 'bands', 
-                    title: '频段'
-                },
+                // {
+                //     field: 'bands',
+                //     title: '干扰频段'
+                // },
                 {
                     field: 'frequency', 
-                    title: '频率'
+                    title: '干扰频率'
                 },
                 {
                     field: 'power', 
-                    title: '功率或强度'
+                    title: '干扰功率'
                 },
                 {
-                    field: 'range', 
-                    title: '范围'
+                    field: 'scope', 
+                    title: '干扰范围'
                 },
                 {
                     field: 'direction', 
-                    title: '方向'
+                    title: '干扰方向'
                 },
                 {
                     field: 'mode', 

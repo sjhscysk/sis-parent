@@ -9,18 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="power"    column="power"    />
         <result property="bands"    column="bands"    />
         <result property="frequency"    column="frequency"    />
-        <result property="range"    column="range"    />
+        <result property="scope"    column="scope"    />
         <result property="direction"    column="direction"    />
     </resultMap>
 
     <sql id="selectTransmittingVo">
-        select id, power, bands, frequency, range, direction from t_transmitting
+        select id, power, bands, frequency, scope, direction from t_transmitting
     </sql>
 
     <select id="selectTransmittingList" parameterType="Transmitting" resultMap="TransmittingResult">
         <include refid="selectTransmittingVo"/>
         <where>  
-            <if test="power != null  and power != ''"> and power = #{power}</if>
+            <if test="scope != null  and scope != ''"> and scope = #{scope}</if>
+            <if test="direction != null  and direction != ''"> and direction = #{direction}</if>
         </where>
     </select>
     
@@ -29,22 +30,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertTransmitting" parameterType="Transmitting">
+    <insert id="insertTransmitting" parameterType="Transmitting" useGeneratedKeys="true" keyProperty="id">
         insert into t_transmitting
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
             <if test="power != null  and power != ''">power,</if>
             <if test="bands != null  and bands != ''">bands,</if>
             <if test="frequency != null  and frequency != ''">frequency,</if>
-            <if test="range != null  and range != ''">range,</if>
+            <if test="scope != null  and scope != ''">scope,</if>
             <if test="direction != null  and direction != ''">direction,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
             <if test="power != null  and power != ''">#{power},</if>
             <if test="bands != null  and bands != ''">#{bands},</if>
             <if test="frequency != null  and frequency != ''">#{frequency},</if>
-            <if test="range != null  and range != ''">#{range},</if>
+            <if test="scope != null  and scope != ''">#{scope},</if>
             <if test="direction != null  and direction != ''">#{direction},</if>
          </trim>
     </insert>
@@ -55,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="power != null  and power != ''">power = #{power},</if>
             <if test="bands != null  and bands != ''">bands = #{bands},</if>
             <if test="frequency != null  and frequency != ''">frequency = #{frequency},</if>
-            <if test="range != null  and range != ''">range = #{range},</if>
+            <if test="scope != null  and scope != ''">scope = #{scope},</if>
             <if test="direction != null  and direction != ''">direction = #{direction},</if>
         </trim>
         where id = #{id}

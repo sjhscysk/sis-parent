@@ -7,7 +7,7 @@ import com.ruoyi.data.domain.Transmitting;
  * 发射系统Service接口
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public interface TransmittingService
 {

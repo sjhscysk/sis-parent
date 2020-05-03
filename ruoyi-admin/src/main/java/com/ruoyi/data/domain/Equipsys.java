@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 装备系统对象 t_equipsys
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public class Equipsys extends BaseEntity
 {
@@ -37,6 +37,10 @@ public class Equipsys extends BaseEntity
     /** 部署地 */
     @Excel(name = "部署地")
     private String location;
+
+    /** 覆盖区域 */
+    @Excel(name = "覆盖区域")
+    private String scope;
 
     /** 经度 */
     @Excel(name = "经度")
@@ -112,6 +116,15 @@ public class Equipsys extends BaseEntity
     {
         return location;
     }
+    public void setScope(String scope) 
+    {
+        this.scope = scope;
+    }
+
+    public String getScope() 
+    {
+        return scope;
+    }
     public void setLongitude(String longitude) 
     {
         this.longitude = longitude;
@@ -167,6 +180,7 @@ public class Equipsys extends BaseEntity
             .append("belongsto", getBelongsto())
             .append("onwer", getOnwer())
             .append("location", getLocation())
+            .append("scope", getScope())
             .append("longitude", getLongitude())
             .append("latitude", getLatitude())
             .append("altitude", getAltitude())

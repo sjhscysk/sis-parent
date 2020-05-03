@@ -7,7 +7,7 @@ import com.ruoyi.data.domain.Disturbed;
  * 干扰功能Mapper接口
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public interface DisturbedMapper 
 {

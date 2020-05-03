@@ -11,12 +11,51 @@
                     <div class="select-list">
                         <ul>
                             <li>
+                                <label>编码：</label>
+                                <input type="text" name="sn"/>
+                            </li>
+                            <li>
                                 <label>系统名称：</label>
                                 <input type="text" name="name"/>
                             </li>
                             <li>
                                 <label>率属单位：</label>
                                 <input type="text" name="belongsto"/>
+                            </li>
+                            <li>
+                                <label>率属方：</label>
+                                <select name="onwer" th:with="type=${@dict.getType('owner')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>部署地：</label>
+                                <input type="text" name="location"/>
+                            </li>
+                            <li>
+                                <label>覆盖区域：</label>
+                                <input type="text" name="scope"/>
+                            </li>
+                            <li>
+                                <label>经度：</label>
+                                <input type="text" name="longitude"/>
+                            </li>
+                            <li>
+                                <label>纬度：</label>
+                                <input type="text" name="latitude"/>
+                            </li>
+                            <li>
+                                <label>海拔：</label>
+                                <input type="text" name="altitude"/>
+                            </li>
+                            <li>
+                                <label>图片地址：</label>
+                                <input type="text" name="pic"/>
+                            </li>
+                            <li>
+                                <label>视频地址：</label>
+                                <input type="text" name="video"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -94,6 +133,10 @@
                     title: '部署地'
                 },
                 {
+                    field: 'scope', 
+                    title: '覆盖区域'
+                },
+                {
                     field: 'longitude', 
                     title: '经度'
                 },
@@ -104,6 +147,14 @@
                 {
                     field: 'altitude', 
                     title: '海拔'
+                },
+                {
+                    field: 'pic', 
+                    title: '图片地址'
+                },
+                {
+                    field: 'video', 
+                    title: '视频地址'
                 },
                 {
                     title: '操作',

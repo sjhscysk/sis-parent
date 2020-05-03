@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 干扰功能对象 t_disturbed
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-02
  */
 public class Disturbed extends BaseEntity
 {
@@ -18,24 +18,24 @@ public class Disturbed extends BaseEntity
     /** 自增主键 */
     private Long id;
 
-    /** 频段 */
-    @Excel(name = "频段")
+    /** 干扰频段 */
+    @Excel(name = "干扰频段")
     private String bands;
 
-    /** 频率 */
-    @Excel(name = "频率")
+    /** 干扰频率 */
+    @Excel(name = "干扰频率")
     private String frequency;
 
-    /** 功率或强度 */
-    @Excel(name = "功率或强度")
+    /** 干扰功率 */
+    @Excel(name = "干扰功率")
     private String power;
 
-    /** 范围 */
-    @Excel(name = "范围")
-    private String range;
+    /** 干扰范围 */
+    @Excel(name = "干扰范围")
+    private String scope;
 
-    /** 方向 */
-    @Excel(name = "方向")
+    /** 干扰方向 */
+    @Excel(name = "干扰方向")
     private String direction;
 
     /** 干扰方式 */
@@ -78,14 +78,14 @@ public class Disturbed extends BaseEntity
     {
         return power;
     }
-    public void setRange(String range) 
+    public void setScope(String scope) 
     {
-        this.range = range;
+        this.scope = scope;
     }
 
-    public String getRange() 
+    public String getScope() 
     {
-        return range;
+        return scope;
     }
     public void setDirection(String direction) 
     {
@@ -113,7 +113,7 @@ public class Disturbed extends BaseEntity
             .append("bands", getBands())
             .append("frequency", getFrequency())
             .append("power", getPower())
-            .append("range", getRange())
+            .append("scope", getScope())
             .append("direction", getDirection())
             .append("mode", getMode())
             .toString();

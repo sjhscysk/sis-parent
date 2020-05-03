@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="owner"    column="owner"    />
         <result property="type"    column="type"    />
         <result property="location"    column="location"    />
+        <result property="scope"    column="scope"    />
         <result property="longitude"    column="longitude"    />
         <result property="latitude"    column="latitude"    />
         <result property="altitude"    column="altitude"    />
@@ -23,14 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectStationVo">
-        select id, sn, name, belongsto, owner, type, location, longitude, latitude, altitude, channel_name, run_time, language, pic, video from t_station
+        select id, sn, name, belongsto, owner, type, location, scope, longitude, latitude, altitude, channel_name, run_time, language, pic, video from t_station
     </sql>
 
     <select id="selectStationList" parameterType="Station" resultMap="StationResult">
         <include refid="selectStationVo"/>
         <where>  
-            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
             <if test="belongsto != null  and belongsto != ''"> and belongsto = #{belongsto}</if>
+            <if test="owner != null "> and owner = #{owner}</if>
         </where>
     </select>
     
@@ -48,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owner != null ">owner,</if>
             <if test="type != null ">type,</if>
             <if test="location != null  and location != ''">location,</if>
+            <if test="scope != null  and scope != ''">scope,</if>
             <if test="longitude != null  and longitude != ''">longitude,</if>
             <if test="latitude != null  and latitude != ''">latitude,</if>
             <if test="altitude != null  and altitude != ''">altitude,</if>
@@ -64,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owner != null ">#{owner},</if>
             <if test="type != null ">#{type},</if>
             <if test="location != null  and location != ''">#{location},</if>
+            <if test="scope != null  and scope != ''">#{scope},</if>
             <if test="longitude != null  and longitude != ''">#{longitude},</if>
             <if test="latitude != null  and latitude != ''">#{latitude},</if>
             <if test="altitude != null  and altitude != ''">#{altitude},</if>
@@ -84,6 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="owner != null ">owner = #{owner},</if>
             <if test="type != null ">type = #{type},</if>
             <if test="location != null  and location != ''">location = #{location},</if>
+            <if test="scope != null  and scope != ''">scope = #{scope},</if>
             <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
             <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
             <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>

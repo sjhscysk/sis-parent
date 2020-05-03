@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
         </where>
     </select>
-    
+
     <select id="selectDeviceAbilityById" parameterType="Long" resultMap="DeviceAbilityResult">
         <include refid="selectDeviceAbilityVo"/>
         where id = #{id}
@@ -53,10 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteDeviceAbilityByIds" parameterType="String">
-        delete from t_device_ability where id in 
+        delete from t_device_ability where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
-    
+
 </mapper>

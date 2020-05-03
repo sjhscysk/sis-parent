@@ -2,6 +2,8 @@ package com.ruoyi.data.service;
 
 import java.util.List;
 import com.ruoyi.data.domain.Device;
+import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.system.domain.SysUserRole;
 
 /**
  * 设备Service接口
@@ -58,4 +60,5 @@ public interface DeviceService
      * @return 结果
      */
     public int deleteDeviceById(Long id);
+
 }

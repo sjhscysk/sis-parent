@@ -11,8 +11,12 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>输出功率：</label>
-                                <input type="text" name="power"/>
+                                <label>覆盖范围：</label>
+                                <input type="text" name="scope"/>
+                            </li>
+                            <li>
+                                <label>方向：</label>
+                                <input type="text" name="direction"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -66,19 +70,19 @@
                 },
                 {
                     field: 'power', 
-                    title: '输出功率'
+                    title: '功率'
                 },
-                {
-                    field: 'bands', 
-                    title: '频段'
-                },
+                // {
+                //     field: 'bands',
+                //     title: '频段'
+                // },
                 {
                     field: 'frequency', 
                     title: '频率'
                 },
                 {
-                    field: 'range', 
-                    title: '覆盖范围，与功率相关'
+                    field: 'scope', 
+                    title: '覆盖范围'
                 },
                 {
                     field: 'direction', 
