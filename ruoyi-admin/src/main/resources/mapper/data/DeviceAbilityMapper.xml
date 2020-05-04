@@ -48,8 +48,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
-    <delete id="deleteDeviceAbilityById" parameterType="Long">
-        delete from t_device_ability where id = #{id}
+    <delete id="deleteDeviceAbility" parameterType="DeviceAbility">
+        delete from t_device_ability
+        <where>
+            <if test="id != null ">id = #{id}</if>
+            <if test="deviceId != null ">and device_id = #{deviceId}</if>
+            <if test="abilityId != null ">and ability_id = #{abilityId}</if>
+        </where>
+    </delete>
+
+    <delete id="batchDeleteDeviceAbility">
+        delete from t_device_ability where (device_id, ability_id) in
+        <foreach item="item" index="index" collection="list" separator="," open="(" close=")">
+            (#{item.deviceId}, #{item.abilityId})
+        </foreach>
     </delete>
 
     <delete id="deleteDeviceAbilityByIds" parameterType="String">
@@ -58,5 +70,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <insert id="batchInsertDeviceAbility">
+        insert into t_device_ability(device_id, ability_id) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.deviceId},#{item.abilityId})
+        </foreach>
+    </insert>
 
 </mapper>

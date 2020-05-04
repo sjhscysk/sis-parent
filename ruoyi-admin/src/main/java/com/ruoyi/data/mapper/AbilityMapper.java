@@ -3,6 +3,7 @@ package com.ruoyi.data.mapper;
 import java.util.List;
 import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.domain.DeviceAbilityVO;
 
 /**
  * 干扰功能Mapper接口
@@ -74,5 +75,5 @@ public interface AbilityMapper
      * @param deviceId 设备ID
      * @return 设备能力集合信息
      */
-    public List<Ability> selectUnallocatedList(Long deviceId);
+    public List<Ability> selectUnallocatedList(DeviceAbilityVO deviceAbilityVO);
 }

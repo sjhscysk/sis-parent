@@ -84,12 +84,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where da.device_id = #{deviceId}
     </select>
 
-    <select id="selectUnallocatedList" parameterType="Long" resultMap="AbilityResult">
+    <select id="selectUnallocatedList" parameterType="DeviceAbilityVO" resultMap="AbilityResult">
         select a.id, a.type, a.bands, a.frequency, a.power, a.scope, a.direction, a.mode from t_ability a
         where a.id not in (
             select a.id from t_ability a
             inner join t_device_ability da on a.id = da.ability_id
             where da.device_id = #{deviceId}
-        );
+        )
+        <if test="type != null and type != ''">
+            AND a.type = #{type}
+        </if>
     </select>
 </mapper>

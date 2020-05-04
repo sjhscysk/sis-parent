@@ -46,16 +46,24 @@ public interface DeviceAbilityMapper
     /**
      * 删除设备能力
      * 
-     * @param id 设备能力ID
+     * @param deviceAbility 设备能力
      * @return 结果
      */
-    public int deleteDeviceAbilityById(Long id);
+    public int deleteDeviceAbility(DeviceAbility deviceAbility);
 
     /**
      * 批量删除设备能力
-     * 
-     * @param ids 需要删除的数据ID
+     *
+     * @param list 设备能力列表
      * @return 结果
      */
-    public int deleteDeviceAbilityByIds(String[] ids);
+    public int batchDeleteDeviceAbility(List<DeviceAbility> list);
+
+    /**
+     * 批量新增设备能力
+     *
+     * @param list 设备能力列表
+     * @return 结果
+     */
+    public int batchInsertDeviceAbility(List<DeviceAbility> list);
 }

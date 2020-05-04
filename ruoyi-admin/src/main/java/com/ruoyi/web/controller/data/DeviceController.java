@@ -4,10 +4,9 @@ import java.util.List;
 
 import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.domain.DeviceAbilityVO;
 import com.ruoyi.data.service.AbilityService;
 import com.ruoyi.data.service.DeviceAbilityService;
-import com.ruoyi.system.domain.SysUser;
-import com.ruoyi.system.domain.SysUserRole;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -159,12 +158,13 @@ class DeviceController extends BaseController
     /**
      * 取消能力
      */
+    @RequiresPermissions("data:device:remove")
     @Log(title = "设备", businessType = BusinessType.GRANT)
     @PostMapping("/ability/cancel")
     @ResponseBody
     public AjaxResult cancelAbility(DeviceAbility deviceAbility)
     {
-        return toAjax(deviceAbilityService.deleteAbility(deviceAbility.getId()));
+        return toAjax(deviceAbilityService.deleteDeviceAbility(deviceAbility));
     }
 
     /**
@@ -173,9 +173,9 @@ class DeviceController extends BaseController
     @Log(title = "设备", businessType = BusinessType.GRANT)
     @PostMapping("/ability/cancelAll")
     @ResponseBody
-    public AjaxResult cancelAbilityAll(String[] ids)
+    public AjaxResult cancelAbilityAll(Long deviceId, String abilityIds)
     {
-        return toAjax(deviceAbilityService.deleteAbilityAll(ids));
+        return toAjax(deviceAbilityService.batchDeleteDeviceAbility(deviceId, abilityIds));
     }
 
     /**
@@ -187,7 +187,7 @@ class DeviceController extends BaseController
     public TableDataInfo allocatedList(DeviceAbility deviceAbility)
     {
         startPage();
-        List<Ability> list = abilityService.selectAllocatedList(deviceAbility);
+        List<Ability> list = abilityService.selectAllocatedList(deviceAbility.getDeviceId());
         return getDataTable(list);
     }
 
@@ -197,10 +197,21 @@ class DeviceController extends BaseController
     @RequiresPermissions("data:device:list")
     @PostMapping("/ability/unallocatedList")
     @ResponseBody
-    public TableDataInfo unallocatedList(DeviceAbility deviceAbility)
+    public TableDataInfo unallocatedList(DeviceAbilityVO deviceAbilityVO)
     {
         startPage();
-        List<Ability> list = abilityService.selectUnallocatedList(deviceAbility);
+        List<Ability> list = abilityService.selectUnallocatedList(deviceAbilityVO);
         return getDataTable(list);
+    }
+
+    /**
+     * 批量选择设备能力
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/ability/selectAll")
+    @ResponseBody
+    public AjaxResult selectAuthUserAll(Long deviceId, String abilityIds)
+    {
+        return toAjax(deviceAbilityService.batchInsertDeviceAbility(deviceId, abilityIds));
     }
 }

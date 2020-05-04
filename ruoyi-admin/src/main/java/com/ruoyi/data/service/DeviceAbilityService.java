@@ -47,32 +47,26 @@ public interface DeviceAbilityService
     /**
      * 取消设备能力
      *
-     * @param id 设备能力ID
+     * @param deviceAbility 设备能力
      * @return 结果
      */
-    public int deleteAbility(Long id);
+    public int deleteDeviceAbility(DeviceAbility deviceAbility);
 
     /**
      * 批量取消设备能力
      *
-     * @param ids 需要删除的设备能力ID
+     * @param deviceId 设备ID
+     * @param abilityIds 需要删除的设备能力ID
      * @return 结果
      */
-    public int deleteAbilityAll(String[] ids);
-//
-//    /**
-//     * 删除设备能力信息
-//     *
-//     * @param deviceAbility 设备能力
-//     * @return 结果
-//     */
-//    public int deleteDeviceAbility(DeviceAbility deviceAbility);
-//
-//    /**
-//     * 批量删除设备能力
-//     *
-//     * @param list 需要删除的设备能力集合信息
-//     * @return 结果
-//     */
-//    public int deleteDeviceAbilityAll(List<DeviceAbility> list);
+    public int batchDeleteDeviceAbility(Long deviceId, String abilityIds);
+
+    /**
+     * 批量新增设备能力
+     *
+     * @param deviceId 设备ID
+     * @param abilityIds 设备能力ID
+     * @return 结果
+     */
+    public int batchInsertDeviceAbility(Long deviceId, String abilityIds);
 }

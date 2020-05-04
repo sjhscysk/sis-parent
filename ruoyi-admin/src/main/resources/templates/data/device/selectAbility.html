@@ -13,10 +13,11 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            登录名称：<input type="text" name="loginName"/>
-                        </li>
-                        <li>
-                            手机号码：<input type="text" name="phonenumber"/>
+                            <label>能力分类：</label>
+                            <select name="type" th:with="type=${@dict.getType('ability_type')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                            </select>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -34,7 +35,7 @@
 </div>
 <th:block th:include="include :: footer" />
 <script th:inline="javascript">
-    var datas = [[${@dict.getType('sys_normal_disable')}]];
+    var typeDatas = [[${@dict.getType('ability_type')}]];
     var prefix = ctx + "data/device/ability";
 
     $(function() {
@@ -43,13 +44,10 @@
             createUrl: prefix + "/add",
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
-            exportUrl: prefix + "/export",
-            importUrl: prefix + "/importData",
-            importTemplateUrl: prefix + "/importTemplate",
             queryParams: queryParams,
-            sortName: "createTime",
-            sortOrder: "desc",
-            modalName: "用户",
+            sortName: "id",
+            sortOrder: "asc",
+            modalName: "能力",
             showSearch: false,
             showRefresh: false,
             showToggle: false,
@@ -57,43 +55,43 @@
             clickToSelect: true,
             rememberSelected: true,
             columns: [{
-                field: 'state',
                 checkbox: true
             },
                 {
-                    field: 'userId',
-                    title: '用户ID',
+                    field: 'id',
+                    title: '自增主键',
                     visible: false
                 },
                 {
-                    field: 'loginName',
-                    title: '登录名称',
-                    sortable: true
-                },
-                {
-                    field: 'userName',
-                    title: '用户名称'
-                },
-                {
-                    field: 'email',
-                    title: '邮箱'
-                },
-                {
-                    field: 'phonenumber',
-                    title: '手机'
-                },
-                {
-                    field: 'status',
-                    title: '用户状态',
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(datas, value);
+                    field: 'type',
+                    title: '能力分类',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(typeDatas, value);
                     }
                 },
                 {
-                    field: 'createTime',
-                    title: '创建时间',
-                    sortable: true
+                    field: 'bands',
+                    title: '频段'
+                },
+                {
+                    field: 'frequency',
+                    title: '频率'
+                },
+                {
+                    field: 'power',
+                    title: '功率'
+                },
+                {
+                    field: 'scope',
+                    title: '范围'
+                },
+                {
+                    field: 'direction',
+                    title: '方向'
+                },
+                {
+                    field: 'mode',
+                    title: '干扰方式'
                 }]
         };
         $.table.init(options);
@@ -101,18 +99,18 @@
 
     function queryParams(params) {
         var search = $.table.queryParams(params);
-        search.roleId = $("#roleId").val();
+        search.deviceId = $("#deviceId").val();
         return search;
     }
 
-    /* 添加用户-选择用户-提交 */
+    /* 添加能力-选择能力-提交 */
     function submitHandler() {
         var rows = $.table.selectFirstColumns();
         if (rows.length == 0) {
             $.modal.alertWarning("请至少选择一条记录");
             return;
         }
-        var data = { "roleId": $("#roleId").val(), "userIds": rows.join() };
+        var data = { "deviceId": $("#deviceId").val(), "abilityIds": rows.join() };
         $.operate.save(prefix + "/selectAll", data);
     }
 </script>

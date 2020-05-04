@@ -1,5 +1,6 @@
 package com.ruoyi.data.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,12 +70,31 @@ public class DeviceAbilityServiceImpl implements DeviceAbilityService
     }
 
     @Override
-    public int deleteAbility(Long id) {
-        return deviceAbilityMapper.deleteDeviceAbilityById(id);
+    public int deleteDeviceAbility(DeviceAbility deviceAbility) {
+        return deviceAbilityMapper.deleteDeviceAbility(deviceAbility);
+    }
+
+    private List<DeviceAbility> getList(Long deviceId, String abilityIds) {
+        Long[] abilities = Convert.toLongArray(abilityIds);
+        List<DeviceAbility> list = new ArrayList<>();
+        for (Long abilityId : abilities) {
+            DeviceAbility deviceAbility = new DeviceAbility();
+            deviceAbility.setDeviceId(deviceId);
+            deviceAbility.setAbilityId(abilityId);
+            list.add(deviceAbility);
+        }
+        return list;
     }
 
     @Override
-    public int deleteAbilityAll(String[] ids) {
-        return deviceAbilityMapper.deleteDeviceAbilityByIds(ids);
+    public int batchDeleteDeviceAbility(Long deviceId, String abilityIds) {
+        List<DeviceAbility> list = getList(deviceId, abilityIds);
+        return deviceAbilityMapper.batchDeleteDeviceAbility(list);
+    }
+
+    @Override
+    public int batchInsertDeviceAbility(Long deviceId, String abilityIds) {
+        List<DeviceAbility> list = getList(deviceId, abilityIds);
+        return deviceAbilityMapper.batchInsertDeviceAbility(list);
     }
 }

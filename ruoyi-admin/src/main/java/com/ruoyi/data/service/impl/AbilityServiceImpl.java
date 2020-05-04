@@ -3,6 +3,7 @@ package com.ruoyi.data.service.impl;
 import java.util.List;
 
 import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.domain.DeviceAbilityVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.data.mapper.AbilityMapper;
@@ -95,12 +96,14 @@ public class AbilityServiceImpl implements AbilityService
     }
 
     @Override
-    public List<Ability> selectAllocatedList(DeviceAbility deviceAbility) {
-        return abilityMapper.selectAllocatedList(deviceAbility.getDeviceId());
+    public List<Ability> selectAllocatedList(Long deviceId) {
+//        return abilityMapper.selectAllocatedList(deviceAbility.getDeviceId());
+        return abilityMapper.selectAllocatedList(deviceId);
     }
 
     @Override
-    public List<Ability> selectUnallocatedList(DeviceAbility deviceAbility) {
-        return abilityMapper.selectUnallocatedList(deviceAbility.getDeviceId());
+    public List<Ability> selectUnallocatedList(DeviceAbilityVO deviceAbilityVO) {
+//        return abilityMapper.selectUnallocatedList(deviceAbility.getDeviceId());
+        return abilityMapper.selectUnallocatedList(deviceAbilityVO);
     }
 }
