@@ -1,6 +1,8 @@
 package com.ruoyi.data.service;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.DeviceAbility;
 import com.ruoyi.data.domain.StationDevice;
 
 /**
@@ -58,4 +60,30 @@ public interface StationDeviceService
      * @return 结果
      */
     public int deleteStationDeviceById(Long id);
+
+    /**
+     * 取消台站设备
+     *
+     * @param stationDevice 台站设备
+     * @return 结果
+     */
+    public int deleteStationDevice(StationDevice stationDevice);
+
+    /**
+     * 批量取消台站设备
+     *
+     * @param stationId 台站ID
+     * @param deviceIds 设备ID
+     * @return 结果
+     */
+    public int batchDeleteStationDevice(Long stationId, String deviceIds);
+
+    /**
+     * 批量新增台站设备
+     *
+     * @param stationId 台站ID
+     * @param deviceIds 设备ID
+     * @return 结果
+     */
+    public int batchInsertStationDevice(Long stationId, String deviceIds);
 }

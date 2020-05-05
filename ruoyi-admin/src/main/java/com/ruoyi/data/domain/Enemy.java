@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 敌情目标对象 t_enemy
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-04
  */
 public class Enemy extends BaseEntity
 {
@@ -22,6 +22,10 @@ public class Enemy extends BaseEntity
     /** 名称 */
     @Excel(name = "名称")
     private String name;
+
+    /** 目标类型 */
+    @Excel(name = "目标类型")
+    private String type;
 
     /** 经度 */
     @Excel(name = "经度")
@@ -96,6 +100,15 @@ public class Enemy extends BaseEntity
     public String getName() 
     {
         return name;
+    }
+    public void setType(String type) 
+    {
+        this.type = type;
+    }
+
+    public String getType() 
+    {
+        return type;
     }
     public void setLongitue(String longitue) 
     {
@@ -229,6 +242,7 @@ public class Enemy extends BaseEntity
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
             .append("name", getName())
+            .append("type", getType())
             .append("longitue", getLongitue())
             .append("latitude", getLatitude())
             .append("altitude", getAltitude())

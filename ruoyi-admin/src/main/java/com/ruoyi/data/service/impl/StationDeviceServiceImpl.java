@@ -1,6 +1,8 @@
 package com.ruoyi.data.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.data.mapper.StationDeviceMapper;
@@ -90,5 +92,32 @@ public class StationDeviceServiceImpl implements StationDeviceService
     public int deleteStationDeviceById(Long id)
     {
         return stationDeviceMapper.deleteStationDeviceById(id);
+    }
+
+    @Override
+    public int deleteStationDevice(StationDevice stationDevice) {
+        return stationDeviceMapper.deleteStationDevice(stationDevice);
+    }
+
+    private List<StationDevice> getList(Long stationId, String deviceIds) {
+        Long[] deviceids = Convert.toLongArray(deviceIds);
+        List<StationDevice> list = new ArrayList<>();
+        for (Long deviceId : deviceids) {
+            StationDevice stationDevice = new StationDevice();
+            stationDevice.setStationId(stationId);
+            stationDevice.setDeviceId(deviceId);
+            list.add(stationDevice);
+        }
+        return list;
+    }
+
+    @Override
+    public int batchDeleteStationDevice(Long stationId, String deviceIds) {
+        return stationDeviceMapper.batchDeleteStationDevice(getList(stationId, deviceIds));
+    }
+
+    @Override
+    public int batchInsertStationDevice(Long stationId, String deviceIds) {
+        return stationDeviceMapper.batchInsertStationDevice(getList(stationId, deviceIds));
     }
 }

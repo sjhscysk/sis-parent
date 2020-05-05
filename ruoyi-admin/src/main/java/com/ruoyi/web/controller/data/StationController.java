@@ -1,6 +1,10 @@
 package com.ruoyi.web.controller.data;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.*;
+import com.ruoyi.data.service.DeviceService;
+import com.ruoyi.data.service.StationDeviceService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.data.domain.Station;
 import com.ruoyi.data.service.StationService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -33,6 +36,10 @@ public class StationController extends BaseController
 
     @Autowired
     private StationService stationService;
+    @Autowired
+    private StationDeviceService stationDeviceService;
+    @Autowired
+    private DeviceService deviceService;
 
     @RequiresPermissions("data:station:view")
     @GetMapping()
@@ -122,5 +129,86 @@ public class StationController extends BaseController
     public AjaxResult remove(String ids)
     {
         return toAjax(stationService.deleteStationByIds(ids));
+    }
+
+    /**
+     * 分配设备
+     */
+    @RequiresPermissions("data:station:edit")
+    @GetMapping("/device/{stationId}")
+    public String ability(@PathVariable("stationId") Long stationId, ModelMap mmap)
+    {
+        mmap.put("station", stationService.selectStationById(stationId));
+        return prefix + "/device";
+    }
+
+    /**
+     * 选择设备
+     */
+    @GetMapping("/device/selectDevice/{stationId}")
+    public String selectDevice(@PathVariable("stationId") Long stationId, ModelMap mmap)
+    {
+        mmap.put("station", stationService.selectStationById(stationId));
+        return prefix + "/selectDevice";
+    }
+
+    /**
+     * 取消设备
+     */
+    @RequiresPermissions("data:device:remove")
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/device/cancel")
+    @ResponseBody
+    public AjaxResult cancelDevice(StationDevice stationDevice)
+    {
+        return toAjax(stationDeviceService.deleteStationDevice(stationDevice));
+    }
+
+    /**
+     * 批量选择设备
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/device/selectAll")
+    @ResponseBody
+    public AjaxResult selectDeviceAll(Long stationId, String deviceIds)
+    {
+        return toAjax(stationDeviceService.batchInsertStationDevice(stationId, deviceIds));
+    }
+
+    /**
+     * 批量取消设备
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/device/cancelAll")
+    @ResponseBody
+    public AjaxResult cancelDeviceAll(Long stationId, String deviceIds)
+    {
+        return toAjax(stationDeviceService.batchDeleteStationDevice(stationId, deviceIds));
+    }
+
+    /**
+     * 查询已分配设备列表
+     */
+    @RequiresPermissions("data:station:list")
+    @PostMapping("/device/allocatedList")
+    @ResponseBody
+    public TableDataInfo allocatedList(StationDevice stationDevice)
+    {
+        startPage();
+        List<Device> list = deviceService.selectAllocatedList(stationDevice.getStationId());
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询未分配设备列表
+     */
+    @RequiresPermissions("data:station:list")
+    @PostMapping("/device/unallocatedList")
+    @ResponseBody
+    public TableDataInfo unallocatedList(StationDeviceVO stationDeviceVO)
+    {
+        startPage();
+        List<Device> list = deviceService.selectUnallocatedList(stationDeviceVO);
+        return getDataTable(list);
     }
 }

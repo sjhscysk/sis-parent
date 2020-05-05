@@ -58,5 +58,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
-    
+
+    <delete id="deleteStationDevice" parameterType="StationDevice">
+        delete from t_station_device
+        <where>
+            <if test="id != null ">id = #{id}</if>
+            <if test="stationId != null ">and station_id = #{stationId}</if>
+            <if test="deviceId != null ">and device_id = #{deviceId}</if>
+        </where>
+    </delete>
+
+    <delete id="batchDeleteStationDevice">
+        delete from t_station_device where (station_id, device_id) in
+        <foreach item="item" index="index" collection="list" separator="," open="(" close=")">
+            (#{item.stationId}, #{item.deviceId})
+        </foreach>
+    </delete>
+
+    <insert id="batchInsertStationDevice">
+        insert into t_station_device(station_id, device_id) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.stationId},#{item.deviceId})
+        </foreach>
+    </insert>
+
 </mapper>

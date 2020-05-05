@@ -42,7 +42,7 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 查询干扰功能列表
+     * 查询设备能力列表
      */
     @RequiresPermissions("data:ability:list")
     @PostMapping("/list")
@@ -55,7 +55,7 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 新增干扰功能
+     * 新增设备能力
      */
     @GetMapping("/add")
     public String add()
@@ -64,10 +64,10 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 新增保存干扰功能
+     * 新增保存设备能力
      */
     @RequiresPermissions("data:ability:add")
-    @Log(title = "干扰功能", businessType = BusinessType.INSERT)
+    @Log(title = "设备能力", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Ability ability)
@@ -76,7 +76,7 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 修改干扰功能
+     * 修改设备能力
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -87,10 +87,10 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 修改保存干扰功能
+     * 修改保存设备能力
      */
     @RequiresPermissions("data:ability:edit")
-    @Log(title = "干扰功能", businessType = BusinessType.UPDATE)
+    @Log(title = "设备能力", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Ability ability)
@@ -99,10 +99,10 @@ public class AbilityController extends BaseController
     }
 
     /**
-     * 删除干扰功能
+     * 删除设备能力
      */
     @RequiresPermissions("data:ability:remove")
-    @Log(title = "干扰功能", businessType = BusinessType.DELETE)
+    @Log(title = "设备能力", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

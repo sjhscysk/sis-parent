@@ -45,51 +45,51 @@
             columns: [{
                 checkbox: true
             },
-                {
-                    field: 'id',
-                    title: '自增主键',
-                    visible: false
-                },
-                {
-                    field: 'type',
-                    title: '能力分类',
-                    formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(typeDatas, value);
-                    }
-                },
-                {
-                    field: 'bands',
-                    title: '频段'
-                },
-                {
-                    field: 'frequency',
-                    title: '频率'
-                },
-                {
-                    field: 'power',
-                    title: '功率'
-                },
-                {
-                    field: 'scope',
-                    title: '范围'
-                },
-                {
-                    field: 'direction',
-                    title: '方向'
-                },
-                {
-                    field: 'mode',
-                    title: '干扰方式'
-                },
-                {
-                    title: '操作',
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        var actions = [];
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancelAbility(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
-                        return actions.join('');
-                    }
-                }]
+            {
+                field: 'id',
+                title: '自增主键',
+                visible: false
+            },
+            {
+                field: 'type',
+                title: '能力分类',
+                formatter: function (value, row, index) {
+                    return $.table.selectDictLabel(typeDatas, value);
+                }
+            },
+            {
+                field: 'bands',
+                title: '频段'
+            },
+            {
+                field: 'frequency',
+                title: '频率'
+            },
+            {
+                field: 'power',
+                title: '功率'
+            },
+            {
+                field: 'scope',
+                title: '范围'
+            },
+            {
+                field: 'direction',
+                title: '方向'
+            },
+            {
+                field: 'mode',
+                title: '干扰方式'
+            },
+            {
+                title: '操作',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    var actions = [];
+                    actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancelAbility(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                    return actions.join('');
+                }
+            }]
         };
         $.table.init(options);
     });
@@ -108,7 +108,7 @@
             return;
         }
         $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function () {
-            var data = {"deviceId": $("#deviceId").val(), "abilityIds": rows.join()};
+            var data = {"deviceId": $("#stationId").val(), "abilityIds": rows.join()};
             $.operate.submit(prefix + "/cancelAll", "post", "json", data);
         });
     }

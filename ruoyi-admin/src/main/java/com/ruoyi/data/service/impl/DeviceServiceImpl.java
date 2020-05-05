@@ -2,7 +2,9 @@ package com.ruoyi.data.service.impl;
 
 import java.util.List;
 
+import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.DeviceAbility;
+import com.ruoyi.data.domain.StationDeviceVO;
 import com.ruoyi.data.mapper.DeviceAbilityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,5 +95,15 @@ public class DeviceServiceImpl implements DeviceService
     public int deleteDeviceById(Long id)
     {
         return deviceMapper.deleteDeviceById(id);
+    }
+
+    @Override
+    public List<Device> selectAllocatedList(Long stationId) {
+        return deviceMapper.selectAllocatedList(stationId);
+    }
+
+    @Override
+    public List<Device> selectUnallocatedList(StationDeviceVO stationDeviceVO) {
+        return deviceMapper.selectUnallocatedList(stationDeviceVO);
     }
 }

@@ -88,13 +88,11 @@ public class DeviceAbilityServiceImpl implements DeviceAbilityService
 
     @Override
     public int batchDeleteDeviceAbility(Long deviceId, String abilityIds) {
-        List<DeviceAbility> list = getList(deviceId, abilityIds);
-        return deviceAbilityMapper.batchDeleteDeviceAbility(list);
+        return deviceAbilityMapper.batchDeleteDeviceAbility(getList(deviceId, abilityIds));
     }
 
     @Override
     public int batchInsertDeviceAbility(Long deviceId, String abilityIds) {
-        List<DeviceAbility> list = getList(deviceId, abilityIds);
-        return deviceAbilityMapper.batchInsertDeviceAbility(list);
+        return deviceAbilityMapper.batchInsertDeviceAbility(getList(deviceId, abilityIds));
     }
 }

@@ -1,6 +1,7 @@
 package com.ruoyi.data.mapper;
 
 import java.util.List;
+
 import com.ruoyi.data.domain.StationDevice;
 
 /**
@@ -58,4 +59,28 @@ public interface StationDeviceMapper
      * @return 结果
      */
     public int deleteStationDeviceByIds(String[] ids);
+
+    /**
+     * 取消台站设备
+     *
+     * @param stationDevice 台站设备
+     * @return 结果
+     */
+    public int deleteStationDevice(StationDevice stationDevice);
+
+    /**
+     * 批量取消台站设备
+     *
+     * @param list 台站设备列表
+     * @return 结果
+     */
+    public int batchDeleteStationDevice(List<StationDevice> list);
+
+    /**
+     * 批量新增台站设备
+     *
+     * @param list 台站设备列表
+     * @return 结果
+     */
+    public int batchInsertStationDevice(List<StationDevice> list);
 }

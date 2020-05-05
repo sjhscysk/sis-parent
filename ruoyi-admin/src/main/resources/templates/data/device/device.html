@@ -56,7 +56,6 @@
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('data:device:edit')}]];
-        var listFlag = [[${@permission.hasPermi('data:device:list')}]];
         var removeFlag = [[${@permission.hasPermi('data:device:remove')}]];
         var ownerDatas = [[${@dict.getType('owner')}]];
         var statusDatas = [[${@dict.getType('device_status')}]];

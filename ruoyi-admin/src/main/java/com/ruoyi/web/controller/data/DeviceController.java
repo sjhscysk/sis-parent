@@ -168,6 +168,17 @@ class DeviceController extends BaseController
     }
 
     /**
+     * 批量选择设备能力
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/ability/selectAll")
+    @ResponseBody
+    public AjaxResult selectAbilityAll(Long deviceId, String abilityIds)
+    {
+        return toAjax(deviceAbilityService.batchInsertDeviceAbility(deviceId, abilityIds));
+    }
+
+    /**
      * 批量取消能力
      */
     @Log(title = "设备", businessType = BusinessType.GRANT)
@@ -202,16 +213,5 @@ class DeviceController extends BaseController
         startPage();
         List<Ability> list = abilityService.selectUnallocatedList(deviceAbilityVO);
         return getDataTable(list);
-    }
-
-    /**
-     * 批量选择设备能力
-     */
-    @Log(title = "设备", businessType = BusinessType.GRANT)
-    @PostMapping("/ability/selectAll")
-    @ResponseBody
-    public AjaxResult selectAuthUserAll(Long deviceId, String abilityIds)
-    {
-        return toAjax(deviceAbilityService.batchInsertDeviceAbility(deviceId, abilityIds));
     }
 }

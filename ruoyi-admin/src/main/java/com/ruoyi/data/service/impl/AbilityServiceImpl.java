@@ -97,13 +97,11 @@ public class AbilityServiceImpl implements AbilityService
 
     @Override
     public List<Ability> selectAllocatedList(Long deviceId) {
-//        return abilityMapper.selectAllocatedList(deviceAbility.getDeviceId());
         return abilityMapper.selectAllocatedList(deviceId);
     }
 
     @Override
     public List<Ability> selectUnallocatedList(DeviceAbilityVO deviceAbilityVO) {
-//        return abilityMapper.selectUnallocatedList(deviceAbility.getDeviceId());
         return abilityMapper.selectUnallocatedList(deviceAbilityVO);
     }
 }

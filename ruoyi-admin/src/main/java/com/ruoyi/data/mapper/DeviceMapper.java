@@ -1,7 +1,11 @@
 package com.ruoyi.data.mapper;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.Device;
+import com.ruoyi.data.domain.DeviceAbilityVO;
+import com.ruoyi.data.domain.StationDeviceVO;
 
 /**
  * 设备Mapper接口
@@ -58,4 +62,20 @@ public interface DeviceMapper
      * @return 结果
      */
     public int deleteDeviceByIds(String[] ids);
+
+    /**
+     * 根据条件分页查询已分配设备列表
+     *
+     * @param stationId 台站ID
+     * @return 设备能力集合信息
+     */
+    public List<Device> selectAllocatedList(Long stationId);
+
+    /**
+     * 根据条件分页查询未分配设备列表
+     *
+     * @param stationDeviceVO 台站设备
+     * @return 设备能力集合信息
+     */
+    public List<Device> selectUnallocatedList(StationDeviceVO stationDeviceVO);
 }
