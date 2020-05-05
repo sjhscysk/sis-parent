@@ -123,4 +123,26 @@ public class TaskController extends BaseController
     {
         return toAjax(taskService.deleteTaskByIds(ids));
     }
+
+    /**
+     * 查询作战任务详细
+     */
+    @RequiresPermissions("data:task:list")
+    @GetMapping("/detail/{taskId}")
+    public String detail(@PathVariable("taskId") Long taskId, ModelMap mmap)
+    {
+        mmap.put("task", taskService.selectTaskById(taskId));
+        return prefix + "/detail/detail";
+    }
+
+    /**
+     * 查询作战任务执行信息
+     */
+    @RequiresPermissions("data:task:list")
+    @GetMapping("/exec/{taskId}")
+    public String exec(@PathVariable("taskId") Long taskId, ModelMap mmap)
+    {
+        mmap.put("task", taskService.selectTaskById(taskId));
+        return prefix + "/exec/exec";
+    }
 }

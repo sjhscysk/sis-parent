@@ -46,7 +46,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('data:exec:edit')}]];
         var removeFlag = [[${@permission.hasPermi('data:exec:remove')}]];
-        var prefix = ctx + "data/exec";
+        var prefix = ctx + "data/task/exec";
 
         $(function() {
             var options = {

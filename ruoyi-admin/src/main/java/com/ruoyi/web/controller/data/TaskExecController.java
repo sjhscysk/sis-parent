@@ -26,15 +26,15 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2020-04-30
  */
 @Controller
-@RequestMapping("/data/exec")
+@RequestMapping("/data/task/exec")
 public class TaskExecController extends BaseController
 {
-    private String prefix = "data/exec";
+    private String prefix = "data/task/exec";
 
     @Autowired
     private TaskExecService taskExecService;
 
-    @RequiresPermissions("data:exec:view")
+    @RequiresPermissions("data:task:view")
     @GetMapping()
     public String exec()
     {
@@ -44,7 +44,7 @@ public class TaskExecController extends BaseController
     /**
      * 查询作战任务执行信息列表
      */
-    @RequiresPermissions("data:exec:list")
+    @RequiresPermissions("data:task:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(TaskExec taskExec)
@@ -57,7 +57,7 @@ public class TaskExecController extends BaseController
     /**
      * 导出作战任务执行信息列表
      */
-    @RequiresPermissions("data:exec:export")
+    @RequiresPermissions("data:task:export")
     @Log(title = "作战任务执行信息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +80,7 @@ public class TaskExecController extends BaseController
     /**
      * 新增保存作战任务执行信息
      */
-    @RequiresPermissions("data:exec:add")
+    @RequiresPermissions("data:task:add")
     @Log(title = "作战任务执行信息", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +103,7 @@ public class TaskExecController extends BaseController
     /**
      * 修改保存作战任务执行信息
      */
-    @RequiresPermissions("data:exec:edit")
+    @RequiresPermissions("data:task:edit")
     @Log(title = "作战任务执行信息", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -115,7 +115,7 @@ public class TaskExecController extends BaseController
     /**
      * 删除作战任务执行信息
      */
-    @RequiresPermissions("data:exec:remove")
+    @RequiresPermissions("data:task:remove")
     @Log(title = "作战任务执行信息", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

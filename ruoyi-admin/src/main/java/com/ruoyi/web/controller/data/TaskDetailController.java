@@ -26,15 +26,15 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2020-04-30
  */
 @Controller
-@RequestMapping("/data/detail")
+@RequestMapping("/data/task/detail")
 public class TaskDetailController extends BaseController
 {
-    private String prefix = "data/detail";
+    private String prefix = "data/task/detail";
 
     @Autowired
     private TaskDetailService taskDetailService;
 
-    @RequiresPermissions("data:detail:view")
+    @RequiresPermissions("data:task:view")
     @GetMapping()
     public String detail()
     {
@@ -44,7 +44,7 @@ public class TaskDetailController extends BaseController
     /**
      * 查询作战任务详情列表
      */
-    @RequiresPermissions("data:detail:list")
+    @RequiresPermissions("data:task:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(TaskDetail taskDetail)
@@ -57,7 +57,7 @@ public class TaskDetailController extends BaseController
     /**
      * 导出作战任务详情列表
      */
-    @RequiresPermissions("data:detail:export")
+    @RequiresPermissions("data:task:export")
     @Log(title = "作战任务详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +80,7 @@ public class TaskDetailController extends BaseController
     /**
      * 新增保存作战任务详情
      */
-    @RequiresPermissions("data:detail:add")
+    @RequiresPermissions("data:task:add")
     @Log(title = "作战任务详情", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +103,7 @@ public class TaskDetailController extends BaseController
     /**
      * 修改保存作战任务详情
      */
-    @RequiresPermissions("data:detail:edit")
+    @RequiresPermissions("data:task:edit")
     @Log(title = "作战任务详情", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -115,7 +115,7 @@ public class TaskDetailController extends BaseController
     /**
      * 删除作战任务详情
      */
-    @RequiresPermissions("data:detail:remove")
+    @RequiresPermissions("data:task:remove")
     @Log(title = "作战任务详情", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
