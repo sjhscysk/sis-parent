@@ -7,7 +7,7 @@ import com.ruoyi.data.domain.TaskExec;
  * 作战任务执行信息Mapper接口
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-06
  */
 public interface TaskExecMapper 
 {

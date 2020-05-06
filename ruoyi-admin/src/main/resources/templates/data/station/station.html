@@ -11,6 +11,10 @@
                     <div class="select-list">
                         <ul>
                             <li>
+                                <label>名称：</label>
+                                <input type="text" name="name"/>
+                            </li>
+                            <li>
                                 <label>率属单位：</label>
                                 <input type="text" name="belongsto"/>
                             </li>
@@ -20,6 +24,10 @@
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
+                            </li>
+                            <li>
+                                <label>部署地：</label>
+                                <input type="text" name="location"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>

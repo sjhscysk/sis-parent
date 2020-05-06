@@ -33,20 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
             <if test="type != null  and type != ''"> and type = #{type}</if>
-            <if test="longitue != null  and longitue != ''"> and longitue = #{longitue}</if>
-            <if test="latitude != null  and latitude != ''"> and latitude = #{latitude}</if>
-            <if test="altitude != null  and altitude != ''"> and altitude = #{altitude}</if>
-            <if test="speed != null  and speed != ''"> and speed = #{speed}</if>
-            <if test="direction != null  and direction != ''"> and direction = #{direction}</if>
-            <if test="bands != null  and bands != ''"> and bands = #{bands}</if>
-            <if test="frequency != null  and frequency != ''"> and frequency = #{frequency}</if>
-            <if test="power != null  and power != ''"> and power = #{power}</if>
             <if test="startTime != null "> and start_time = #{startTime}</if>
             <if test="endTime != null "> and end_time = #{endTime}</if>
             <if test="intention != null  and intention != ''"> and intention = #{intention}</if>
             <if test="status != null "> and status = #{status}</if>
-            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
-            <if test="video != null  and video != ''"> and video = #{video}</if>
         </where>
     </select>
     

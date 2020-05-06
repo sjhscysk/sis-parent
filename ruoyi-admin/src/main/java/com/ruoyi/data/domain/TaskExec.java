@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 作战任务执行信息对象 t_task_exec
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-06
  */
 public class TaskExec extends BaseEntity
 {
@@ -19,13 +19,17 @@ public class TaskExec extends BaseEntity
     /** 自增主键 */
     private Long id;
 
+    /** 任务ID */
+    @Excel(name = "任务ID")
+    private Long taskId;
+
+    /** 任务详情ID */
+    @Excel(name = "任务详情ID")
+    private Long detailId;
+
     /** 采集时间 */
     @Excel(name = "采集时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date dtCollect;
-
-    /** 设备编码 */
-    @Excel(name = "设备编码")
-    private String sn;
 
     /** 经度 */
     @Excel(name = "经度")
@@ -56,6 +60,24 @@ public class TaskExec extends BaseEntity
     {
         return id;
     }
+    public void setTaskId(Long taskId) 
+    {
+        this.taskId = taskId;
+    }
+
+    public Long getTaskId() 
+    {
+        return taskId;
+    }
+    public void setDetailId(Long detailId) 
+    {
+        this.detailId = detailId;
+    }
+
+    public Long getDetailId() 
+    {
+        return detailId;
+    }
     public void setDtCollect(Date dtCollect) 
     {
         this.dtCollect = dtCollect;
@@ -64,15 +86,6 @@ public class TaskExec extends BaseEntity
     public Date getDtCollect() 
     {
         return dtCollect;
-    }
-    public void setSn(String sn) 
-    {
-        this.sn = sn;
-    }
-
-    public String getSn() 
-    {
-        return sn;
     }
     public void setLatitude(String latitude) 
     {
@@ -124,8 +137,9 @@ public class TaskExec extends BaseEntity
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
+            .append("taskId", getTaskId())
+            .append("detailId", getDetailId())
             .append("dtCollect", getDtCollect())
-            .append("sn", getSn())
             .append("latitude", getLatitude())
             .append("longitude", getLongitude())
             .append("altitude", getAltitude())

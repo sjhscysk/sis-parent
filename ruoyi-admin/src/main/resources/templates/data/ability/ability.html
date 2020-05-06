@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('设备能力列表')" />
+    <th:block th:include="include :: header('能力列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -55,7 +55,7 @@
                 createUrl: prefix + "/add",
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
-                modalName: "设备能力",
+                modalName: "能力",
                 columns: [{
                     checkbox: true
                 },

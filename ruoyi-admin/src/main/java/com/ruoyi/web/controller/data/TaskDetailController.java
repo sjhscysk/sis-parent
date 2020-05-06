@@ -71,9 +71,10 @@ public class TaskDetailController extends BaseController
     /**
      * 新增作战任务详情
      */
-    @GetMapping("/add")
-    public String add()
+    @GetMapping("/add/{taskId}")
+    public String add(@PathVariable("taskId") Long taskId, ModelMap mmap)
     {
+        mmap.put("taskId", taskId);
         return prefix + "/add";
     }
 

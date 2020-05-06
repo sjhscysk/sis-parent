@@ -1,122 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('作战任务详情列表')" />
+    <th:block th:include="include :: header('作战任务详情列表')"/>
 </head>
 <body class="gray-bg">
-     <div class="container-div">
-        <div class="row">
-            <div class="col-sm-12 search-collapse">
-                <form id="formId">
-                    <div class="select-list">
-                        <ul>
-                            <li>
-                                <label>任务ID：</label>
-                                <input type="text" name="taskId"/>
-                            </li>
-                            <li class="select-time">
-                                <label>开始时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginStartTime]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endStartTime]"/>
-                            </li>
-                            <li class="select-time">
-                                <label>结束时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginEndTime]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endEndTime]"/>
-                            </li>
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
+<input type="hidden" id="taskId" name="taskId" th:value="${task.id}">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li class="select-time">
+                            <label>开始时间：</label>
+                            <input type="text" class="time-input" id="startSTime" placeholder="开始时间"
+                                   name="params[beginSTime]"/>
+                            <span>-</span>
+                            <input type="text" class="time-input" id="endSTime" placeholder="结束时间"
+                                   name="params[endSTime]"/>
+                        </li>
+                        <li class="select-time">
+                            <label>结束时间：</label>
+                            <input type="text" class="time-input" id="startETime" placeholder="开始时间"
+                                   name="params[beginETime]"/>
+                            <span>-</span>
+                            <input type="text" class="time-input" id="endTEime" placeholder="结束时间"
+                                   name="params[endETime]"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
 
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="data:detail:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="data:detail:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="data:detail:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="data:detail:export">
-                    <i class="fa fa-download"></i> 导出
-                </a>
-            </div>
-            <div class="col-sm-12 select-table table-striped">
-                <table id="bootstrap-table"></table>
-            </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="add()" shiro:hasPermission="data:task:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="data:task:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="data:task:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="data:task:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
         </div>
     </div>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('data:detail:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('data:detail:remove')}]];
-        var equipmentTypeDatas = [[${@dict.getType('equipment_type')}]];
-        var prefix = ctx + "data/task/detail";
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('data:task:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('data:task:remove')}]];
+    var equipmentTypeDatas = [[${@dict.getType('equipment_type')}]];
+    var prefix = ctx + "data/task/detail";
 
-        $(function() {
-            var options = {
-                url: prefix + "/list",
-                createUrl: prefix + "/add",
-                updateUrl: prefix + "/edit/{id}",
-                removeUrl: prefix + "/remove",
-                exportUrl: prefix + "/export",
-                modalName: "作战任务详情",
-                columns: [{
-                    checkbox: true
-                },
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add/{id}",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            queryParams: queryParams,
+            modalName: "作战任务详情",
+            columns: [{
+                checkbox: true
+            },
                 {
-                    field: 'id', 
+                    field: 'id',
                     title: '自增主键',
                     visible: false
                 },
+                // {
+                //     field: 'taskId',
+                //     title: '任务ID'
+                // },
                 {
-                    field: 'taskId', 
-                    title: '任务ID'
-                },
-                {
-                    field: 'execUnit', 
+                    field: 'execUnit',
                     title: '执行单位'
                 },
                 {
-                    field: 'equipmentType', 
+                    field: 'equipmentType',
                     title: '装备类型',
-                    formatter: function(value, row, index) {
-                       return $.table.selectDictLabel(equipmentTypeDatas, value);
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(equipmentTypeDatas, value);
                     }
                 },
                 {
-                    field: 'equipmentId', 
+                    field: 'equipmentId',
                     title: '装备ID'
                 },
                 {
-                    field: 'startTime', 
+                    field: 'startTime',
                     title: '开始时间'
                 },
                 {
-                    field: 'endTime', 
+                    field: 'endTime',
                     title: '结束时间'
                 },
                 {
                     title: '操作',
                     align: 'center',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
                         var actions = [];
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]
-            };
-            $.table.init(options);
-        });
-    </script>
+        };
+        $.table.init(options);
+    });
+
+    function queryParams(params) {
+        var search = $.table.queryParams(params);
+        search.taskId = $("#taskId").val();
+        return search;
+    }
+
+    /*任务详情-新增详情*/
+    function add() {
+        $.operate.add($("#taskId").val());
+    }
+</script>
 </body>
 </html>

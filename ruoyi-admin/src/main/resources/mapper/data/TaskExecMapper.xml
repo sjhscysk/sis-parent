@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="TaskExec" id="TaskExecResult">
         <result property="id"    column="id"    />
+        <result property="taskId"    column="task_id"    />
+        <result property="detailId"    column="detail_id"    />
         <result property="dtCollect"    column="dt_collect"    />
-        <result property="sn"    column="sn"    />
         <result property="latitude"    column="latitude"    />
         <result property="longitude"    column="longitude"    />
         <result property="altitude"    column="altitude"    />
@@ -16,13 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectTaskExecVo">
-        select id, dt_collect, sn, latitude, longitude, altitude, speed, direction from t_task_exec
+        select id, task_id, detail_id, dt_collect, latitude, longitude, altitude, speed, direction from t_task_exec
     </sql>
 
     <select id="selectTaskExecList" parameterType="TaskExec" resultMap="TaskExecResult">
         <include refid="selectTaskExecVo"/>
         <where>  
-            <if test="sn != null  and sn != ''"> and sn = #{sn}</if>
+            <if test="taskId != null "> and task_id = #{taskId}</if>
+            <if test="detailId != null "> and detail_id = #{detailId}</if>
+            <if test="dtCollect != null "> and dt_collect = #{dtCollect}</if>
         </where>
     </select>
     
@@ -31,12 +34,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertTaskExec" parameterType="TaskExec">
+    <insert id="insertTaskExec" parameterType="TaskExec" useGeneratedKeys="true" keyProperty="id">
         insert into t_task_exec
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
+            <if test="taskId != null ">task_id,</if>
+            <if test="detailId != null ">detail_id,</if>
             <if test="dtCollect != null ">dt_collect,</if>
-            <if test="sn != null  and sn != ''">sn,</if>
             <if test="latitude != null  and latitude != ''">latitude,</if>
             <if test="longitude != null  and longitude != ''">longitude,</if>
             <if test="altitude != null  and altitude != ''">altitude,</if>
@@ -44,9 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="direction != null  and direction != ''">direction,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
+            <if test="taskId != null ">#{taskId},</if>
+            <if test="detailId != null ">#{detailId},</if>
             <if test="dtCollect != null ">#{dtCollect},</if>
-            <if test="sn != null  and sn != ''">#{sn},</if>
             <if test="latitude != null  and latitude != ''">#{latitude},</if>
             <if test="longitude != null  and longitude != ''">#{longitude},</if>
             <if test="altitude != null  and altitude != ''">#{altitude},</if>
@@ -58,8 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateTaskExec" parameterType="TaskExec">
         update t_task_exec
         <trim prefix="SET" suffixOverrides=",">
+            <if test="taskId != null ">task_id = #{taskId},</if>
+            <if test="detailId != null ">detail_id = #{detailId},</if>
             <if test="dtCollect != null ">dt_collect = #{dtCollect},</if>
-            <if test="sn != null  and sn != ''">sn = #{sn},</if>
             <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
             <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
             <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>

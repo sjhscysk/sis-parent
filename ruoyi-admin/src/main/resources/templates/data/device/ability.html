@@ -4,14 +4,36 @@
     <th:block th:include="include :: header('设备能力列表')"/>
 </head>
 <body class="gray-bg">
+<input type="hidden" id="deviceId" name="deviceId" th:value="${device.id}">
 <div class="container-div">
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <form id="formId">
-                <input type="hidden" id="deviceId" name="deviceId" th:value="${device.id}">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>设备编号：</label>
+                            <input type="text" name="name" readonly="true" th:value="${device.sn}"/>
+                        </li>
+                        <li>
+                            <label>设备名称：</label>
+                            <input type="text" name="name" readonly="true" th:value="${device.name}"/>
+                        </li>
+                        <li>
+                            <label>率属单位：</label>
+                            <input type="text" name="belongsto" readonly="true" th:value="${device.belongsto}"/>
+                        </li>
+                        <li>
+                            <label>率属方：</label>
+                            <select id="owner" name="owner" disabled="disabled" th:with="type=${@dict.getType('owner')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${device.owner}" th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
             </form>
         </div>
-
         <div class="btn-group-sm" id="toolbar" role="group">
             <a class="btn btn-success" onclick="selectAbility()" shiro:hasPermission="data:device:add">
                 <i class="fa fa-plus"></i> 添加能力
@@ -41,7 +63,8 @@
             createUrl: prefix + "/add",
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
-            modalName: "设备能力",
+            queryParams: queryParams,
+            modalName: "能力",
             columns: [{
                 checkbox: true
             },
@@ -93,6 +116,12 @@
         };
         $.table.init(options);
     });
+
+    function queryParams(params) {
+        var search = $.table.queryParams(params);
+        search.deviceId = $("#deviceId").val();
+        return search;
+    }
 
     /* 分配能力-选择能力 */
     function selectAbility() {
