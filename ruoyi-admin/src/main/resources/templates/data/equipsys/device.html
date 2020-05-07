@@ -8,40 +8,33 @@
 <input type="hidden" id="equipsysId" name="equipsysId" th:value="${equipsys.id}">
 <div class="container-div">
     <div class="row">
-<!--        <div class="col-sm-12 search-collapse">-->
-<!--            <form id="formId">-->
-<!--                <div class="select-list">-->
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <label>台站编号：</label>-->
-<!--                            <input type="text" name="name" readonly="true" th:value="${station.sn}"/>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>台站名称：</label>-->
-<!--                            <input type="text" name="name" readonly="true" th:value="${station.name}"/>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>率属单位：</label>-->
-<!--                            <input type="text" name="belongsto" readonly="true" th:value="${station.belongsto}"/>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>率属方：</label>-->
-<!--                            <select id="owner" name="owner" disabled="disabled" th:with="type=${@dict.getType('owner')}">-->
-<!--                                <option value="">所有</option>-->
-<!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${station.owner}" th:value="${dict.dictValue}"></option>-->
-<!--                            </select>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>台站类型：</label>-->
-<!--                            <select id="type" name="type" disabled="disabled" th:with="type=${@dict.getType('station_type')}">-->
-<!--                                <option value="">所有</option>-->
-<!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${station.type}"th:value="${dict.dictValue}"></option>-->
-<!--                            </select>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>编号：</label>
+                            <input type="text" name="name" readonly="true" th:value="${equipsys.sn}"/>
+                        </li>
+                        <li>
+                            <label>名称：</label>
+                            <input type="text" name="name" readonly="true" th:value="${equipsys.name}"/>
+                        </li>
+                        <li>
+                            <label>率属单位：</label>
+                            <input type="text" name="belongsto" readonly="true" th:value="${equipsys.belongsto}"/>
+                        </li>
+                        <li>
+                            <label>率属方：</label>
+                            <select id="owner" name="owner" disabled="disabled" th:with="type=${@dict.getType('owner')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${equipsys.owner}" th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
         <div class="btn-group-sm" id="toolbar" role="group">
             <a class="btn btn-success" onclick="selectDevice()" shiro:hasPermission="data:equipsys:add">
                 <i class="fa fa-plus"></i> 添加设备

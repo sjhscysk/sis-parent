@@ -20,7 +20,7 @@
                         </li>
                         <li>
                             <label>率属方：</label>
-                            <select name="onwer" th:with="type=${@dict.getType('owner')}">
+                            <select name="owner" th:with="type=${@dict.getType('owner')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                         th:value="${dict.dictValue}"></option>
@@ -67,7 +67,7 @@
     var editFlag = [[${@permission.hasPermi('data:equipsys:edit')}]];
     var listFlag = [[${@permission.hasPermi('data:equipsys:list')}]];
     var removeFlag = [[${@permission.hasPermi('data:equipsys:remove')}]];
-    var onwerDatas = [[${@dict.getType('owner')}]];
+    var ownerDatas = [[${@dict.getType('owner')}]];
     var prefix = ctx + "data/equipsys";
 
     $(function () {
@@ -99,10 +99,10 @@
                     title: '率属单位'
                 },
                 {
-                    field: 'onwer',
+                    field: 'owner',
                     title: '率属方',
                     formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(onwerDatas, value);
+                        return $.table.selectDictLabel(ownerDatas, value);
                     }
                 },
                 {

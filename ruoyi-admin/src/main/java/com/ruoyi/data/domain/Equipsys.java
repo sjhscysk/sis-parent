@@ -32,7 +32,7 @@ public class Equipsys extends BaseEntity
 
     /** 率属方 */
     @Excel(name = "率属方")
-    private Integer onwer;
+    private Integer owner;
 
     /** 部署地 */
     @Excel(name = "部署地")
@@ -98,14 +98,14 @@ public class Equipsys extends BaseEntity
     {
         return belongsto;
     }
-    public void setOnwer(Integer onwer) 
+    public void setOwner(Integer owner)
     {
-        this.onwer = onwer;
+        this.owner = owner;
     }
 
-    public Integer getOnwer() 
+    public Integer getOwner()
     {
-        return onwer;
+        return owner;
     }
     public void setLocation(String location) 
     {
@@ -178,7 +178,7 @@ public class Equipsys extends BaseEntity
             .append("sn", getSn())
             .append("name", getName())
             .append("belongsto", getBelongsto())
-            .append("onwer", getOnwer())
+            .append("owner", getOwner())
             .append("location", getLocation())
             .append("scope", getScope())
             .append("longitude", getLongitude())
