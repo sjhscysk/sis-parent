@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('装备系统详情列表')" />
+    <th:block th:include="include :: header('台站设备列表')"/>
 </head>
 <body class="gray-bg">
+<input type="hidden" id="type" name="type" th:value="${type}">
+<input type="hidden" id="equipsysId" name="equipsysId" th:value="${equipsys.id}">
 <div class="container-div">
     <div class="row">
-<!--        <div class="col-sm-12 search-collapse">-->
-<!--            <form id="formId">-->
-<!--                <div class="select-list">-->
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <label>装备类型：</label>-->
-<!--                            <select name="type" th:with="type=${@dict.getType('equipment_type')}">-->
-<!--                                <option value="">所有</option>-->
-<!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>-->
-<!--                            </select>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>系统ID：</label>-->
-<!--                            <input type="text" name="systemId"/>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <label>装备ID：</label>-->
-<!--                            <input type="text" name="equipmentId"/>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>-->
-<!--                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-
+        <!--        <div class="col-sm-12 search-collapse">-->
+        <!--            <form id="formId">-->
+        <!--                <div class="select-list">-->
+        <!--                    <ul>-->
+        <!--                        <li>-->
+        <!--                            <label>编号：</label>-->
+        <!--                            <input type="text" name="name" readonly="true" th:value="${equipsys.sn}"/>-->
+        <!--                        </li>-->
+        <!--                        <li>-->
+        <!--                            <label>名称：</label>-->
+        <!--                            <input type="text" name="name" readonly="true" th:value="${equipsys.name}"/>-->
+        <!--                        </li>-->
+        <!--                        <li>-->
+        <!--                            <label>率属单位：</label>-->
+        <!--                            <input type="text" name="belongsto" readonly="true" th:value="${equipsys.belongsto}"/>-->
+        <!--                        </li>-->
+        <!--                        <li>-->
+        <!--                            <label>率属方：</label>-->
+        <!--                            <select id="owner" name="owner" disabled="disabled" th:with="type=${@dict.getType('owner')}">-->
+        <!--                                <option value="">所有</option>-->
+        <!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${equipsys.owner}" th:value="${dict.dictValue}"></option>-->
+        <!--                            </select>-->
+        <!--                        </li>-->
+        <!--                    </ul>-->
+        <!--                </div>-->
+        <!--            </form>-->
+        <!--        </div>-->
         <div class="btn-group-sm" id="toolbar" role="group">
-            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="data:detail:add">
-                <i class="fa fa-plus"></i> 添加
+            <a class="btn btn-success" onclick="select()" shiro:hasPermission="data:equipsys:add">
+                <i class="fa fa-plus"></i> 添加台站
             </a>
-            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="data:detail:edit">
-                <i class="fa fa-edit"></i> 修改
+            <a class="btn btn-danger multiple disabled" onclick="cancelAll()"
+               shiro:hasPermission="data:equipsys:remove">
+                <i class="fa fa-edit"></i> 批量删除
             </a>
-            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="data:detail:remove">
-                <i class="fa fa-remove"></i> 删除
-            </a>
-            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="data:detail:export">
-                <i class="fa fa-download"></i> 导出
+            <a class="btn btn-warning" onclick="closeItem()">
+                <i class="fa fa-reply-all"></i> 关闭
             </a>
         </div>
         <div class="col-sm-12 select-table table-striped">
@@ -53,20 +52,20 @@
         </div>
     </div>
 </div>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    var editFlag = [[${@permission.hasPermi('data:equipsys:edit')}]];
     var removeFlag = [[${@permission.hasPermi('data:equipsys:remove')}]];
-    var typeDatas = [[${@dict.getType('equipment_type')}]];
-    var prefix = ctx + "data/equipsys/station";
+    var ownerDatas = [[${@dict.getType('owner')}]];
+    var typeDatas = [[${@dict.getType('station_type')}]];
+    var prefix = ctx + "data/equipsys/equip";
 
-    $(function() {
+    $(function () {
         var options = {
-            url: prefix + "/list",
+            url: prefix + "/allocatedList",
             createUrl: prefix + "/add",
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
-            exportUrl: prefix + "/export",
+            queryParams: queryParams,
             modalName: "系统台站",
             columns: [{
                 checkbox: true
@@ -77,33 +76,117 @@
                     visible: false
                 },
                 {
+                    field: 'sn',
+                    title: '编号'
+                },
+                {
+                    field: 'name',
+                    title: '名称'
+                },
+                {
+                    field: 'belongsto',
+                    title: '率属单位'
+                },
+                {
+                    field: 'owner',
+                    title: '率属方',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(ownerDatas, value);
+                    }
+                },
+                {
                     field: 'type',
-                    title: '装备类型',
+                    title: '台站类型',
                     formatter: function(value, row, index) {
                         return $.table.selectDictLabel(typeDatas, value);
                     }
                 },
                 {
-                    field: 'systemId',
-                    title: '系统ID'
+                    field: 'location',
+                    title: '部署地'
                 },
                 {
-                    field: 'equipmentId',
-                    title: '装备ID'
+                    field: 'scope',
+                    title: '覆盖区域'
                 },
                 {
-                    title: '操作',
-                    align: 'center',
-                    formatter: function(value, row, index) {
-                        var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
-                        return actions.join('');
-                    }
-                }]
+                    field: 'longitude',
+                    title: '经度'
+                },
+                {
+                    field: 'latitude',
+                    title: '纬度'
+                },
+                // {
+                //     field: 'altitude',
+                //     title: '海拔'
+                // },
+                {
+                    field: 'channelName',
+                    title: '频道名'
+                },
+                {
+                    field: 'runTime',
+                    title: '运行时长'
+                },
+                {
+                    field: 'language',
+                    title: '语言'
+                },
+                // {
+                //     field: 'pic',
+                //     title: '图片地址'
+                // },
+                // {
+                //     field: 'video',
+                //     title: '视频地址'
+                // },
+            {
+                title: '操作',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    var actions = [];
+                    actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancel(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                    return actions.join('');
+                }
+            }]
         };
         $.table.init(options);
     });
+
+    function queryParams(params) {
+        var search = $.table.queryParams(params);
+        search.type = $("#type").val();
+        search.equipsysId = $("#equipsysId").val();
+        return search;
+    }
+
+    /* 分配-选择 */
+    function select() {
+        var url = prefix + '/selectStation/' + $("#equipsysId").val();
+        $.modal.open("选择台站", url);
+    }
+
+    /* 分配-批量取消 */
+    function cancelAll() {
+        var rows = $.table.selectFirstColumns();
+        if (rows.length == 0) {
+            $.modal.alertWarning("请至少选择一条记录");
+            return;
+        }
+        $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function () {
+            var data = {"equipsysId": $("#equipsysId").val(), "type": $("#type").val(), "ids": rows.join()};
+            $.operate.submit(prefix + "/cancelAll", "post", "json", data);
+        });
+    }
+
+    /* 分配-取消 */
+    function cancel(id) {
+        $.modal.confirm("确认要删除吗？", function () {
+            var data = {"equipsysId": $("#equipsysId").val(), "type": $("#type").val(), "id": id};
+            $.operate.post(prefix + "/cancel", data);
+        })
+    }
 </script>
 </body>
 </html>

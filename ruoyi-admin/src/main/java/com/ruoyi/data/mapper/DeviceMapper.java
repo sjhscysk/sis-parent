@@ -64,7 +64,7 @@ public interface DeviceMapper
     public int deleteDeviceByIds(String[] ids);
 
     /**
-     * 根据条件分页查询已分配设备列表
+     * 根据条件分页查询已分配列表
      *
      * @param stationId 台站ID
      * @return 设备信息
@@ -72,7 +72,7 @@ public interface DeviceMapper
     public List<Device> selectAllocatedListOfStation(Long stationId);
 
     /**
-     * 根据条件分页查询已分配设备列表
+     * 根据条件分页查询已分配列表
      *
      * @param equipsysId 系统ID
      * @return 设备集合信息
@@ -80,9 +80,9 @@ public interface DeviceMapper
     public List<Device> selectAllocatedListOfEquipsys(Long equipsysId);
 
     /**
-     * 根据条件分页查询未分配设备列表
+     * 根据条件分页查询未分配列表
      *
-     * @param relationDeviceVO 台站设备
+     * @param relationDeviceVO
      * @return 设力集合信息
      */
     public List<Device> selectUnallocatedList(RelationDeviceVO relationDeviceVO);

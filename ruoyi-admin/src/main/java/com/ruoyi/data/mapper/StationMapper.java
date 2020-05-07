@@ -1,6 +1,8 @@
 package com.ruoyi.data.mapper;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.RelationDeviceVO;
 import com.ruoyi.data.domain.Station;
 import org.springframework.stereotype.Repository;
 
@@ -60,4 +62,20 @@ public interface StationMapper
      * @return 结果
      */
     public int deleteStationByIds(String[] ids);
+
+    /**
+     * 根据条件分页查询已分配设备列表
+     *
+     * @param equipsysId 系统ID
+     * @return 设备集合信息
+     */
+    public List<Station> selectAllocatedList(Long equipsysId);
+
+    /**
+     * 根据条件分页查询未分配设备列表
+     *
+     * @param relationDeviceVO
+     * @return 设力集合信息
+     */
+    public List<Station> selectUnallocatedList(RelationDeviceVO relationDeviceVO);
 }

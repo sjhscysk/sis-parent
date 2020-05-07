@@ -45,6 +45,14 @@ public interface EquipsysDetailService
     public int updateEquipsysDetail(EquipsysDetail equipsysDetail);
 
     /**
+     * 删除装备系统详情
+     *
+     * @param equipsysDetail 装备系统详情
+     * @return 结果
+     */
+    public int delete(EquipsysDetail equipsysDetail);
+
+    /**
      * 批量删除装备系统详情
      * 
      * @param ids 需要删除的数据ID

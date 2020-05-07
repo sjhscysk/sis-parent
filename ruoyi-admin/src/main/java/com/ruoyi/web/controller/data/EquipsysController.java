@@ -159,6 +159,17 @@ public class EquipsysController extends BaseController
     }
 
     /**
+     * 选择台站
+     */
+    @GetMapping("/equip/selectStation/{id}")
+    public String selectStation(@PathVariable("id") Long id, ModelMap mmap)
+    {
+        mmap.put("equipsys", equipsysService.selectEquipsysById(id));
+        mmap.put("type", 0);
+        return prefix + "/selectStation";
+    }
+
+    /**
      * 选择设备
      */
     @GetMapping("/equip/selectDevice/{id}")
@@ -170,9 +181,9 @@ public class EquipsysController extends BaseController
     }
 
     /**
-     * 选中设备
+     * 选中
      */
-    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @Log(title = "装备系统", businessType = BusinessType.GRANT)
     @PostMapping("/equip/selectAll")
     @ResponseBody
     public AjaxResult selectDeviceAll(Long equipsysId, Integer type, String deviceIds)
@@ -181,10 +192,10 @@ public class EquipsysController extends BaseController
     }
 
     /**
-     * 取消设备
+     * 取消
      */
     @RequiresPermissions("data:device:remove")
-    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @Log(title = "装备系统", businessType = BusinessType.GRANT)
     @PostMapping("/equip/cancel")
     @ResponseBody
     public AjaxResult cancelDevice(Long equipsysId, Integer type, Long id)
@@ -193,9 +204,9 @@ public class EquipsysController extends BaseController
     }
 
     /**
-     * 批量取消设备
+     * 批量取消
      */
-    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @Log(title = "装备系统", businessType = BusinessType.GRANT)
     @PostMapping("/equip/cancelAll")
     @ResponseBody
     public AjaxResult cancelDeviceAll(Long equipsysId, Integer type, String ids)
@@ -204,7 +215,7 @@ public class EquipsysController extends BaseController
     }
 
     /**
-     * 查询已分配设备列表
+     * 查询已分配列表
      */
     @RequiresPermissions("data:equipsys:list")
     @PostMapping("/equip/allocatedList")
@@ -214,17 +225,15 @@ public class EquipsysController extends BaseController
         startPage();
         switch(relationDeviceVO.getType()) {
             case 0:
-                List<Station> list1 = null;//stationService.selectAllocatedList();
-                return getDataTable(list1);
+                return getDataTable(stationService.selectAllocatedList(relationDeviceVO.getEquipsysId()));
             case 1:
             default:
-                List<Device> list = deviceService.selectAllocatedListOfEquipsys(relationDeviceVO.getEquipsysId());
-                return getDataTable(list);
+                return getDataTable(deviceService.selectAllocatedListOfEquipsys(relationDeviceVO.getEquipsysId()));
         }
     }
 
     /**
-     * 查询未分配设备列表
+     * 查询未分配列表
      */
     @RequiresPermissions("data:equipsys:list")
     @PostMapping("/equip/unallocatedList")
@@ -234,12 +243,10 @@ public class EquipsysController extends BaseController
         startPage();
         switch(relationDeviceVO.getType()) {
             case 0:
-                List<Station> list1 = null;//stationService.selectUnallocatedList();
-                return getDataTable(list1);
+                return getDataTable(stationService.selectUnallocatedList(relationDeviceVO));
             case 1:
             default:
-                List<Device> list = deviceService.selectUnallocatedList(relationDeviceVO);
-                return getDataTable(list);
+                return getDataTable(deviceService.selectUnallocatedList(relationDeviceVO));
         }
     }
 }

@@ -81,7 +81,7 @@ public class DeviceServiceImpl implements DeviceService
     @Override
     public int deleteDeviceByIds(String ids)
     {
-        //先删除设备能力，然后再删除设备
+        //删除关联信息，然后再删除设备
         Long[] abilityIds = Convert.toLongArray(ids);
         for (Long abilityId : abilityIds) {
             deviceAbilityService.deleteDeviceAbilityById(abilityId);
@@ -98,7 +98,7 @@ public class DeviceServiceImpl implements DeviceService
     @Override
     public int deleteDeviceById(Long id)
     {
-        //先删除设备能力，然后再删除设备
+        //删除关联信息，然后再删除设备
         deviceAbilityService.deleteDeviceAbilityById(id);
         return deviceMapper.deleteDeviceById(id);
     }

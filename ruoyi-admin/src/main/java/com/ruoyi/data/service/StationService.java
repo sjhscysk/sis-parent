@@ -1,6 +1,8 @@
 package com.ruoyi.data.service;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.RelationDeviceVO;
 import com.ruoyi.data.domain.Station;
 
 /**
@@ -58,4 +60,20 @@ public interface StationService
      * @return 结果
      */
     public int deleteStationById(Long id);
+
+    /**
+     * 根据条件分页查询已分配列表
+     *
+     * @param equipsysId 系统ID
+     * @return 设备能力集合信息
+     */
+    public List<Station> selectAllocatedList(Long equipsysId);
+
+    /**
+     * 根据条件分页查询未分配列表
+     *
+     * @param relationDeviceVO
+     * @return 设备能力集合信息
+     */
+    public List<Station> selectUnallocatedList(RelationDeviceVO relationDeviceVO);
 }

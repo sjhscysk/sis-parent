@@ -2,6 +2,7 @@ package com.ruoyi.data.service.impl;
 
 import java.util.List;
 
+import com.ruoyi.data.domain.RelationDeviceVO;
 import com.ruoyi.data.service.StationDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,7 +82,7 @@ public class StationServiceImpl implements StationService
     @Override
     public int deleteStationByIds(String ids)
     {
-        //删除台站设备，然后再删除台站信息
+        //删除关联信息，然后再删除台站信息
         Long[] stationIds = Convert.toLongArray(ids);
         for (Long stationId : stationIds) {
             stationDeviceService.deleteStationDevice(stationId);
@@ -98,8 +99,18 @@ public class StationServiceImpl implements StationService
     @Override
     public int deleteStationById(Long id)
     {
-        //删除台站设备，然后再删除台站信息
+        //删除关联信息，然后再删除台站信息
         stationDeviceService.deleteStationDevice(id);
         return stationMapper.deleteStationById(id);
+    }
+
+    @Override
+    public List<Station> selectAllocatedList(Long equipsysId) {
+        return stationMapper.selectAllocatedList(equipsysId);
+    }
+
+    @Override
+    public List<Station> selectUnallocatedList(RelationDeviceVO relationDeviceVO) {
+        return stationMapper.selectUnallocatedList(relationDeviceVO);
     }
 }

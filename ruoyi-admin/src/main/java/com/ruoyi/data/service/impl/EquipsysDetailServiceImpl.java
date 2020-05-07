@@ -70,6 +70,11 @@ public class EquipsysDetailServiceImpl implements EquipsysDetailService
         return equipsysDetailMapper.updateEquipsysDetail(equipsysDetail);
     }
 
+    @Override
+    public int delete(EquipsysDetail equipsysDetail) {
+        return equipsysDetailMapper.delete(equipsysDetail);
+    }
+
     /**
      * 删除装备系统详情对象
      * 

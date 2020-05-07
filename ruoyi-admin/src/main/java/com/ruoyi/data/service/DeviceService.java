@@ -79,7 +79,7 @@ public interface DeviceService
     /**
      * 根据条件分页查询未分配设备列表
      *
-     * @param relationDeviceVO 台站
+     * @param relationDeviceVO
      * @return 设备能力集合信息
      */
     public List<Device> selectUnallocatedList(RelationDeviceVO relationDeviceVO);

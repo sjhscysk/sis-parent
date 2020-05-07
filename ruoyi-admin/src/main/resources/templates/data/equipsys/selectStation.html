@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('分配系统设备')" />
+    <th:block th:include="include :: header('分配系统台站')" />
 </head>
 
 <body class="gray-bg">
@@ -44,8 +44,8 @@
 <th:block th:include="include :: footer" />
 <script th:inline="javascript">
     var ownerDatas = [[${@dict.getType('owner')}]];
-    var statusDatas = [[${@dict.getType('device_status')}]];
-    var functionDatas = [[${@dict.getType('device_func')}]];
+    var ownerDatas = [[${@dict.getType('owner')}]];
+    var typeDatas = [[${@dict.getType('station_type')}]];
     var prefix = ctx + "data/equipsys/equip";
 
     $(function() {
@@ -87,27 +87,20 @@
             {
                 field: 'owner',
                 title: '率属方',
-                formatter: function(value, row, index) {
+                formatter: function (value, row, index) {
                     return $.table.selectDictLabel(ownerDatas, value);
                 }
             },
             {
-                field: 'classify',
-                title: '分类'
-            },
-            {
-                field: 'status',
-                title: '状态',
-                formatter: function(value, row, index) {
-                    return $.table.selectDictLabel(statusDatas, value);
+                field: 'type',
+                title: '台站类型',
+                formatter: function (value, row, index) {
+                    return $.table.selectDictLabel(typeDatas, value);
                 }
             },
             {
-                field: 'function',
-                title: '功能分类',
-                formatter: function(value, row, index) {
-                    return $.table.selectDictLabel(functionDatas, value);
-                }
+                field: 'location',
+                title: '部署地'
             }]
         };
         $.table.init(options);

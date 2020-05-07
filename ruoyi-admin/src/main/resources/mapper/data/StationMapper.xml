@@ -112,5 +112,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
-    
+
+    <select id="selectAllocatedList" parameterType="Long" resultMap="StationResult">
+        select s.id, s.sn, s.name, s.belongsto, s.owner, s.type, s.location, s.scope, s.longitude, s.latitude, s.altitude, s.channel_name, s.run_time, s.language, s.pic, s.video
+        from t_station s
+        inner join t_equipsys_detail sd on s.id = sd.equipment_id
+        where sd.equipsys_id = #{equipsysId} and sd.type = 0
+    </select>
+
+    <select id="selectUnallocatedList" parameterType="RelationDeviceVO" resultMap="StationResult">
+        select s.id, s.sn, s.name, s.belongsto, s.owner, s.type, s.location, s.scope, s.longitude, s.latitude, s.altitude, s.channel_name, s.run_time, s.language, s.pic, s.video
+        from t_station s
+        where s.id not in (
+            select distinct equipment_id id from t_equipsys_detail where type = 0
+        )
+        <if test="name != null  and name != ''">and d.name = #{name}</if>
+        <if test="belongsto != null  and belongsto != ''">and belongsto = #{belongsto}</if>
+        <if test="owner != null ">and owner = #{owner}</if>
+    </select>
+
 </mapper>
