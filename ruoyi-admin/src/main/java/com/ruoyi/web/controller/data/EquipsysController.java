@@ -1,6 +1,11 @@
 package com.ruoyi.web.controller.data;
 
 import java.util.List;
+
+import com.ruoyi.data.domain.*;
+import com.ruoyi.data.service.DeviceService;
+import com.ruoyi.data.service.EquipsysDetailService;
+import com.ruoyi.data.service.StationService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.data.domain.Equipsys;
 import com.ruoyi.data.service.EquipsysService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -33,6 +37,12 @@ public class EquipsysController extends BaseController
 
     @Autowired
     private EquipsysService equipsysService;
+    @Autowired
+    private EquipsysDetailService equipsysDetailService;
+    @Autowired
+    private StationService stationService;
+    @Autowired
+    private DeviceService deviceService;
 
     @RequiresPermissions("data:equipsys:view")
     @GetMapping()
@@ -125,13 +135,111 @@ public class EquipsysController extends BaseController
     }
 
     /**
-     * 查询系统详细
+     * 分配台站
      */
     @RequiresPermissions("data:equipsys:list")
-    @GetMapping("/detail/{id}")
+    @GetMapping("/station/{id}")
     public String detail(@PathVariable("id") Long id, ModelMap mmap)
     {
-        mmap.put("sysId", id);
-        return "data/equipsys/detail/detail";
+        mmap.put("equipsys", equipsysService.selectEquipsysById(id));
+        mmap.put("type", 0);
+        return "data/equipsys/station";
+    }
+
+    /**
+     * 分配设备
+     */
+    @RequiresPermissions("data:equipsys:list")
+    @GetMapping("/device/{id}")
+    public String device(@PathVariable("id") Long id, ModelMap mmap)
+    {
+        mmap.put("equipsys", equipsysService.selectEquipsysById(id));
+        mmap.put("type", 1);
+        return "data/equipsys/device";
+    }
+
+    /**
+     * 选择设备
+     */
+    @GetMapping("/equip/selectDevice/{id}")
+    public String selectDevice(@PathVariable("id") Long id, ModelMap mmap)
+    {
+        mmap.put("equipsys", equipsysService.selectEquipsysById(id));
+        mmap.put("type", 1);
+        return prefix + "/selectDevice";
+    }
+
+    /**
+     * 选中设备
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/equip/selectAll")
+    @ResponseBody
+    public AjaxResult selectDeviceAll(Long equipsysId, Integer type, String deviceIds)
+    {
+        return toAjax(equipsysDetailService.batchInsert(equipsysId, type, deviceIds));
+    }
+
+    /**
+     * 取消设备
+     */
+    @RequiresPermissions("data:device:remove")
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/equip/cancel")
+    @ResponseBody
+    public AjaxResult cancelDevice(Long equipsysId, Integer type, Long id)
+    {
+        return toAjax(equipsysDetailService.delete(equipsysId, type, id));
+    }
+
+    /**
+     * 批量取消设备
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/equip/cancelAll")
+    @ResponseBody
+    public AjaxResult cancelDeviceAll(Long equipsysId, Integer type, String ids)
+    {
+        return toAjax(equipsysDetailService.batchDelete(equipsysId, type, ids));
+    }
+
+    /**
+     * 查询已分配设备列表
+     */
+    @RequiresPermissions("data:equipsys:list")
+    @PostMapping("/equip/allocatedList")
+    @ResponseBody
+    public TableDataInfo allocatedList(RelationDeviceVO relationDeviceVO)
+    {
+        startPage();
+        switch(relationDeviceVO.getType()) {
+            case 0:
+                List<Station> list1 = null;//stationService.selectAllocatedList();
+                return getDataTable(list1);
+            case 1:
+            default:
+                List<Device> list = deviceService.selectAllocatedListOfEquipsys(relationDeviceVO.getEquipsysId());
+                return getDataTable(list);
+        }
+    }
+
+    /**
+     * 查询未分配设备列表
+     */
+    @RequiresPermissions("data:equipsys:list")
+    @PostMapping("/equip/unallocatedList")
+    @ResponseBody
+    public TableDataInfo unallocatedList(RelationDeviceVO relationDeviceVO)
+    {
+        startPage();
+        switch(relationDeviceVO.getType()) {
+            case 0:
+                List<Station> list1 = null;//stationService.selectUnallocatedList();
+                return getDataTable(list1);
+            case 1:
+            default:
+                List<Device> list = deviceService.selectUnallocatedList(relationDeviceVO);
+                return getDataTable(list);
+        }
     }
 }

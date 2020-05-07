@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.data.mapper.EquipsysDetailMapper">
-    
+
     <resultMap type="EquipsysDetail" id="EquipsysDetailResult">
-        <result property="id"    column="id"    />
-        <result property="type"    column="type"    />
-        <result property="systemId"    column="system_id"    />
-        <result property="equipmentId"    column="equipment_id"    />
+        <result property="id" column="id"/>
+        <result property="equipsysId" column="equipsys_id"/>
+        <result property="type" column="type"/>
+        <result property="equipmentId" column="equipment_id"/>
     </resultMap>
 
     <sql id="selectEquipsysDetailVo">
-        select id, type, system_id, equipment_id from t_equipsys_detail
+        select id, equipsys_id, type, equipment_id from t_equipsys_detail
     </sql>
 
     <select id="selectEquipsysDetailList" parameterType="EquipsysDetail" resultMap="EquipsysDetailResult">
         <include refid="selectEquipsysDetailVo"/>
-        <where>  
-            <if test="type != null "> and type = #{type}</if>
-            <if test="systemId != null "> and system_id = #{systemId}</if>
-            <if test="equipmentId != null "> and equipment_id = #{equipmentId}</if>
+        <where>
+            <if test="type != null ">and type = #{type}</if>
         </where>
     </select>
-    
+
     <select id="selectEquipsysDetailById" parameterType="Long" resultMap="EquipsysDetailResult">
         <include refid="selectEquipsysDetailVo"/>
         where id = #{id}
     </select>
-        
-    <insert id="insertEquipsysDetail" parameterType="EquipsysDetail">
+
+    <insert id="insertEquipsysDetail" parameterType="EquipsysDetail" useGeneratedKeys="true" keyProperty="id">
         insert into t_equipsys_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null ">id,</if>
+            <if test="equipsysId != null ">equipsys_id,</if>
             <if test="type != null ">type,</if>
-            <if test="systemId != null ">system_id,</if>
             <if test="equipmentId != null ">equipment_id,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null ">#{id},</if>
+            <if test="equipsysId != null ">#{equipsysId},</if>
             <if test="type != null ">#{type},</if>
-            <if test="systemId != null ">#{systemId},</if>
             <if test="equipmentId != null ">#{equipmentId},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateEquipsysDetail" parameterType="EquipsysDetail">
         update t_equipsys_detail
         <trim prefix="SET" suffixOverrides=",">
+            <if test="equipsysId != null ">equipsys_id = #{equipsysId},</if>
             <if test="type != null ">type = #{type},</if>
-            <if test="systemId != null ">system_id = #{systemId},</if>
             <if test="equipmentId != null ">equipment_id = #{equipmentId},</if>
         </trim>
         where id = #{id}
@@ -60,10 +56,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteEquipsysDetailByIds" parameterType="String">
-        delete from t_equipsys_detail where id in 
+        delete from t_equipsys_detail where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
-    
+
+    <insert id="batchInsert">
+        insert into t_equipsys_detail(equipsys_id, type, equipment_id) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.equipsysId}, #{item.type}, #{item.equipmentId})
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="EquipsysDetail">
+        delete from t_equipsys_detail
+        <where>
+            <if test="id != null ">id = #{id}</if>
+            <if test="equipsysId != null ">and equipsys_id = #{equipsysId}</if>
+            <if test="type != null ">and type = #{type}</if>
+            <if test="equipmentId != null ">and equipment_id = #{equipmentId}</if>
+        </where>
+    </delete>
+
+    <delete id="batchDelete">
+        delete from t_equipsys_detail where (equipsys_id, type, equipment_id) in
+        <foreach item="item" index="index" collection="list" separator="," open="(" close=")">
+            (#{item.equipsysId}, #{item.type}, #{item.equipmentId})
+        </foreach>
+    </delete>
+
 </mapper>

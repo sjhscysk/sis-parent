@@ -45,6 +45,21 @@ public interface DeviceAbilityService
     public int updateDeviceAbility(DeviceAbility deviceAbility);
 
     /**
+     * 批量删除设备能力
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    public int deleteDeviceAbilityByIds(String ids);
+
+    /**
+     * 删除设备能力信息
+     *
+     * @param id 设备能力ID
+     * @return 结果
+     */
+    public int deleteDeviceAbilityById(Long id);
+    /**
      * 取消设备能力
      *
      * @param deviceAbility 设备能力

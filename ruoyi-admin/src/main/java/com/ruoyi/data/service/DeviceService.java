@@ -3,7 +3,6 @@ package com.ruoyi.data.service;
 import java.util.List;
 
 import com.ruoyi.data.domain.*;
-import com.ruoyi.system.domain.SysUserRole;
 
 /**
  * 设备Service接口
@@ -67,13 +66,21 @@ public interface DeviceService
      * @param stationId 台站ID
      * @return 设备能力集合信息
      */
-    public List<Device> selectAllocatedList(Long stationId);
+    public List<Device> selectAllocatedListOfStation(Long stationId);
+
+    /**
+     * 根据条件分页查询已分配设备列表
+     *
+     * @param equipsysId 系统ID
+     * @return 设备能力集合信息
+     */
+    public List<Device> selectAllocatedListOfEquipsys(Long equipsysId);
 
     /**
      * 根据条件分页查询未分配设备列表
      *
-     * @param stationDeviceVO 台站
+     * @param relationDeviceVO 台站
      * @return 设备能力集合信息
      */
-    public List<Device> selectUnallocatedList(StationDeviceVO stationDeviceVO);
+    public List<Device> selectUnallocatedList(RelationDeviceVO relationDeviceVO);
 }

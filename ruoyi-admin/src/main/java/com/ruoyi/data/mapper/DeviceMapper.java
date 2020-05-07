@@ -2,10 +2,9 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 
-import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.Device;
-import com.ruoyi.data.domain.DeviceAbilityVO;
-import com.ruoyi.data.domain.StationDeviceVO;
+import com.ruoyi.data.domain.RelationDeviceVO;
+import org.springframework.stereotype.Repository;
 
 /**
  * 设备Mapper接口
@@ -13,6 +12,7 @@ import com.ruoyi.data.domain.StationDeviceVO;
  * @author xusisheng
  * @date 2020-04-30
  */
+@Repository
 public interface DeviceMapper 
 {
     /**
@@ -67,15 +67,23 @@ public interface DeviceMapper
      * 根据条件分页查询已分配设备列表
      *
      * @param stationId 台站ID
-     * @return 设备能力集合信息
+     * @return 设备信息
      */
-    public List<Device> selectAllocatedList(Long stationId);
+    public List<Device> selectAllocatedListOfStation(Long stationId);
+
+    /**
+     * 根据条件分页查询已分配设备列表
+     *
+     * @param equipsysId 系统ID
+     * @return 设备集合信息
+     */
+    public List<Device> selectAllocatedListOfEquipsys(Long equipsysId);
 
     /**
      * 根据条件分页查询未分配设备列表
      *
-     * @param stationDeviceVO 台站设备
-     * @return 设备能力集合信息
+     * @param relationDeviceVO 台站设备
+     * @return 设力集合信息
      */
-    public List<Device> selectUnallocatedList(StationDeviceVO stationDeviceVO);
+    public List<Device> selectUnallocatedList(RelationDeviceVO relationDeviceVO);
 }

@@ -2,13 +2,16 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.EquipsysDetail;
+import com.ruoyi.data.domain.StationDevice;
+import org.springframework.stereotype.Repository;
 
 /**
  * 装备系统详情Mapper接口
  * 
  * @author xusisheng
- * @date 2020-04-30
+ * @date 2020-05-07
  */
+@Repository
 public interface EquipsysDetailMapper 
 {
     /**
@@ -58,4 +61,28 @@ public interface EquipsysDetailMapper
      * @return 结果
      */
     public int deleteEquipsysDetailByIds(String[] ids);
+
+    /**
+     * 批量新增
+     *
+     * @param list 台站设备列表
+     * @return 结果
+     */
+    public int batchInsert(List<EquipsysDetail> list);
+
+    /**
+     * 取消
+     *
+     * @param equipsysDetail 系统详情
+     * @return 结果
+     */
+    public int delete(EquipsysDetail equipsysDetail);
+
+    /**
+     * 批量取消
+     *
+     * @param list 台站设备列表
+     * @return 结果
+     */
+    public int batchDelete(List<EquipsysDetail> list);
 }

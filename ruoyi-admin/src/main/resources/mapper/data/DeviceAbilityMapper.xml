@@ -48,6 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
+    <delete id="deleteDeviceAbilityById" parameterType="Long">
+        delete from t_device_ability where id = #{id}
+    </delete>
     <delete id="deleteDeviceAbilityByIds" parameterType="String">
         delete from t_device_ability where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">

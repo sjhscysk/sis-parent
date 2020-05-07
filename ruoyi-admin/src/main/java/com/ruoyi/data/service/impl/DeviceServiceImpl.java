@@ -2,14 +2,11 @@ package com.ruoyi.data.service.impl;
 
 import java.util.List;
 
-import com.ruoyi.data.domain.Ability;
-import com.ruoyi.data.domain.DeviceAbility;
-import com.ruoyi.data.domain.StationDeviceVO;
-import com.ruoyi.data.mapper.DeviceAbilityMapper;
+import com.ruoyi.data.domain.*;
+import com.ruoyi.data.service.DeviceAbilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.data.mapper.DeviceMapper;
-import com.ruoyi.data.domain.Device;
 import com.ruoyi.data.service.DeviceService;
 import com.ruoyi.common.core.text.Convert;
 
@@ -24,6 +21,8 @@ public class DeviceServiceImpl implements DeviceService
 {
     @Autowired
     private DeviceMapper deviceMapper;
+    @Autowired
+    private DeviceAbilityService deviceAbilityService;
 
     /**
      * 查询设备
@@ -82,6 +81,11 @@ public class DeviceServiceImpl implements DeviceService
     @Override
     public int deleteDeviceByIds(String ids)
     {
+        //先删除设备能力，然后再删除设备
+        Long[] abilityIds = Convert.toLongArray(ids);
+        for (Long abilityId : abilityIds) {
+            deviceAbilityService.deleteDeviceAbilityById(abilityId);
+        }
         return deviceMapper.deleteDeviceByIds(Convert.toStrArray(ids));
     }
 
@@ -94,16 +98,23 @@ public class DeviceServiceImpl implements DeviceService
     @Override
     public int deleteDeviceById(Long id)
     {
+        //先删除设备能力，然后再删除设备
+        deviceAbilityService.deleteDeviceAbilityById(id);
         return deviceMapper.deleteDeviceById(id);
     }
 
     @Override
-    public List<Device> selectAllocatedList(Long stationId) {
-        return deviceMapper.selectAllocatedList(stationId);
+    public List<Device> selectAllocatedListOfStation(Long stationId) {
+        return deviceMapper.selectAllocatedListOfStation(stationId);
     }
 
     @Override
-    public List<Device> selectUnallocatedList(StationDeviceVO stationDeviceVO) {
-        return deviceMapper.selectUnallocatedList(stationDeviceVO);
+    public List<Device> selectAllocatedListOfEquipsys(Long equipsysId) {
+        return deviceMapper.selectAllocatedListOfEquipsys(equipsysId);
+    }
+
+    @Override
+    public List<Device> selectUnallocatedList(RelationDeviceVO relationDeviceVO) {
+        return deviceMapper.selectUnallocatedList(relationDeviceVO);
     }
 }

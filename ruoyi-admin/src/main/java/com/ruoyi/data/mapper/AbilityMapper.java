@@ -4,6 +4,7 @@ import java.util.List;
 import com.ruoyi.data.domain.Ability;
 import com.ruoyi.data.domain.DeviceAbility;
 import com.ruoyi.data.domain.DeviceAbilityVO;
+import org.springframework.stereotype.Repository;
 
 /**
  * 干扰功能Mapper接口
@@ -11,6 +12,7 @@ import com.ruoyi.data.domain.DeviceAbilityVO;
  * @author xusisheng
  * @date 2020-05-03
  */
+@Repository
 public interface AbilityMapper 
 {
     /**

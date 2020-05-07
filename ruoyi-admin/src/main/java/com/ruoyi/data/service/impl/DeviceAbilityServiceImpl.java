@@ -68,6 +68,29 @@ public class DeviceAbilityServiceImpl implements DeviceAbilityService
     {
         return deviceAbilityMapper.updateDeviceAbility(deviceAbility);
     }
+    /**
+     * 删除设备能力对象
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    @Override
+    public int deleteDeviceAbilityByIds(String ids)
+    {
+        return deviceAbilityMapper.deleteDeviceAbilityByIds(Convert.toStrArray(ids));
+    }
+
+    /**
+     * 删除设备能力信息
+     *
+     * @param id 设备能力ID
+     * @return 结果
+     */
+    @Override
+    public int deleteDeviceAbilityById(Long id)
+    {
+        return deviceAbilityMapper.deleteDeviceAbilityById(id);
+    }
 
     @Override
     public int deleteDeviceAbility(DeviceAbility deviceAbility) {

@@ -2,6 +2,7 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.Equipsys;
+import org.springframework.stereotype.Repository;
 
 /**
  * 装备系统Mapper接口
@@ -9,6 +10,7 @@ import com.ruoyi.data.domain.Equipsys;
  * @author xusisheng
  * @date 2020-05-02
  */
+@Repository
 public interface EquipsysMapper 
 {
     /**

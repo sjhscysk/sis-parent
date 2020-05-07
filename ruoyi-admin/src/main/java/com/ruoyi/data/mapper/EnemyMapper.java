@@ -2,6 +2,7 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.Enemy;
+import org.springframework.stereotype.Repository;
 
 /**
  * 敌情目标Mapper接口
@@ -9,6 +10,7 @@ import com.ruoyi.data.domain.Enemy;
  * @author xusisheng
  * @date 2020-04-30
  */
+@Repository
 public interface EnemyMapper 
 {
     /**

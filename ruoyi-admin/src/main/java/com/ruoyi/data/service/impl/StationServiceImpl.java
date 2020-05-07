@@ -1,6 +1,8 @@
 package com.ruoyi.data.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.data.service.StationDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.data.mapper.StationMapper;
@@ -19,6 +21,8 @@ public class StationServiceImpl implements StationService
 {
     @Autowired
     private StationMapper stationMapper;
+    @Autowired
+    private StationDeviceService stationDeviceService;
 
     /**
      * 查询台站信息
@@ -77,6 +81,11 @@ public class StationServiceImpl implements StationService
     @Override
     public int deleteStationByIds(String ids)
     {
+        //删除台站设备，然后再删除台站信息
+        Long[] stationIds = Convert.toLongArray(ids);
+        for (Long stationId : stationIds) {
+            stationDeviceService.deleteStationDevice(stationId);
+        }
         return stationMapper.deleteStationByIds(Convert.toStrArray(ids));
     }
 
@@ -89,6 +98,8 @@ public class StationServiceImpl implements StationService
     @Override
     public int deleteStationById(Long id)
     {
+        //删除台站设备，然后再删除台站信息
+        stationDeviceService.deleteStationDevice(id);
         return stationMapper.deleteStationById(id);
     }
 }

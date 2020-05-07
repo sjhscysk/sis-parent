@@ -2,6 +2,7 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.TaskExec;
+import org.springframework.stereotype.Repository;
 
 /**
  * 作战任务执行信息Mapper接口
@@ -9,6 +10,7 @@ import com.ruoyi.data.domain.TaskExec;
  * @author xusisheng
  * @date 2020-05-06
  */
+@Repository
 public interface TaskExecMapper 
 {
     /**

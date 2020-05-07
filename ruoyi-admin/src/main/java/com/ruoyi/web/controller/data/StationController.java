@@ -153,6 +153,17 @@ public class StationController extends BaseController
     }
 
     /**
+     * 选中设备
+     */
+    @Log(title = "设备", businessType = BusinessType.GRANT)
+    @PostMapping("/device/selectAll")
+    @ResponseBody
+    public AjaxResult selectDeviceAll(Long stationId, String deviceIds)
+    {
+        return toAjax(stationDeviceService.batchInsertStationDevice(stationId, deviceIds));
+    }
+
+    /**
      * 取消设备
      */
     @RequiresPermissions("data:device:remove")
@@ -162,17 +173,6 @@ public class StationController extends BaseController
     public AjaxResult cancelDevice(StationDevice stationDevice)
     {
         return toAjax(stationDeviceService.deleteStationDevice(stationDevice));
-    }
-
-    /**
-     * 批量选择设备
-     */
-    @Log(title = "设备", businessType = BusinessType.GRANT)
-    @PostMapping("/device/selectAll")
-    @ResponseBody
-    public AjaxResult selectDeviceAll(Long stationId, String deviceIds)
-    {
-        return toAjax(stationDeviceService.batchInsertStationDevice(stationId, deviceIds));
     }
 
     /**
@@ -195,7 +195,7 @@ public class StationController extends BaseController
     public TableDataInfo allocatedList(StationDevice stationDevice)
     {
         startPage();
-        List<Device> list = deviceService.selectAllocatedList(stationDevice.getStationId());
+        List<Device> list = deviceService.selectAllocatedListOfStation(stationDevice.getStationId());
         return getDataTable(list);
     }
 
@@ -205,10 +205,10 @@ public class StationController extends BaseController
     @RequiresPermissions("data:station:list")
     @PostMapping("/device/unallocatedList")
     @ResponseBody
-    public TableDataInfo unallocatedList(StationDeviceVO stationDeviceVO)
+    public TableDataInfo unallocatedList(RelationDeviceVO relationDeviceVO)
     {
         startPage();
-        List<Device> list = deviceService.selectUnallocatedList(stationDeviceVO);
+        List<Device> list = deviceService.selectUnallocatedList(relationDeviceVO);
         return getDataTable(list);
     }
 }

@@ -62,6 +62,14 @@ public interface StationDeviceService
     public int deleteStationDeviceById(Long id);
 
     /**
+     * 取消台站所有设备
+     *
+     * @param stationId 台站ID
+     * @return 结果
+     */
+    public int deleteStationDevice(Long stationId);
+
+    /**
      * 取消台站设备
      *
      * @param stationDevice 台站设备

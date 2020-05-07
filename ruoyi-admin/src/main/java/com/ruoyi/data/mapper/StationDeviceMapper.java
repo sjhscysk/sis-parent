@@ -3,6 +3,7 @@ package com.ruoyi.data.mapper;
 import java.util.List;
 
 import com.ruoyi.data.domain.StationDevice;
+import org.springframework.stereotype.Repository;
 
 /**
  * 台站设备Mapper接口
@@ -10,6 +11,7 @@ import com.ruoyi.data.domain.StationDevice;
  * @author xusisheng
  * @date 2020-04-30
  */
+@Repository
 public interface StationDeviceMapper 
 {
     /**

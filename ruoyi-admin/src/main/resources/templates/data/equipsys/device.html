@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('台站设备列表')"/>
+</head>
+<body class="gray-bg">
+<input type="hidden" id="type" name="type" th:value="${type}">
+<input type="hidden" id="equipsysId" name="equipsysId" th:value="${equipsys.id}">
+<div class="container-div">
+    <div class="row">
+<!--        <div class="col-sm-12 search-collapse">-->
+<!--            <form id="formId">-->
+<!--                <div class="select-list">-->
+<!--                    <ul>-->
+<!--                        <li>-->
+<!--                            <label>台站编号：</label>-->
+<!--                            <input type="text" name="name" readonly="true" th:value="${station.sn}"/>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <label>台站名称：</label>-->
+<!--                            <input type="text" name="name" readonly="true" th:value="${station.name}"/>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <label>率属单位：</label>-->
+<!--                            <input type="text" name="belongsto" readonly="true" th:value="${station.belongsto}"/>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <label>率属方：</label>-->
+<!--                            <select id="owner" name="owner" disabled="disabled" th:with="type=${@dict.getType('owner')}">-->
+<!--                                <option value="">所有</option>-->
+<!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${station.owner}" th:value="${dict.dictValue}"></option>-->
+<!--                            </select>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <label>台站类型：</label>-->
+<!--                            <select id="type" name="type" disabled="disabled" th:with="type=${@dict.getType('station_type')}">-->
+<!--                                <option value="">所有</option>-->
+<!--                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:selected="${dict.dictValue} == ${station.type}"th:value="${dict.dictValue}"></option>-->
+<!--                            </select>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="selectDevice()" shiro:hasPermission="data:equipsys:add">
+                <i class="fa fa-plus"></i> 添加设备
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="cancelDeviceAll()"
+               shiro:hasPermission="data:equipsys:remove">
+                <i class="fa fa-edit"></i> 批量删除
+            </a>
+            <a class="btn btn-warning" onclick="closeItem()">
+                <i class="fa fa-reply-all"></i> 关闭
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var removeFlag = [[${@permission.hasPermi('data:equipsys:remove')}]];
+    var ownerDatas = [[${@dict.getType('owner')}]];
+    var statusDatas = [[${@dict.getType('device_status')}]];
+    var functionDatas = [[${@dict.getType('device_func')}]];
+    var prefix = ctx + "data/equipsys/equip";
+
+    $(function () {
+        var options = {
+            url: prefix + "/allocatedList",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            queryParams: queryParams,
+            modalName: "系统设备",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '自增主键',
+                    visible: false
+                },
+                {
+                    field: 'sn',
+                    title: '编号'
+                },
+                {
+                    field: 'name',
+                    title: '名称'
+                },
+                {
+                    field: 'belongsto',
+                    title: '率属单位'
+                },
+                {
+                    field: 'owner',
+                    title: '率属方',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(ownerDatas, value);
+                    }
+                },
+                {
+                    field: 'classify',
+                    title: '分类'
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(statusDatas, value);
+                    }
+                },
+                {
+                    field: 'function',
+                    title: '功能分类',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(functionDatas, value);
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancelDevice(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    function queryParams(params) {
+        var search = $.table.queryParams(params);
+        search.type = $("#type").val();
+        search.equipsysId = $("#equipsysId").val();
+        return search;
+    }
+
+    /* 分配-选择 */
+    function selectDevice() {
+        var url = prefix + '/selectDevice/' + $("#equipsysId").val();
+        $.modal.open("选择设备", url);
+    }
+
+    /* 分配-批量取消 */
+    function cancelDeviceAll() {
+        var rows = $.table.selectFirstColumns();
+        if (rows.length == 0) {
+            $.modal.alertWarning("请至少选择一条记录");
+            return;
+        }
+        $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function () {
+            var data = {"equipsysId": $("#equipsysId").val(), "type": $("#type").val(), "ids": rows.join()};
+            $.operate.submit(prefix + "/cancelAll", "post", "json", data);
+        });
+    }
+
+    /* 分配-取消 */
+    function cancelDevice(id) {
+        $.modal.confirm("确认要删除设备吗？", function () {
+            var data = {"equipsysId": $("#equipsysId").val(), "type": $("#type").val(), "id": id};
+            $.operate.post(prefix + "/cancel", data);
+        })
+    }
+</script>
+</body>
+</html>

@@ -9,7 +9,8 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <form id="role-form">
-                <input type="hidden" id="stationId" name="stationId" th:value="${station.id}">
+                <input type="hidden" id="type" name="type" th:value="${type}">
+                <input type="hidden" id="equipsysId" name="equipsysId" th:value="${equipsys.id}">
                 <div class="select-list">
                     <ul>
                         <li>
@@ -35,7 +36,6 @@
                 </div>
             </form>
         </div>
-
         <div class="col-sm-12 select-table table-striped">
             <table id="bootstrap-table"></table>
         </div>
@@ -46,7 +46,7 @@
     var ownerDatas = [[${@dict.getType('owner')}]];
     var statusDatas = [[${@dict.getType('device_status')}]];
     var functionDatas = [[${@dict.getType('device_func')}]];
-    var prefix = ctx + "data/station/device";
+    var prefix = ctx + "data/equipsys/equip";
 
     $(function() {
         var options = {
@@ -55,9 +55,9 @@
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
             queryParams: queryParams,
+            modalName: "选择设备",
             sortName: "id",
             sortOrder: "asc",
-            modalName: "能力",
             showSearch: false,
             showRefresh: false,
             showToggle: false,
@@ -115,7 +115,8 @@
 
     function queryParams(params) {
         var search = $.table.queryParams(params);
-        search.stationId = $("#stationId").val();
+        search.type = $("#type").val();
+        search.equipsysId = $("#equipsysId").val();
         return search;
     }
 
@@ -126,7 +127,7 @@
             $.modal.alertWarning("请至少选择一条记录");
             return;
         }
-        var data = { "stationId": $("#stationId").val(), "deviceIds": rows.join() };
+        var data = { "equipsysId": $("#equipsysId").val(), "type": $("#type").val(), "deviceIds": rows.join() };
         $.operate.save(prefix + "/selectAll", data);
     }
 </script>

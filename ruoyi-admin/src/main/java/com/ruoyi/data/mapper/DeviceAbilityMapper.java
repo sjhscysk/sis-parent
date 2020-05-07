@@ -2,6 +2,7 @@ package com.ruoyi.data.mapper;
 
 import java.util.List;
 import com.ruoyi.data.domain.DeviceAbility;
+import org.springframework.stereotype.Repository;
 
 /**
  * 设备能力Mapper接口
@@ -9,6 +10,7 @@ import com.ruoyi.data.domain.DeviceAbility;
  * @author xusisheng
  * @date 2020-04-30
  */
+@Repository
 public interface DeviceAbilityMapper 
 {
     /**
@@ -43,6 +45,21 @@ public interface DeviceAbilityMapper
      */
     public int updateDeviceAbility(DeviceAbility deviceAbility);
 
+    /**
+     * 删除设备能力
+     *
+     * @param id 设备能力ID
+     * @return 结果
+     */
+    public int deleteDeviceAbilityById(Long id);
+
+    /**
+     * 批量删除设备能力
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    public int deleteDeviceAbilityByIds(String[] ids);
     /**
      * 删除设备能力
      * 

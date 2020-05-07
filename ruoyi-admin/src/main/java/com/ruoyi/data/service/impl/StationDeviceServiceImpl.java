@@ -95,6 +95,13 @@ public class StationDeviceServiceImpl implements StationDeviceService
     }
 
     @Override
+    public int deleteStationDevice(Long stationId) {
+        StationDevice stationDevice = new StationDevice();
+        stationDevice.setStationId(stationId);
+        return stationDeviceMapper.deleteStationDevice(stationDevice);
+    }
+
+    @Override
     public int deleteStationDevice(StationDevice stationDevice) {
         return stationDeviceMapper.deleteStationDevice(stationDevice);
     }
