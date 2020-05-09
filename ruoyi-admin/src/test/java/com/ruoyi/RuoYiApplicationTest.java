@@ -3,9 +3,9 @@ package com.ruoyi;
 import com.ruoyi.framework.mq.Producer;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.command.ActiveMQTopic;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,12 +23,12 @@ public class RuoYiApplicationTest {
     @Autowired
     private Producer producer;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() throws Exception {
     }
 
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() throws Exception {
     }
 
     @Test
