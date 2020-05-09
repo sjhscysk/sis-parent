@@ -31,7 +31,7 @@ public class SubscribeServiceImpl implements SubscribeService {
      * @return 订阅关系
      */
     @Override
-    public Subscribe selectSubscribeById(Integer id) {
+    public Subscribe selectSubscribeById(Long id) {
         return subscribeMapper.selectSubscribeById(id);
     }
 
@@ -86,7 +86,7 @@ public class SubscribeServiceImpl implements SubscribeService {
      * @return 结果
      */
     @Override
-    public int deleteSubscribeById(Integer id) {
+    public int deleteSubscribeById(Long id) {
         return subscribeMapper.deleteSubscribeById(id);
     }
 

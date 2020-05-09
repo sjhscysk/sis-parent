@@ -1,6 +1,5 @@
 package com.ruoyi.data.mapper;
 
-
 import com.ruoyi.data.domain.Subscribe;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +19,7 @@ public interface SubscribeMapper {
      * @param id 订阅关系ID
      * @return 订阅关系
      */
-    public Subscribe selectSubscribeById(Integer id);
+    public Subscribe selectSubscribeById(Long id);
 
     /**
      * 查询订阅关系列表
@@ -52,7 +51,7 @@ public interface SubscribeMapper {
      * @param id 订阅关系ID
      * @return 结果
      */
-    public int deleteSubscribeById(Integer id);
+    public int deleteSubscribeById(Long id);
 
     /**
      * 批量删除订阅关系

@@ -54,7 +54,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema subscribeSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("xsd/subscribe.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("schema/subscribe.xsd"));
     }
 
     @Override

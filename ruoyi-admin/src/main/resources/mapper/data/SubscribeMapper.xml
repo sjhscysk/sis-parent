@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.biz.subscribe.mapper.SubscribeMapper">
+
+    <resultMap type="Subscribe" id="SubscribeResult">
+        <result property="id"    column="id"    />
+        <result property="feedCode"    column="feed_code"    />
+        <result property="feedName"    column="feed_name"    />
+        <result property="dataCode"    column="data_code"    />
+        <result property="dataName"    column="data_name"    />
+        <result property="dataCategory"    column="data_category"    />
+        <result property="status"    column="status"    />
+        <result property="dtSubscribe"    column="dt_subscribe"    />
+        <result property="dtUnsubscribe"    column="dt_unsubscribe"    />
+    </resultMap>
+
+    <sql id="selectSubscribeVo">
+        select id, feed_code, feed_name, data_code, data_name, data_category, status, dt_subscribe, dt_unsubscribe from t_subscribe
+    </sql>
+
+    <select id="selectSubscribeList" parameterType="Subscribe" resultMap="SubscribeResult">
+        <include refid="selectSubscribeVo"/>
+        <where>
+            <if test="feedName != null  and feedName != ''"> and feed_name like concat('%', #{feedName}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="dtSubscribe != null "> and dt_subscribe = #{dtSubscribe}</if>
+        </where>
+    </select>
+
+    <select id="selectSubscribeById" parameterType="Long" resultMap="SubscribeResult">
+        <include refid="selectSubscribeVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSubscribe" parameterType="Subscribe" useGeneratedKeys="true" keyProperty="id">
+        insert into t_subscribe
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="feedCode != null  and feedCode != ''">feed_code,</if>
+            <if test="feedName != null  and feedName != ''">feed_name,</if>
+            <if test="dataCode != null  and dataCode != ''">data_code,</if>
+            <if test="dataName != null  and dataName != ''">data_name,</if>
+            <if test="dataCategory != null  and dataCategory != ''">data_category,</if>
+            <if test="status != null ">status,</if>
+            <if test="dtSubscribe != null ">dt_subscribe,</if>
+            <if test="dtUnsubscribe != null ">dt_unsubscribe,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="feedCode != null  and feedCode != ''">#{feedCode},</if>
+            <if test="feedName != null  and feedName != ''">#{feedName},</if>
+            <if test="dataCode != null  and dataCode != ''">#{dataCode},</if>
+            <if test="dataName != null  and dataName != ''">#{dataName},</if>
+            <if test="dataCategory != null  and dataCategory != ''">#{dataCategory},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="dtSubscribe != null ">#{dtSubscribe},</if>
+            <if test="dtUnsubscribe != null ">#{dtUnsubscribe},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSubscribe" parameterType="Subscribe">
+        update t_subscribe
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="feedCode != null  and feedCode != ''">feed_code = #{feedCode},</if>
+            <if test="feedName != null  and feedName != ''">feed_name = #{feedName},</if>
+            <if test="dataCode != null  and dataCode != ''">data_code = #{dataCode},</if>
+            <if test="dataName != null  and dataName != ''">data_name = #{dataName},</if>
+            <if test="dataCategory != null  and dataCategory != ''">data_category = #{dataCategory},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="dtSubscribe != null ">dt_subscribe = #{dtSubscribe},</if>
+            <if test="dtUnsubscribe != null ">dt_unsubscribe = #{dtUnsubscribe},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSubscribeById" parameterType="Long">
+        delete from t_subscribe where id = #{id}
+    </delete>
+
+    <delete id="deleteSubscribeByIds" parameterType="String">
+        delete from t_subscribe where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 批量新增 -->
+    <insert id="insertBatch" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="java.util.List">
+        INSERT INTO t_subscribe(id, feed_code, feed_name, data_code, data_name, data_category, status, dt_subscribe,
+        dt_unsubscribe) VALUES
+        <foreach collection="list" item="element" separator=", ">
+            (#{element.id}, #{element.feedCode}, #{element.feedName}, #{element.dataCode}, #{element.dataName},
+            #{element.dataCategory}, #{element.status}, #{element.dtSubscribe}, #{element.dtUnsubscribe})
+        </foreach>
+    </insert>
+
+    <!-- 批量更新（退订） -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="element" open="" close="" separator=";">
+            UPDATE t_subscribe
+            <set>
+                <if test="element.subStatus != null">
+                    status = #{element.status},
+                </if>
+                <if test="element.dtUnsubscribe != null">
+                    dt_unsubscribe = #{element.dtUnsubscribe},
+                </if>
+            </set>
+            WHERE feed_code = #{element.feedCode} AND data_code = #{element.dataCode}
+        </foreach>
+    </update>
+
+</mapper>
