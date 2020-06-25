@@ -171,31 +171,31 @@
                     <warName>${project.artifactId}</warName>
                 </configuration>   
 		   </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>${project.basedir}/src/main/resources/schema/</source>
-                    </sources>
-                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <packageName>com.ruoyi.webservice.gen</packageName>
-                    <addGeneratedAnnotation>false</addGeneratedAnnotation>
-                    <noGeneratedHeaderComments>true</noGeneratedHeaderComments>
-                    <generateEpisode>false</generateEpisode>
-                    <clearOutputDir>false</clearOutputDir>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>jaxb2-maven-plugin</artifactId>-->
+<!--                <version>2.5.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>xjc</id>-->
+<!--                        <goals>-->
+<!--                            <goal>xjc</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <sources>-->
+<!--                        <source>${project.basedir}/src/main/resources/schema/</source>-->
+<!--                    </sources>-->
+<!--                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
+<!--                    <encoding>${project.build.sourceEncoding}</encoding>-->
+<!--                    <packageName>com.ruoyi.webservice.gen</packageName>-->
+<!--                    <addGeneratedAnnotation>false</addGeneratedAnnotation>-->
+<!--                    <noGeneratedHeaderComments>true</noGeneratedHeaderComments>-->
+<!--                    <generateEpisode>false</generateEpisode>-->
+<!--                    <clearOutputDir>false</clearOutputDir>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
         <finalName>${project.artifactId}</finalName>
     </build>

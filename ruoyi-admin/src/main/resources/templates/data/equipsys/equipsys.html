@@ -15,20 +15,18 @@
                             <input type="text" name="name"/>
                         </li>
                         <li>
-                            <label>率属单位：</label>
-                            <input type="text" name="belongsto"/>
-                        </li>
-                        <li>
                             <label>率属方：</label>
                             <select name="owner" th:with="type=${@dict.getType('owner')}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                             </select>
                         </li>
                         <li>
-                            <label>部署地：</label>
-                            <input type="text" name="location"/>
+                                 <label>系统类型：</label>
+                                <select name="type" th:with="type=${@dict.getType('equipsys_type')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
@@ -68,6 +66,7 @@
     var listFlag = [[${@permission.hasPermi('data:equipsys:list')}]];
     var removeFlag = [[${@permission.hasPermi('data:equipsys:remove')}]];
     var ownerDatas = [[${@dict.getType('owner')}]];
+    var typeDatas = [[${@dict.getType('equipsys_type')}]];
     var prefix = ctx + "data/equipsys";
 
     $(function () {
@@ -106,7 +105,14 @@
                     }
                 },
                 {
-                    field: 'location',
+                    field: 'type', 
+                    title: '系统类型',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(typeDatas, value);
+                    }
+                },
+                {
+                    field: 'location', 
                     title: '部署地'
                 },
                 {

@@ -5,29 +5,32 @@
 <mapper namespace="com.ruoyi.data.mapper.DeviceMapper">
 
     <resultMap type="Device" id="DeviceResult">
-        <result property="id" column="id"/>
-        <result property="sn" column="sn"/>
-        <result property="name" column="name"/>
-        <result property="belongsto" column="belongsto"/>
-        <result property="owner" column="owner"/>
-        <result property="classify" column="classify"/>
-        <result property="status" column="status"/>
-        <result property="function" column="function"/>
-        <result property="pic" column="pic"/>
-        <result property="video" column="video"/>
+        <result property="id"    column="id"    />
+        <result property="sn"    column="sn"    />
+        <result property="name"    column="name"    />
+        <result property="belongsto"    column="belongsto"    />
+        <result property="owner"    column="owner"    />
+        <result property="classify"    column="classify"    />
+        <result property="status"    column="status"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="altitude"    column="altitude"    />
+        <result property="function"    column="function"    />
+        <result property="pic"    column="pic"    />
+        <result property="video"    column="video"    />
     </resultMap>
 
     <sql id="selectDeviceVo">
-        select id, sn, name, belongsto, owner, classify, status, function, pic, video from t_device
+        select id, sn, name, belongsto, owner, classify, status, longitude, latitude, altitude, function, pic, video from t_device
     </sql>
 
     <select id="selectDeviceList" parameterType="Device" resultMap="DeviceResult">
         <include refid="selectDeviceVo"/>
-        <where>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="belongsto != null  and belongsto != ''">and belongsto like concat('%', #{belongsto}, '%')</if>
-            <if test="owner != null ">and owner = #{owner}</if>
-            <if test="function != null ">and function = #{function}</if>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="belongsto != null  and belongsto != ''"> and belongsto = #{belongsto}</if>
+            <if test="owner != null "> and owner = #{owner}</if>
+            <if test="status != null "> and status = #{status}</if>
         </where>
     </select>
 
@@ -35,8 +38,8 @@
         <include refid="selectDeviceVo"/>
         where id = #{id}
     </select>
-
-    <insert id="insertDevice" parameterType="Device">
+        
+    <insert id="insertDevice" parameterType="Device" useGeneratedKeys="true" keyProperty="id">
         insert into t_device
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null ">id,</if>
@@ -46,6 +49,9 @@
             <if test="owner != null ">owner,</if>
             <if test="classify != null  and classify != ''">classify,</if>
             <if test="status != null ">status,</if>
+            <if test="longitude != null  and longitude != ''">longitude,</if>
+            <if test="latitude != null  and latitude != ''">latitude,</if>
+            <if test="altitude != null  and altitude != ''">altitude,</if>
             <if test="function != null ">function,</if>
             <if test="pic != null  and pic != ''">pic,</if>
             <if test="video != null  and video != ''">video,</if>
@@ -58,6 +64,9 @@
             <if test="owner != null ">#{owner},</if>
             <if test="classify != null  and classify != ''">#{classify},</if>
             <if test="status != null ">#{status},</if>
+            <if test="longitude != null  and longitude != ''">#{longitude},</if>
+            <if test="latitude != null  and latitude != ''">#{latitude},</if>
+            <if test="altitude != null  and altitude != ''">#{altitude},</if>
             <if test="function != null ">#{function},</if>
             <if test="pic != null  and pic != ''">#{pic},</if>
             <if test="video != null  and video != ''">#{video},</if>
@@ -73,6 +82,9 @@
             <if test="owner != null ">owner = #{owner},</if>
             <if test="classify != null  and classify != ''">classify = #{classify},</if>
             <if test="status != null ">status = #{status},</if>
+            <if test="longitude != null  and longitude != ''">longitude = #{longitude},</if>
+            <if test="latitude != null  and latitude != ''">latitude = #{latitude},</if>
+            <if test="altitude != null  and altitude != ''">altitude = #{altitude},</if>
             <if test="function != null ">function = #{function},</if>
             <if test="pic != null  and pic != ''">pic = #{pic},</if>
             <if test="video != null  and video != ''">video = #{video},</if>

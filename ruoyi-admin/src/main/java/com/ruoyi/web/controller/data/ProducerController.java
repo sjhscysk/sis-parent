@@ -5,6 +5,8 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.data.domain.Subscribe;
 import com.ruoyi.data.service.SubscribeService;
+import com.ruoyi.data.utils.WeatherClient;
+import com.ruoyi.framework.mq.DestinationMode;
 import com.ruoyi.framework.mq.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +27,12 @@ public class ProducerController {
     @Log(title = "气象数据", businessType = BusinessType.IMPORT)
     @RequestMapping("/weather/{city}")
     public String test01(@PathVariable String city) {
-//        List<String> list = WeatherClient.getWeatherbyCityName(city);
+        List<String> list = WeatherClient.getWeatherbyCityName(city);
+        producer.sendMessage(DestinationMode.getActiveMqQueue("weather"), String.join("\n", list));
 //
-        Subscribe subscribe = new Subscribe();
-        subscribe.setDataCode("weather");
-        List<Subscribe> ls = subscribeService.selectSubscribeList(subscribe);
+//        Subscribe subscribe = new Subscribe();
+//        subscribe.setDataCode("weather");
+//        List<Subscribe> ls = subscribeService.selectSubscribeList(subscribe);
 //        for (Subscribe item : ls) {
 //            producer.sendMessage("weather_" +item.getFeedCode(), String.join("\n", list));
 //        }

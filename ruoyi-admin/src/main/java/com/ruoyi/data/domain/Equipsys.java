@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 装备系统对象 t_equipsys
  * 
  * @author xusisheng
- * @date 2020-05-02
+ * @date 2020-05-18
  */
 public class Equipsys extends BaseEntity
 {
@@ -33,6 +33,10 @@ public class Equipsys extends BaseEntity
     /** 率属方 */
     @Excel(name = "率属方")
     private Integer owner;
+
+    /** 系统类型 */
+    @Excel(name = "系统类型")
+    private Integer type;
 
     /** 部署地 */
     @Excel(name = "部署地")
@@ -98,14 +102,23 @@ public class Equipsys extends BaseEntity
     {
         return belongsto;
     }
-    public void setOwner(Integer owner)
+    public void setOwner(Integer owner) 
     {
         this.owner = owner;
     }
 
-    public Integer getOwner()
+    public Integer getOwner() 
     {
         return owner;
+    }
+    public void setType(Integer type) 
+    {
+        this.type = type;
+    }
+
+    public Integer getType() 
+    {
+        return type;
     }
     public void setLocation(String location) 
     {
@@ -179,6 +192,7 @@ public class Equipsys extends BaseEntity
             .append("name", getName())
             .append("belongsto", getBelongsto())
             .append("owner", getOwner())
+            .append("type", getType())
             .append("location", getLocation())
             .append("scope", getScope())
             .append("longitude", getLongitude())
