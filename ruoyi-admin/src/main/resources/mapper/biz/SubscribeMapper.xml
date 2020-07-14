@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.project.biz.subscribe.mapper.SubscribeMapper">
+<mapper namespace="com.ruoyi.biz.mapper.SubscribeMapper">
 
     <resultMap type="Subscribe" id="SubscribeResult">
-        <result property="id" column="id"/>
-        <result property="feedCode" column="feed_code"/>
-        <result property="feedName" column="feed_name"/>
-        <result property="dataCode" column="data_code"/>
-        <result property="dataName" column="data_name"/>
-        <result property="dataCategory" column="data_category"/>
-        <result property="subStatus" column="sub_status"/>
-        <result property="dtSubscribe" column="dt_subscribe"/>
-        <result property="dtUnsubscribe" column="dt_unsubscribe"/>
+        <result property="id"    column="id"    />
+        <result property="feedCode"    column="feed_code"    />
+        <result property="feedName"    column="feed_name"    />
+        <result property="dataCode"    column="data_code"    />
+        <result property="dataName"    column="data_name"    />
+        <result property="dataCategory"    column="data_category"    />
+        <result property="subStatus"    column="sub_status"    />
+        <result property="dtSubscribe"    column="dt_subscribe"    />
+        <result property="dtUnsubscribe"    column="dt_unsubscribe"    />
     </resultMap>
 
     <sql id="selectSubscribeVo">
@@ -23,15 +23,18 @@
     <select id="selectSubscribeList" parameterType="Subscribe" resultMap="SubscribeResult">
         <include refid="selectSubscribeVo"/>
         <where>
-            <if test="feedCode != null  and feedCode != ''">and feed_code = #{feedCode}</if>
-            <if test="dataCode != null  and dataCode != ''">and data_code = #{dataCode}</if>
-            <if test="dataCategory != null  and dataCategory != ''">and data_category = #{dataCategory}</if>
-            <if test="subStatus != null ">and sub_status = #{subStatus}</if>
-            <if test="dtSubscribe != null ">and dt_subscribe = #{dtSubscribe}</if>
+            <if test="feedCode != null  and feedCode != ''"> and feed_code = #{feedCode}</if>
+            <if test="feedName != null  and feedName != ''"> and feed_name like concat('%', #{feedName}, '%')</if>
+            <if test="dataCode != null  and dataCode != ''"> and data_code = #{dataCode}</if>
+            <if test="dataName != null  and dataName != ''"> and data_name like concat('%', #{dataName}, '%')</if>
+            <if test="dataCategory != null  and dataCategory != ''"> and data_category = #{dataCategory}</if>
+            <if test="subStatus != null "> and sub_status = #{subStatus}</if>
+            <if test="dtSubscribe != null "> and dt_subscribe = #{dtSubscribe}</if>
+            <if test="dtUnsubscribe != null "> and dt_unsubscribe = #{dtUnsubscribe}</if>
         </where>
     </select>
 
-    <select id="selectSubscribeById" parameterType="Integer" resultMap="SubscribeResult">
+    <select id="selectSubscribeById" parameterType="Long" resultMap="SubscribeResult">
         <include refid="selectSubscribeVo"/>
         where id = #{id}
     </select>
@@ -75,7 +78,7 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteSubscribeById" parameterType="Integer">
+    <delete id="deleteSubscribeById" parameterType="Long">
         delete from t_subscribe where id = #{id}
     </delete>
 
@@ -85,31 +88,5 @@
             #{id}
         </foreach>
     </delete>
-
-    <!-- 批量新增 -->
-    <insert id="insertBatch" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_subscribe(id, feed_code, feed_name, data_code, data_name, data_category, sub_status, dt_subscribe,
-        dt_unsubscribe) VALUES
-        <foreach collection="list" item="element" separator=", ">
-            (#{element.id}, #{element.feedCode}, #{element.feedName}, #{element.dataCode}, #{element.dataName},
-            #{element.dataCategory}, #{element.subStatus}, #{element.dtSubscribe}, #{element.dtUnsubscribe})
-        </foreach>
-    </insert>
-
-    <!-- 批量更新（退订） -->
-    <update id="updateBatch" parameterType="java.util.List">
-        <foreach collection="list" item="element" open="" close="" separator=";">
-            UPDATE t_subscribe
-            <set>
-                <if test="element.subStatus != null">
-                    sub_status = #{element.subStatus},
-                </if>
-                <if test="element.dtUnsubscribe != null">
-                    dt_unsubscribe = #{element.dtUnsubscribe},
-                </if>
-            </set>
-            WHERE feed_code = #{element.feedCode} AND data_code = #{element.dataCode}
-        </foreach>
-    </update>
 
 </mapper>

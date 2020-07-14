@@ -2,11 +2,11 @@ package com.ruoyi.webservice.endpoint;
 
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.project.biz.subscribe.SubscribeConst;
-import com.ruoyi.project.biz.subscribe.domain.Subscribe;
-import com.ruoyi.project.biz.subscribe.service.SubscribeService;
-import com.ruoyi.project.biz.train.TrainClient;
-import com.ruoyi.project.biz.weather.WeatherClient;
+import com.ruoyi.biz.constants.SubscribeConst;
+import com.ruoyi.biz.domain.Subscribe;
+import com.ruoyi.biz.service.SubscribeService;
+import com.ruoyi.biz.train.TrainClient;
+import com.ruoyi.biz.weather.WeatherClient;
 import com.ruoyi.system.domain.SysDictData;
 import com.ruoyi.system.service.ISysDictDataService;
 import com.ruoyi.webservice.WsConst;
