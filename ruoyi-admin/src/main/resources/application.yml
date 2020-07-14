@@ -64,6 +64,23 @@ spring:
        max-file-size:  10MB
        # 设置总上传的文件大小
        max-request-size:  20MB
+  # 队列
+  activemq:
+    broker-url: failover://(tcp://localhost:61616)?jms.prefetchPolicy.all=2
+    user: admin
+    password: admin
+    send-timeout: 3000
+    in-memory: false  #true为默认代理URL保存在内存，false为使用服务器，如果你想开始消息持久化就必须关闭in-memory选项
+    pool:
+      enabled: true #是否用PooledConnectionFactory代替普通的ConnectionFactory
+      max-connections: 20 #连接池最大连接数量
+      block-if-full: true  #当连接请求和池满时是否阻塞，设置false会抛"JMSException"
+      block-if-full-timeout: -1ms #如果池仍然满，则在抛出异常前阻塞时间
+      idle-timeout: 30000s
+      use-anonymous-producers: true #在空闲连接清除线程
+      #如果你想直接发送对象消息，那么必须设置trust-all为true，对于发送对象消息，对象必须实现Serializable接口，并且必须在代码里指定serialVersionUID的值，否则在消费端序列化的时候报错。
+      packages:
+        trust-all: true  #信任所有的包
   # 服务模块
   devtools:
     restart:
