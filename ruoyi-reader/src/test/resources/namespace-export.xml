@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reader-mapping="http://www.reader-mapping.org/schema/reader-mapping"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.reader-mapping.org/schema/reader-mapping http://www.reader-mapping.org/schema/reader-mapping.xsd">
+
+
+    <reader-mapping:builder id="peopleExport" beanClass="com.ruoyi.mapping.test.model.People" defaultDateFormat="yyyy-MM-dd"
+                        defaultNumberFormat="12" ignoreError="false">
+        <reader-mapping:fields>
+            <reader-mapping:field name="name" columnName="名字"/>
+            <reader-mapping:field name="birthday" columnName="生日" converter="com.ruoyi.mapping.converter.render.DateFieldRender"/>
+        </reader-mapping:fields>
+    </reader-mapping:builder>
+
+</beans>

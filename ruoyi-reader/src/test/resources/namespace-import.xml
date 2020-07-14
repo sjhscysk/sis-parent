@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reader-mapping="http://www.reader-mapping.org/schema/reader-mapping"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.reader-mapping.org/schema/reader-mapping http://www.reader-mapping.org/schema/reader-mapping.xsd">
+
+
+    <reader-mapping:parser id="baseImport" beanClass="com.ruoyi.mapping.test.model.Teacher" defaultDateFormat="MM/dd/yyyy"
+                        defaultNumberFormat="12" ignoreError="false">
+        <reader-mapping:field-parsers>
+            <bean class="com.ruoyi.mapping.test.parsers.IntegerParser"/>
+        </reader-mapping:field-parsers>
+        <reader-mapping:fields>
+            <reader-mapping:field name="student.studentName" multiColumns="student name,student name1,student name2"/>
+            <reader-mapping:field name="name" columnName="name" converter="com.ruoyi.mapping.test.parsers.ToUpperCaseParser"/>
+            <reader-mapping:field name="age" columnName="age"/>
+        </reader-mapping:fields>
+    </reader-mapping:parser>
+
+    <reader-mapping:parser id="advancedImport" beanClass="com.ruoyi.mapping.test.model.AdvancedBean" defaultDateFormat="yyyyMMdd"
+                        defaultNumberFormat="5" ignoreError="false">
+        <reader-mapping:fields>
+            <reader-mapping:field name="upperCaseField" columnName="UpperCase Column" required="true" converter="com.ruoyi.mapping.test.parsers.ToUpperCaseParser" formatStr="20" />
+            <reader-mapping:field name="stringParserThrowEField" columnName="StringParserThrowE Column" converter="com.ruoyi.mapping.test.parsers.ToStringParserThrowE" formatStr="30"/>
+            <reader-mapping:field name="advancedDateField" columnName="Date Column" required="true" converter="com.ruoyi.mapping.test.parsers.AdvancedDateParser" formatStr="MM/dd/yyyy;yyyyMMdd"/>
+            <reader-mapping:field name="longField" columnName="Long Column" required="true" converter="com.ruoyi.mapping.test.parsers.ToLongParserThrowE" formatStr="12"/>
+            <reader-mapping:field name="bigDecimalField" columnName="BigDecimal Column" required="true" converter="com.ruoyi.mapping.test.parsers.ToBigDecimalParserThrowE" formatStr="^-?\d{1,3}(\.\d{0,5})?$"/>
+        </reader-mapping:fields>
+    </reader-mapping:parser>
+
+    <reader-mapping:parser id="importWithoutColumnName" beanClass="com.ruoyi.mapping.test.model.Teacher" defaultDateFormat="yyyyMMdd"
+                        defaultNumberFormat="5" ignoreError="true" headerSupport="false">
+        <reader-mapping:fields>
+            <reader-mapping:field name="student.studentName"/>
+            <reader-mapping:field name="name"/>
+            <reader-mapping:field name="age"/>
+        </reader-mapping:fields>
+    </reader-mapping:parser>
+
+    <reader-mapping:parser id="importTextFile" beanClass="com.ruoyi.mapping.test.model.Teacher" defaultDateFormat="yyyyMMdd"
+                        defaultNumberFormat="5" ignoreError="true">
+        <reader-mapping:fields>
+            <reader-mapping:field name="student.studentName" columnName="0,20"/>
+            <reader-mapping:field name="name" columnName="20,40"/>
+            <reader-mapping:field name="age" columnName="40,43"/>
+        </reader-mapping:fields>
+    </reader-mapping:parser>
+</beans>
