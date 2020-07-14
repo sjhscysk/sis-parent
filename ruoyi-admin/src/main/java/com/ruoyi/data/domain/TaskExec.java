@@ -31,10 +31,6 @@ public class TaskExec extends BaseEntity
     @Excel(name = "采集时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date dtCollect;
 
-    /** 执行信息 */
-    @Excel(name = "执行信息")
-    private String information;
-
     /** 经度 */
     @Excel(name = "经度")
     private String latitude;
@@ -91,15 +87,6 @@ public class TaskExec extends BaseEntity
     {
         return dtCollect;
     }
-    public void setInformation(String information) 
-    {
-        this.information = information;
-    }
-
-    public String getInformation() 
-    {
-        return information;
-    }
     public void setLatitude(String latitude) 
     {
         this.latitude = latitude;
@@ -153,7 +140,6 @@ public class TaskExec extends BaseEntity
             .append("taskId", getTaskId())
             .append("detailId", getDetailId())
             .append("dtCollect", getDtCollect())
-            .append("information", getInformation())
             .append("latitude", getLatitude())
             .append("longitude", getLongitude())
             .append("altitude", getAltitude())

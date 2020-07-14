@@ -42,20 +42,8 @@ public class Device extends BaseEntity
     @Excel(name = "状态")
     private Integer status;
 
-    /** 经度 */
-    @Excel(name = "经度")
-    private String longitude;
-
-    /** 纬度 */
-    @Excel(name = "纬度")
-    private String latitude;
-
-    /** 海拔 */
-    @Excel(name = "海拔")
-    private String altitude;
-
-    /** 功能 */
-    @Excel(name = "功能")
+    /** 功能分类 */
+    @Excel(name = "功能分类")
     private Integer function;
 
     /** 图片地址 */
@@ -129,33 +117,6 @@ public class Device extends BaseEntity
     {
         return status;
     }
-    public void setLongitude(String longitude) 
-    {
-        this.longitude = longitude;
-    }
-
-    public String getLongitude() 
-    {
-        return longitude;
-    }
-    public void setLatitude(String latitude) 
-    {
-        this.latitude = latitude;
-    }
-
-    public String getLatitude() 
-    {
-        return latitude;
-    }
-    public void setAltitude(String altitude) 
-    {
-        this.altitude = altitude;
-    }
-
-    public String getAltitude() 
-    {
-        return altitude;
-    }
     public void setFunction(Integer function) 
     {
         this.function = function;
@@ -194,9 +155,6 @@ public class Device extends BaseEntity
             .append("owner", getOwner())
             .append("classify", getClassify())
             .append("status", getStatus())
-            .append("longitude", getLongitude())
-            .append("latitude", getLatitude())
-            .append("altitude", getAltitude())
             .append("function", getFunction())
             .append("pic", getPic())
             .append("video", getVideo())
