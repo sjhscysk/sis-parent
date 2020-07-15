@@ -70,8 +70,8 @@ public class SubscribeEndpoint {
             subscribe.setFeedName(request.getName());
             subscribe.setDataCode(item.getCode());
             subscribe.setDataName(item.getName());
-            subscribe.setDataCategory(item.getCategory());
-            subscribe.setSubStatus(SubscribeConst.SubscribeStatus.SUBSCRIBE);
+            subscribe.setSubcategory(item.getCategory());
+            subscribe.setIsSubscribe(SubscribeConst.SubscribeStatus.SUBSCRIBE);
             if (subscribeService.selectSubscribeList(subscribe).size() > 0) {
                 logger.warn("[%s]has subscribe[%s].", subscribe.getFeedCode(), subscribe.getDataCode());
                 continue;
@@ -99,7 +99,7 @@ public class SubscribeEndpoint {
             Subscribe subscribe = new Subscribe();
             subscribe.setFeedCode(request.getCode());
             subscribe.setDataCode(item.getCode());
-            subscribe.setSubStatus(SubscribeConst.SubscribeStatus.UNSUBSCRIBE);
+            subscribe.setIsSubscribe(SubscribeConst.SubscribeStatus.UNSUBSCRIBE);
             subscribe.setDtUnsubscribe(new Date());
             listUnsub.add(subscribe);
         }
@@ -119,14 +119,14 @@ public class SubscribeEndpoint {
 
         Subscribe subscribe = new Subscribe();
         subscribe.setFeedCode(request.getCode());
-        subscribe.setSubStatus(SubscribeConst.SubscribeStatus.SUBSCRIBE);
+        subscribe.setIsSubscribe(SubscribeConst.SubscribeStatus.SUBSCRIBE);
         List<Subscribe> listSub = subscribeService.selectSubscribeList(subscribe);
         for (int i = 0; i < listSub.size(); i++) {
             Subscribe item = listSub.get(i);
             DataCategory info = new DataCategory();
             info.setCode(item.getDataCode());
             info.setName(item.getDataName());
-            info.setCategory(item.getDataCategory());
+            info.setCategory(item.getSubcategory());
             list.add(info);
         }
         response.setData(data);
