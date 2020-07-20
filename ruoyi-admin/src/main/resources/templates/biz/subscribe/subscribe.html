@@ -11,24 +11,12 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>源标识：</label>
-                                <input type="text" name="feedCode"/>
-                            </li>
-                            <li>
                                 <label>源名称：</label>
                                 <input type="text" name="feedName"/>
                             </li>
                             <li>
-                                <label>数据标识：</label>
-                                <input type="text" name="dataCode"/>
-                            </li>
-                            <li>
                                 <label>数据名称：</label>
                                 <input type="text" name="dataName"/>
-                            </li>
-                            <li>
-                                <label>数据子分类：</label>
-                                <input type="text" name="subcategory"/>
                             </li>
                             <li>
                                 <label>是否订阅：</label>
@@ -38,16 +26,10 @@
                                 </select>
                             </li>
                             <li class="select-time">
-                                <label>订阅时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginDtSubscribe]"/>
+                                <label>订阅时间： </label>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
                                 <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endDtSubscribe]"/>
-                            </li>
-                            <li class="select-time">
-                                <label>退订时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginDtUnsubscribe]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endDtUnsubscribe]"/>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -56,21 +38,6 @@
                         </ul>
                     </div>
                 </form>
-            </div>
-
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="biz:subscribe:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="biz:subscribe:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="biz:subscribe:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="biz:subscribe:export">
-                    <i class="fa fa-download"></i> 导出
-                </a>
             </div>
             <div class="col-sm-12 select-table table-striped">
                 <table id="bootstrap-table"></table>
@@ -94,15 +61,6 @@
                 modalName: "订阅关系",
                 columns: [{
                     checkbox: true
-                },
-                {
-                    field: 'id', 
-                    title: '自增主键',
-                    visible: false
-                },
-                {
-                    field: 'feedCode', 
-                    title: '源标识'
                 },
                 {
                     field: 'feedName', 
@@ -134,16 +92,6 @@
                 {
                     field: 'dtUnsubscribe', 
                     title: '退订时间'
-                },
-                {
-                    title: '操作',
-                    align: 'center',
-                    formatter: function(value, row, index) {
-                        var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
-                        return actions.join('');
-                    }
                 }]
             };
             $.table.init(options);

@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 119.45.43.67-腾讯云自购
+ Source Server         : 192.168.3.180
  Source Server Type    : MySQL
- Source Server Version : 50730
- Source Host           : 119.45.43.67:3306
+ Source Server Version : 50731
+ Source Host           : 192.168.3.180:3306
  Source Schema         : sis
 
  Target Server Type    : MySQL
- Target Server Version : 50730
+ Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 14/07/2020 11:17:58
+ Date: 20/07/2020 16:07:09
 */
 
 SET NAMES utf8mb4;
@@ -38,8 +38,8 @@ CREATE TABLE `gen_table` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表';
+  PRIMARY KEY (`table_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表';
 
 -- ----------------------------
 -- Records of gen_table
@@ -53,11 +53,12 @@ INSERT INTO `gen_table` VALUES (39, 't_task_detail', '作战任务详情表', 'T
 INSERT INTO `gen_table` VALUES (41, 't_station', '台站信息', 'Station', 'crud', 'com.ruoyi.data', 'data', 'station', '台站信息', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-06 17:13:44', '', '2020-05-06 17:14:22', '');
 INSERT INTO `gen_table` VALUES (42, 't_device_ability', '设备能力表', 'DeviceAbility', 'crud', 'com.ruoyi.data', 'data', 'ability', '设备能力', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-06 18:29:23', '', '2020-05-18 09:34:23', '');
 INSERT INTO `gen_table` VALUES (43, 't_equipsys_detail', '装备系统详情表', 'EquipsysDetail', 'crud', 'com.ruoyi.data', 'data', 'detail', '装备系统详情', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-07 10:46:41', '', '2020-05-07 10:47:12', '');
-INSERT INTO `gen_table` VALUES (44, 't_subscribe', '订阅关系表', 'Subscribe', 'crud', 'com.ruoyi.biz', 'biz', 'subscribe', '订阅关系', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-09 17:47:42', '', '2020-07-14 11:11:03', '');
 INSERT INTO `gen_table` VALUES (45, 't_device', '设备表', 'Device', 'crud', 'com.ruoyi.data', 'data', 'device', '设备', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-18 08:55:31', '', '2020-05-18 08:58:47', '');
 INSERT INTO `gen_table` VALUES (47, 't_equipsys', '装备系统表', 'Equipsys', 'crud', 'com.ruoyi.data', 'data', 'equipsys', '装备系统', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-18 09:33:11', '', '2020-05-18 09:34:36', '');
 INSERT INTO `gen_table` VALUES (48, 't_task_exec', '作战任务执行信息表', 'TaskExec', 'crud', 'com.ruoyi.data', 'data', 'exec', '作战任务执行信息', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-05-25 10:38:31', '', '2020-05-25 10:39:02', '');
-INSERT INTO `gen_table` VALUES (49, 't_customer', '客户关系', 'Customer', 'crud', 'com.ruoyi.biz', 'biz', 'customer', '客户关系', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-07-14 10:42:37', '', '2020-07-14 11:10:26', '');
+INSERT INTO `gen_table` VALUES (50, 't_customer', '客户关系表', 'Customer', 'crud', 'com.ruoyi.biz', 'biz', 'customer', '客户关系', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-07-14 15:25:07', '', '2020-07-14 15:25:30', '');
+INSERT INTO `gen_table` VALUES (51, 't_train', '车次信息表', 'Train', 'crud', 'com.ruoyi.biz', 'biz', 'train', '车次信息', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-07-14 15:25:07', '', '2020-07-14 15:25:21', '');
+INSERT INTO `gen_table` VALUES (53, 't_subscribe', '订阅关系表', 'Subscribe', 'crud', 'com.ruoyi.biz', 'biz', 'subscribe', '订阅关系', 'xusisheng', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-07-14 17:49:56', '', '2020-07-14 17:59:50', '');
 COMMIT;
 
 -- ----------------------------
@@ -87,8 +88,8 @@ CREATE TABLE `gen_table_column` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`column_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=471 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表字段';
+  PRIMARY KEY (`column_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=500 DEFAULT CHARSET=utf8mb4 COMMENT='代码生成业务表字段';
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -166,15 +167,6 @@ INSERT INTO `gen_table_column` VALUES (404, '43', 'id', '自增主键', 'int(11)
 INSERT INTO `gen_table_column` VALUES (405, '43', 'equipsys_id', '系统ID', 'int(11)', 'Long', 'equipsysId', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 2, 'admin', '2020-05-07 10:46:41', NULL, '2020-05-07 10:47:12');
 INSERT INTO `gen_table_column` VALUES (406, '43', 'type', '装备类型', 'int(8)', 'Integer', 'type', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'equipment_type', 3, 'admin', '2020-05-07 10:46:41', NULL, '2020-05-07 10:47:12');
 INSERT INTO `gen_table_column` VALUES (407, '43', 'equipment_id', '装备ID', 'int(11)', 'Long', 'equipmentId', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 4, 'admin', '2020-05-07 10:46:41', NULL, '2020-05-07 10:47:12');
-INSERT INTO `gen_table_column` VALUES (408, '44', 'id', '自增主键', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:03');
-INSERT INTO `gen_table_column` VALUES (409, '44', 'feed_code', '订阅源标识', 'varchar(64)', 'String', 'feedCode', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 2, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:03');
-INSERT INTO `gen_table_column` VALUES (410, '44', 'feed_name', '订阅源名称', 'varchar(64)', 'String', 'feedName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:03');
-INSERT INTO `gen_table_column` VALUES (411, '44', 'data_code', '订阅数据标识', 'varchar(64)', 'String', 'dataCode', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 4, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:03');
-INSERT INTO `gen_table_column` VALUES (412, '44', 'data_name', '订阅数据名称', 'varchar(64)', 'String', 'dataName', '0', '0', NULL, '1', '1', '1', NULL, 'LIKE', 'input', '', 5, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:04');
-INSERT INTO `gen_table_column` VALUES (413, '44', 'data_category', '订阅数据分类', 'varchar(32)', 'String', 'dataCategory', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 6, 'admin', '2020-05-09 17:47:42', NULL, '2020-07-14 11:11:04');
-INSERT INTO `gen_table_column` VALUES (414, '44', 'status', '订阅状态', 'int(8)', 'Integer', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'subscribe_status', 7, 'admin', '2020-05-09 17:47:43', NULL, '2020-07-14 11:11:04');
-INSERT INTO `gen_table_column` VALUES (415, '44', 'dt_subscribe', '订阅时间', 'datetime', 'Date', 'dtSubscribe', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 'admin', '2020-05-09 17:47:43', NULL, '2020-07-14 11:11:04');
-INSERT INTO `gen_table_column` VALUES (416, '44', 'dt_unsubscribe', '退订时间', 'datetime', 'Date', 'dtUnsubscribe', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'datetime', '', 9, 'admin', '2020-05-09 17:47:43', NULL, '2020-07-14 11:11:04');
 INSERT INTO `gen_table_column` VALUES (417, '45', 'id', '自增主键', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-05-18 08:55:31', NULL, '2020-05-18 08:58:47');
 INSERT INTO `gen_table_column` VALUES (418, '45', 'sn', '编号', 'varchar(64)', 'String', 'sn', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 2, 'admin', '2020-05-18 08:55:31', NULL, '2020-05-18 08:58:47');
 INSERT INTO `gen_table_column` VALUES (419, '45', 'name', '名称', 'varchar(128)', 'String', 'name', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2020-05-18 08:55:31', NULL, '2020-05-18 08:58:47');
@@ -211,11 +203,26 @@ INSERT INTO `gen_table_column` VALUES (462, '48', 'longitude', '纬度', 'varcha
 INSERT INTO `gen_table_column` VALUES (463, '48', 'altitude', '海拔', 'varchar(16)', 'String', 'altitude', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 8, 'admin', '2020-05-25 10:38:31', NULL, '2020-05-25 10:39:02');
 INSERT INTO `gen_table_column` VALUES (464, '48', 'speed', '速度', 'int(8)', 'Integer', 'speed', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 9, 'admin', '2020-05-25 10:38:31', NULL, '2020-05-25 10:39:02');
 INSERT INTO `gen_table_column` VALUES (465, '48', 'direction', '方向', 'varchar(32)', 'String', 'direction', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 10, 'admin', '2020-05-25 10:38:31', NULL, '2020-05-25 10:39:02');
-INSERT INTO `gen_table_column` VALUES (466, '49', 'id', 'null', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-07-14 10:42:37', NULL, '2020-07-14 11:10:26');
-INSERT INTO `gen_table_column` VALUES (467, '49', 'name', 'null', 'varchar(64)', 'String', 'name', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2020-07-14 10:42:37', NULL, '2020-07-14 11:10:26');
-INSERT INTO `gen_table_column` VALUES (468, '49', 'company', 'null', 'varchar(255)', 'String', 'company', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2020-07-14 10:42:37', NULL, '2020-07-14 11:10:26');
-INSERT INTO `gen_table_column` VALUES (469, '49', 'startTime', 'null', 'datetime', 'Date', 'starttime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2020-07-14 10:42:37', NULL, '2020-07-14 11:10:27');
-INSERT INTO `gen_table_column` VALUES (470, '49', 'cardNumber', 'null', 'varchar(64)', 'String', 'cardnumber', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2020-07-14 10:42:37', NULL, '2020-07-14 11:10:27');
+INSERT INTO `gen_table_column` VALUES (471, '50', 'id', '自增主键', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:30');
+INSERT INTO `gen_table_column` VALUES (472, '50', 'name', '姓名', 'varchar(64)', 'String', 'name', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:30');
+INSERT INTO `gen_table_column` VALUES (473, '50', 'company', '公司', 'varchar(255)', 'String', 'company', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:31');
+INSERT INTO `gen_table_column` VALUES (474, '50', 'startTime', '时间', 'datetime', 'Date', 'starttime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:31');
+INSERT INTO `gen_table_column` VALUES (475, '50', 'cardNumber', '卡号', 'varchar(64)', 'String', 'cardnumber', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:31');
+INSERT INTO `gen_table_column` VALUES (476, '51', 'id', '自增主键', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-07-14 15:25:07', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (477, '51', 'train_code', '车次代码', 'varchar(64)', 'String', 'trainCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2020-07-14 15:25:08', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (478, '51', 'start_station', '始发站', 'varchar(64)', 'String', 'startStation', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2020-07-14 15:25:08', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (479, '51', 'start_time', '始发时间', 'datetime', 'Date', 'startTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 4, 'admin', '2020-07-14 15:25:08', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (480, '51', 'arrive_station', '到达站', 'varchar(64)', 'String', 'arriveStation', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2020-07-14 15:25:08', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (481, '51', 'arrive_tme', '到达时间', 'datetime', 'Date', 'arriveTme', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 6, 'admin', '2020-07-14 15:25:08', NULL, '2020-07-14 15:25:21');
+INSERT INTO `gen_table_column` VALUES (491, '53', 'id', '自增主键', 'int(11)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-07-14 17:49:56', NULL, '2020-07-14 17:59:51');
+INSERT INTO `gen_table_column` VALUES (492, '53', 'feed_code', '源标识', 'varchar(64)', 'String', 'feedCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2020-07-14 17:49:56', NULL, '2020-07-14 17:59:51');
+INSERT INTO `gen_table_column` VALUES (493, '53', 'feed_name', '源名称', 'varchar(64)', 'String', 'feedName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2020-07-14 17:49:56', NULL, '2020-07-14 17:59:51');
+INSERT INTO `gen_table_column` VALUES (494, '53', 'data_code', '数据标识', 'varchar(64)', 'String', 'dataCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2020-07-14 17:49:56', NULL, '2020-07-14 17:59:51');
+INSERT INTO `gen_table_column` VALUES (495, '53', 'data_name', '数据名称', 'varchar(64)', 'String', 'dataName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 5, 'admin', '2020-07-14 17:49:56', NULL, '2020-07-14 17:59:52');
+INSERT INTO `gen_table_column` VALUES (496, '53', 'subcategory', '数据子分类', 'varchar(32)', 'String', 'subcategory', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2020-07-14 17:49:57', NULL, '2020-07-14 17:59:52');
+INSERT INTO `gen_table_column` VALUES (497, '53', 'is_subscribe', '是否订阅', 'int(4)', 'Integer', 'isSubscribe', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', 'subscribe_status', 7, 'admin', '2020-07-14 17:49:57', NULL, '2020-07-14 17:59:52');
+INSERT INTO `gen_table_column` VALUES (498, '53', 'dt_subscribe', '订阅时间', 'datetime', 'Date', 'dtSubscribe', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 'admin', '2020-07-14 17:49:57', NULL, '2020-07-14 17:59:52');
+INSERT INTO `gen_table_column` VALUES (499, '53', 'dt_unsubscribe', '退订时间', 'datetime', 'Date', 'dtUnsubscribe', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 9, 'admin', '2020-07-14 17:49:57', NULL, '2020-07-14 17:59:52');
 COMMIT;
 
 -- ----------------------------
@@ -227,7 +234,7 @@ CREATE TABLE `qrtz_blob_triggers` (
   `trigger_name` varchar(200) NOT NULL,
   `trigger_group` varchar(200) NOT NULL,
   `blob_data` blob,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
+  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`) USING BTREE,
   CONSTRAINT `QRTZ_BLOB_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -239,7 +246,7 @@ CREATE TABLE `qrtz_calendars` (
   `sched_name` varchar(120) NOT NULL,
   `calendar_name` varchar(200) NOT NULL,
   `calendar` blob NOT NULL,
-  PRIMARY KEY (`sched_name`,`calendar_name`)
+  PRIMARY KEY (`sched_name`,`calendar_name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -252,7 +259,7 @@ CREATE TABLE `qrtz_cron_triggers` (
   `trigger_group` varchar(200) NOT NULL,
   `cron_expression` varchar(200) NOT NULL,
   `time_zone_id` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
+  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`) USING BTREE,
   CONSTRAINT `QRTZ_CRON_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -283,7 +290,7 @@ CREATE TABLE `qrtz_fired_triggers` (
   `job_group` varchar(200) DEFAULT NULL,
   `is_nonconcurrent` varchar(1) DEFAULT NULL,
   `requests_recovery` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`entry_id`)
+  PRIMARY KEY (`sched_name`,`entry_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -301,7 +308,7 @@ CREATE TABLE `qrtz_job_details` (
   `is_update_data` varchar(1) NOT NULL,
   `requests_recovery` varchar(1) NOT NULL,
   `job_data` blob,
-  PRIMARY KEY (`sched_name`,`job_name`,`job_group`)
+  PRIMARY KEY (`sched_name`,`job_name`,`job_group`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -320,7 +327,7 @@ DROP TABLE IF EXISTS `qrtz_locks`;
 CREATE TABLE `qrtz_locks` (
   `sched_name` varchar(120) NOT NULL,
   `lock_name` varchar(40) NOT NULL,
-  PRIMARY KEY (`sched_name`,`lock_name`)
+  PRIMARY KEY (`sched_name`,`lock_name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -338,7 +345,7 @@ DROP TABLE IF EXISTS `qrtz_paused_trigger_grps`;
 CREATE TABLE `qrtz_paused_trigger_grps` (
   `sched_name` varchar(120) NOT NULL,
   `trigger_group` varchar(200) NOT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_group`)
+  PRIMARY KEY (`sched_name`,`trigger_group`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -350,14 +357,14 @@ CREATE TABLE `qrtz_scheduler_state` (
   `instance_name` varchar(200) NOT NULL,
   `last_checkin_time` bigint(13) NOT NULL,
   `checkin_interval` bigint(13) NOT NULL,
-  PRIMARY KEY (`sched_name`,`instance_name`)
+  PRIMARY KEY (`sched_name`,`instance_name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
 BEGIN;
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'MacBook1594694514160', 1594696683362, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'MacBook1595229594317', 1595232419989, 15000);
 COMMIT;
 
 -- ----------------------------
@@ -371,7 +378,7 @@ CREATE TABLE `qrtz_simple_triggers` (
   `repeat_count` bigint(7) NOT NULL,
   `repeat_interval` bigint(12) NOT NULL,
   `times_triggered` bigint(10) NOT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
+  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`) USING BTREE,
   CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -394,7 +401,7 @@ CREATE TABLE `qrtz_simprop_triggers` (
   `dec_prop_2` decimal(13,4) DEFAULT NULL,
   `bool_prop_1` varchar(1) DEFAULT NULL,
   `bool_prop_2` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
+  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`) USING BTREE,
   CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -419,8 +426,8 @@ CREATE TABLE `qrtz_triggers` (
   `calendar_name` varchar(200) DEFAULT NULL,
   `misfire_instr` smallint(2) DEFAULT NULL,
   `job_data` blob,
-  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
-  KEY `sched_name` (`sched_name`,`job_name`,`job_group`),
+  PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`) USING BTREE,
+  KEY `sched_name` (`sched_name`,`job_name`,`job_group`) USING BTREE,
   CONSTRAINT `QRTZ_TRIGGERS_ibfk_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -428,9 +435,9 @@ CREATE TABLE `qrtz_triggers` (
 -- Records of qrtz_triggers
 -- ----------------------------
 BEGIN;
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1594694520000, -1, 5, 'PAUSED', 'CRON', 1594694514000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1594694520000, -1, 5, 'PAUSED', 'CRON', 1594694515000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1594694520000, -1, 5, 'PAUSED', 'CRON', 1594694516000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1595229600000, -1, 5, 'PAUSED', 'CRON', 1595229594000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1595229600000, -1, 5, 'PAUSED', 'CRON', 1595229594000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1595229600000, -1, 5, 'PAUSED', 'CRON', 1595229594000, 0, NULL, 2, '');
 COMMIT;
 
 -- ----------------------------
@@ -448,7 +455,7 @@ CREATE TABLE `sys_config` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`config_id`)
+  PRIMARY KEY (`config_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='参数配置表';
 
 -- ----------------------------
@@ -480,7 +487,7 @@ CREATE TABLE `sys_dept` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`dept_id`)
+  PRIMARY KEY (`dept_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COMMENT='部门表';
 
 -- ----------------------------
@@ -518,8 +525,8 @@ CREATE TABLE `sys_dict_data` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4 COMMENT='字典数据表';
+  PRIMARY KEY (`dict_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COMMENT='字典数据表';
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -597,6 +604,16 @@ INSERT INTO `sys_dict_data` VALUES (145, 5, '通信设备', '5', 'device_func', 
 INSERT INTO `sys_dict_data` VALUES (146, 6, '发射设备', '6', 'device_func', NULL, NULL, 'Y', '0', 'admin', '2020-05-25 13:28:14', '', NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (147, 99, '其它台', '99', 'station_type', NULL, NULL, 'Y', '0', 'admin', '2020-05-25 13:28:48', '', NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (148, 99, '其它设备', '99', 'device_func', NULL, NULL, 'Y', '0', 'admin', '2020-05-25 13:30:49', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (149, 1, '装备系统', 'equipsys', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:31:00', '', NULL, '装备系统');
+INSERT INTO `sys_dict_data` VALUES (150, 2, '台站数据', 'station', 'sub_data_category', '', '', 'Y', '0', 'admin', '2020-07-14 12:31:17', 'admin', '2020-07-14 12:31:57', '台站数据');
+INSERT INTO `sys_dict_data` VALUES (151, 3, '设备数据', 'device', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:31:33', '', NULL, '设备数据');
+INSERT INTO `sys_dict_data` VALUES (152, 4, '任务数据', 'task', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:31:50', '', NULL, '任务数据');
+INSERT INTO `sys_dict_data` VALUES (153, 5, '任务执行信息', 'task_exec', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:32:11', '', NULL, '任务执行信息');
+INSERT INTO `sys_dict_data` VALUES (154, 6, '敌情数据', 'enemy', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:32:25', '', NULL, '敌情数据');
+INSERT INTO `sys_dict_data` VALUES (155, 7, '气象数据', 'meteorology', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:32:38', '', NULL, '气象数据');
+INSERT INTO `sys_dict_data` VALUES (156, 8, '电离层数据', 'ionosphere', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 12:32:50', '', NULL, '电离层数据');
+INSERT INTO `sys_dict_data` VALUES (157, 9, '地图数据', 'map', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 15:19:47', '', NULL, '地图数据');
+INSERT INTO `sys_dict_data` VALUES (158, 10, '车次数据', 'train', 'sub_data_category', NULL, NULL, 'Y', '0', 'admin', '2020-07-14 15:20:06', '', NULL, '车次数据');
 COMMIT;
 
 -- ----------------------------
@@ -613,9 +630,9 @@ CREATE TABLE `sys_dict_type` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_id`),
-  UNIQUE KEY `dict_type` (`dict_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COMMENT='字典类型表';
+  PRIMARY KEY (`dict_id`) USING BTREE,
+  UNIQUE KEY `dict_type` (`dict_type`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COMMENT='字典类型表';
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -642,6 +659,7 @@ INSERT INTO `sys_dict_type` VALUES (107, '任务类型', 'task_type', '0', 'admi
 INSERT INTO `sys_dict_type` VALUES (109, '能力类型', 'ability_type', '0', 'admin', '2020-05-03 11:12:19', 'admin', '2020-05-03 11:12:30', '能力分类列表');
 INSERT INTO `sys_dict_type` VALUES (111, '订阅状态', 'subscribe_status', '0', 'admin', '2020-05-09 17:49:32', '', NULL, '订阅状态列表');
 INSERT INTO `sys_dict_type` VALUES (112, '装备系统类型', 'equipsys_type', '0', 'admin', '2020-05-18 09:31:48', '', NULL, '装备系统类型列表');
+INSERT INTO `sys_dict_type` VALUES (113, '订阅数据类型', 'sub_data_category', '0', 'admin', '2020-07-14 12:29:42', '', NULL, '订阅数据类型');
 COMMIT;
 
 -- ----------------------------
@@ -662,7 +680,7 @@ CREATE TABLE `sys_job` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注信息',
-  PRIMARY KEY (`job_id`,`job_name`,`job_group`)
+  PRIMARY KEY (`job_id`,`job_name`,`job_group`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='定时任务调度表';
 
 -- ----------------------------
@@ -687,7 +705,7 @@ CREATE TABLE `sys_job_log` (
   `status` char(1) DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
   `exception_info` varchar(2000) DEFAULT '' COMMENT '异常信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`job_log_id`)
+  PRIMARY KEY (`job_log_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务调度日志表';
 
 -- ----------------------------
@@ -704,8 +722,18 @@ CREATE TABLE `sys_logininfor` (
   `status` char(1) DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
-  PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
+  PRIMARY KEY (`info_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
+
+-- ----------------------------
+-- Records of sys_logininfor
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_logininfor` VALUES (1, 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Mac OS X', '0', '登录成功', '2020-07-14 12:27:24');
+INSERT INTO `sys_logininfor` VALUES (2, 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Mac OS X', '0', '登录成功', '2020-07-14 16:11:14');
+INSERT INTO `sys_logininfor` VALUES (3, 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Mac OS X', '0', '登录成功', '2020-07-14 17:49:41');
+INSERT INTO `sys_logininfor` VALUES (4, 'admin', '127.0.0.1', '内网IP', 'Chrome 8', 'Mac OS X', '0', '登录成功', '2020-07-20 15:25:10');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -727,8 +755,8 @@ CREATE TABLE `sys_menu` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
-  PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1145 DEFAULT CHARSET=utf8mb4 COMMENT='菜单权限表';
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1151 DEFAULT CHARSET=utf8mb4 COMMENT='菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -886,6 +914,12 @@ INSERT INTO `sys_menu` VALUES (1141, '订阅关系新增', 1139, 2, '#', '', 'F'
 INSERT INTO `sys_menu` VALUES (1142, '订阅关系修改', 1139, 3, '#', '', 'F', '0', 'biz:subscribe:edit', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
 INSERT INTO `sys_menu` VALUES (1143, '订阅关系删除', 1139, 4, '#', '', 'F', '0', 'biz:subscribe:remove', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
 INSERT INTO `sys_menu` VALUES (1144, '订阅关系导出', 1139, 5, '#', '', 'F', '0', 'biz:subscribe:export', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
+INSERT INTO `sys_menu` VALUES (1145, '车次信息', 1132, 3, '/biz/train', 'menuItem', 'C', '0', 'biz:train:view', '#', 'admin', '2018-03-01 00:00:00', 'admin', '2020-07-14 15:27:25', '车次信息菜单');
+INSERT INTO `sys_menu` VALUES (1146, '车次信息查询', 1145, 1, '#', '', 'F', '0', 'biz:train:list', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
+INSERT INTO `sys_menu` VALUES (1147, '车次信息新增', 1145, 2, '#', '', 'F', '0', 'biz:train:add', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
+INSERT INTO `sys_menu` VALUES (1148, '车次信息修改', 1145, 3, '#', '', 'F', '0', 'biz:train:edit', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
+INSERT INTO `sys_menu` VALUES (1149, '车次信息删除', 1145, 4, '#', '', 'F', '0', 'biz:train:remove', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
+INSERT INTO `sys_menu` VALUES (1150, '车次信息导出', 1145, 5, '#', '', 'F', '0', 'biz:train:export', '#', 'admin', '2018-03-01 00:00:00', 'ry', '2018-03-01 00:00:00', '');
 COMMIT;
 
 -- ----------------------------
@@ -903,7 +937,7 @@ CREATE TABLE `sys_notice` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`notice_id`)
+  PRIMARY KEY (`notice_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='通知公告表';
 
 -- ----------------------------
@@ -935,8 +969,8 @@ CREATE TABLE `sys_oper_log` (
   `status` int(1) DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
-  PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
+  PRIMARY KEY (`oper_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -966,6 +1000,37 @@ INSERT INTO `sys_oper_log` VALUES (21, '代码生成', 2, 'com.ruoyi.generator.c
 INSERT INTO `sys_oper_log` VALUES (22, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"44\" ],\n  \"tableName\" : [ \"t_subscribe\" ],\n  \"tableComment\" : [ \"订阅关系表\" ],\n  \"className\" : [ \"Subscribe\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"408\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"409\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"订阅源标识\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"feedCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"410\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"订阅源名称\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"feedName\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"LIKE\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"411\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"订阅数据标识\" ],\n  \"columns[3].javaType\" : [ \"String\" ],\n  \"columns[3].javaField\" : [ \"dataCode\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"input\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"412\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"订阅数据名称\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].javaField\" : [ \"dataName\" ],\n  \"columns[4].isInsert\" : [ \"1\" ]', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 11:11:04');
 INSERT INTO `sys_oper_log` VALUES (23, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\n  \"tables\" : [ \"t_customer,t_subscribe\" ]\n}', 'null', 0, NULL, '2020-07-14 11:11:15');
 INSERT INTO `sys_oper_log` VALUES (24, '菜单管理', 1, 'com.ruoyi.web.controller.system.SysMenuController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\n  \"parentId\" : [ \"0\" ],\n  \"menuType\" : [ \"M\" ],\n  \"menuName\" : [ \"数据管理\" ],\n  \"url\" : [ \"\" ],\n  \"target\" : [ \"menuItem\" ],\n  \"perms\" : [ \"\" ],\n  \"orderNum\" : [ \"5\" ],\n  \"icon\" : [ \"fa fa-paw\" ],\n  \"visible\" : [ \"0\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 11:13:34');
+INSERT INTO `sys_oper_log` VALUES (25, '字典类型', 1, 'com.ruoyi.web.controller.system.SysDictTypeController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/add', '127.0.0.1', '内网IP', '{\n  \"dictName\" : [ \"订阅数据类型\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"订阅数据类型\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:29:42');
+INSERT INTO `sys_oper_log` VALUES (26, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"装备系统\" ],\n  \"dictValue\" : [ \"equipsys\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"1\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"装备系统\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:31:00');
+INSERT INTO `sys_oper_log` VALUES (27, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"台站数据\" ],\n  \"dictValue\" : [ \"station\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"1\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"台站数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:31:17');
+INSERT INTO `sys_oper_log` VALUES (28, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"设备数据\" ],\n  \"dictValue\" : [ \"device\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"3\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"设备数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:31:33');
+INSERT INTO `sys_oper_log` VALUES (29, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"任务数据\" ],\n  \"dictValue\" : [ \"task\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"4\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"任务数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:31:51');
+INSERT INTO `sys_oper_log` VALUES (30, '字典数据', 2, 'com.ruoyi.web.controller.system.SysDictDataController.editSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/edit', '127.0.0.1', '内网IP', '{\n  \"dictCode\" : [ \"150\" ],\n  \"dictLabel\" : [ \"台站数据\" ],\n  \"dictValue\" : [ \"station\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"2\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"台站数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:31:57');
+INSERT INTO `sys_oper_log` VALUES (31, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"任务执行信息\" ],\n  \"dictValue\" : [ \"task_exec\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"5\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"任务执行信息\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:32:11');
+INSERT INTO `sys_oper_log` VALUES (32, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"敌情数据\" ],\n  \"dictValue\" : [ \"enemy\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"6\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"敌情数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:32:25');
+INSERT INTO `sys_oper_log` VALUES (33, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"气象数据\" ],\n  \"dictValue\" : [ \"meteorology\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"7\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"气象数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:32:38');
+INSERT INTO `sys_oper_log` VALUES (34, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"电离层数据\" ],\n  \"dictValue\" : [ \"ionosphere\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"8\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"电离层数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 12:32:50');
+INSERT INTO `sys_oper_log` VALUES (35, '订阅管理', 10, 'com.ruoyi.webservice.endpoint.SubscribeEndpoint.subscribe()', 'POST', 1, NULL, NULL, '/ws/subscribe', '127.0.0.1', '内网IP', '{ }', 'null', 1, '\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'sub_status\' in \'field list\'\n### The error may exist in file [/Users/xusisheng/workspace-aw/sis-parent/ruoyi-admin/target/classes/mapper/biz/SubscribeMapper.xml]\n### The error may involve com.ruoyi.project.biz.subscribe.mapper.SubscribeMapper.selectSubscribeList-Inline\n### The error occurred while setting parameters\n### SQL: select id, feed_code, feed_name, data_code, data_name, data_category, sub_status, dt_subscribe, dt_unsubscribe from t_subscribe                WHERE  feed_code = ?             and data_code = ?                          and sub_status = ?\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'sub_status\' in \'field list\'\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'sub_status\' in \'field list\'', '2020-07-14 15:15:47');
+INSERT INTO `sys_oper_log` VALUES (36, '订阅管理', 10, 'com.ruoyi.webservice.endpoint.SubscribeEndpoint.subscribe()', 'POST', 1, NULL, NULL, '/ws/subscribe', '127.0.0.1', '内网IP', '{ }', '{\n  \"code\" : 0,\n  \"message\" : \"success\",\n  \"data\" : null\n}', 0, NULL, '2020-07-14 15:18:46');
+INSERT INTO `sys_oper_log` VALUES (37, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"地图数据\" ],\n  \"dictValue\" : [ \"map\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"9\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"地图数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:19:47');
+INSERT INTO `sys_oper_log` VALUES (38, '字典数据', 1, 'com.ruoyi.web.controller.system.SysDictDataController.addSave()', 'POST', 1, 'admin', '研发部门', '/system/dict/data/add', '127.0.0.1', '内网IP', '{\n  \"dictLabel\" : [ \"车次数据\" ],\n  \"dictValue\" : [ \"train\" ],\n  \"dictType\" : [ \"sub_data_category\" ],\n  \"cssClass\" : [ \"\" ],\n  \"dictSort\" : [ \"10\" ],\n  \"listClass\" : [ \"\" ],\n  \"isDefault\" : [ \"Y\" ],\n  \"status\" : [ \"0\" ],\n  \"remark\" : [ \"车次数据\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:20:06');
+INSERT INTO `sys_oper_log` VALUES (39, '代码生成', 3, 'com.ruoyi.generator.controller.GenController.remove()', 'POST', 1, 'admin', '研发部门', '/tool/gen/remove', '127.0.0.1', '内网IP', '{\n  \"ids\" : [ \"49\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:25:02');
+INSERT INTO `sys_oper_log` VALUES (40, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\n  \"tables\" : [ \"t_train,t_customer\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:25:08');
+INSERT INTO `sys_oper_log` VALUES (41, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"51\" ],\n  \"tableName\" : [ \"t_train\" ],\n  \"tableComment\" : [ \"车次信息表\" ],\n  \"className\" : [ \"Train\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"476\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"477\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"车次代码\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"trainCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"478\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"始发站\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"startStation\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"EQ\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"479\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"始发时间\" ],\n  \"columns[3].javaType\" : [ \"Date\" ],\n  \"columns[3].javaField\" : [ \"startTime\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"datetime\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"480\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"到达站\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].javaF', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:25:22');
+INSERT INTO `sys_oper_log` VALUES (42, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"50\" ],\n  \"tableName\" : [ \"t_customer\" ],\n  \"tableComment\" : [ \"客户关系表\" ],\n  \"className\" : [ \"Customer\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"471\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"472\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"姓名\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"name\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"LIKE\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"473\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"公司\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"company\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"EQ\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"474\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"时间\" ],\n  \"columns[3].javaType\" : [ \"Date\" ],\n  \"columns[3].javaField\" : [ \"starttime\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"datetime\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"475\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"卡号\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].javaField\" : ', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:25:31');
+INSERT INTO `sys_oper_log` VALUES (43, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{\n  \"tables\" : [ \"t_customer,t_train,t_subscribe\" ]\n}', 'null', 0, NULL, '2020-07-14 15:25:44');
+INSERT INTO `sys_oper_log` VALUES (44, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', 1, 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\n  \"menuId\" : [ \"1145\" ],\n  \"parentId\" : [ \"1132\" ],\n  \"menuType\" : [ \"C\" ],\n  \"menuName\" : [ \"车次信息\" ],\n  \"url\" : [ \"/biz/train\" ],\n  \"target\" : [ \"menuItem\" ],\n  \"perms\" : [ \"biz:train:view\" ],\n  \"orderNum\" : [ \"3\" ],\n  \"icon\" : [ \"#\" ],\n  \"visible\" : [ \"0\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 15:27:25');
+INSERT INTO `sys_oper_log` VALUES (45, '代码生成', 3, 'com.ruoyi.generator.controller.GenController.remove()', 'POST', 1, 'admin', '研发部门', '/tool/gen/remove', '127.0.0.1', '内网IP', '{\n  \"ids\" : [ \"44\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 16:17:20');
+INSERT INTO `sys_oper_log` VALUES (46, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\n  \"tables\" : [ \"t_subscribe\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 16:17:26');
+INSERT INTO `sys_oper_log` VALUES (47, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"52\" ],\n  \"tableName\" : [ \"t_subscribe\" ],\n  \"tableComment\" : [ \"订阅关系表\" ],\n  \"className\" : [ \"Subscribe\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"482\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"483\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"订阅源标识\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"feedCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"484\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"订阅源名称\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"feedName\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"LIKE\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"485\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"订阅数据标识\" ],\n  \"columns[3].javaType\" : [ \"String\" ],\n  \"columns[3].javaField\" : [ \"dataCode\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"input\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"486\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"订阅数据名称\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"colum', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 16:17:44');
+INSERT INTO `sys_oper_log` VALUES (48, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"52\" ],\n  \"tableName\" : [ \"t_subscribe\" ],\n  \"tableComment\" : [ \"订阅关系表\" ],\n  \"className\" : [ \"Subscribe\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"482\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"483\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"源标识\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"feedCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"484\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"源名称\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"feedName\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"LIKE\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"485\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"数据标识\" ],\n  \"columns[3].javaType\" : [ \"String\" ],\n  \"columns[3].javaField\" : [ \"dataCode\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"input\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"486\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"数据名称\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].ja', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 16:28:32');
+INSERT INTO `sys_oper_log` VALUES (49, '代码生成', 3, 'com.ruoyi.generator.controller.GenController.remove()', 'POST', 1, 'admin', '研发部门', '/tool/gen/remove', '127.0.0.1', '内网IP', '{\n  \"ids\" : [ \"52\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 17:49:50');
+INSERT INTO `sys_oper_log` VALUES (50, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\n  \"tables\" : [ \"t_subscribe\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 17:49:57');
+INSERT INTO `sys_oper_log` VALUES (51, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"53\" ],\n  \"tableName\" : [ \"t_subscribe\" ],\n  \"tableComment\" : [ \"订阅关系表\" ],\n  \"className\" : [ \"Subscribe\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"491\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"492\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"源标识\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"feedCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"493\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"源名称\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"feedName\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"LIKE\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"494\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"数据标识\" ],\n  \"columns[3].javaType\" : [ \"String\" ],\n  \"columns[3].javaField\" : [ \"dataCode\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"input\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"495\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"数据名称\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].ja', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 17:50:39');
+INSERT INTO `sys_oper_log` VALUES (52, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.genCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/genCode/t_subscribe', '127.0.0.1', '内网IP', '{ }', 'null', 0, NULL, '2020-07-14 17:51:08');
+INSERT INTO `sys_oper_log` VALUES (53, '代码生成', 2, 'com.ruoyi.generator.controller.GenController.editSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/edit', '127.0.0.1', '内网IP', '{\n  \"tableId\" : [ \"53\" ],\n  \"tableName\" : [ \"t_subscribe\" ],\n  \"tableComment\" : [ \"订阅关系表\" ],\n  \"className\" : [ \"Subscribe\" ],\n  \"functionAuthor\" : [ \"xusisheng\" ],\n  \"remark\" : [ \"\" ],\n  \"columns[0].columnId\" : [ \"491\" ],\n  \"columns[0].sort\" : [ \"1\" ],\n  \"columns[0].columnComment\" : [ \"自增主键\" ],\n  \"columns[0].javaType\" : [ \"Long\" ],\n  \"columns[0].javaField\" : [ \"id\" ],\n  \"columns[0].isInsert\" : [ \"1\" ],\n  \"columns[0].queryType\" : [ \"EQ\" ],\n  \"columns[0].htmlType\" : [ \"input\" ],\n  \"columns[0].dictType\" : [ \"\" ],\n  \"columns[1].columnId\" : [ \"492\" ],\n  \"columns[1].sort\" : [ \"2\" ],\n  \"columns[1].columnComment\" : [ \"源标识\" ],\n  \"columns[1].javaType\" : [ \"String\" ],\n  \"columns[1].javaField\" : [ \"feedCode\" ],\n  \"columns[1].isInsert\" : [ \"1\" ],\n  \"columns[1].isEdit\" : [ \"1\" ],\n  \"columns[1].isList\" : [ \"1\" ],\n  \"columns[1].isQuery\" : [ \"1\" ],\n  \"columns[1].queryType\" : [ \"EQ\" ],\n  \"columns[1].htmlType\" : [ \"input\" ],\n  \"columns[1].dictType\" : [ \"\" ],\n  \"columns[2].columnId\" : [ \"493\" ],\n  \"columns[2].sort\" : [ \"3\" ],\n  \"columns[2].columnComment\" : [ \"源名称\" ],\n  \"columns[2].javaType\" : [ \"String\" ],\n  \"columns[2].javaField\" : [ \"feedName\" ],\n  \"columns[2].isInsert\" : [ \"1\" ],\n  \"columns[2].isEdit\" : [ \"1\" ],\n  \"columns[2].isList\" : [ \"1\" ],\n  \"columns[2].isQuery\" : [ \"1\" ],\n  \"columns[2].queryType\" : [ \"LIKE\" ],\n  \"columns[2].htmlType\" : [ \"input\" ],\n  \"columns[2].dictType\" : [ \"\" ],\n  \"columns[3].columnId\" : [ \"494\" ],\n  \"columns[3].sort\" : [ \"4\" ],\n  \"columns[3].columnComment\" : [ \"数据标识\" ],\n  \"columns[3].javaType\" : [ \"String\" ],\n  \"columns[3].javaField\" : [ \"dataCode\" ],\n  \"columns[3].isInsert\" : [ \"1\" ],\n  \"columns[3].isEdit\" : [ \"1\" ],\n  \"columns[3].isList\" : [ \"1\" ],\n  \"columns[3].isQuery\" : [ \"1\" ],\n  \"columns[3].queryType\" : [ \"EQ\" ],\n  \"columns[3].htmlType\" : [ \"input\" ],\n  \"columns[3].dictType\" : [ \"\" ],\n  \"columns[4].columnId\" : [ \"495\" ],\n  \"columns[4].sort\" : [ \"5\" ],\n  \"columns[4].columnComment\" : [ \"数据名称\" ],\n  \"columns[4].javaType\" : [ \"String\" ],\n  \"columns[4].ja', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-14 17:59:52');
+INSERT INTO `sys_oper_log` VALUES (54, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.genCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/genCode/t_subscribe', '127.0.0.1', '内网IP', '{ }', 'null', 0, NULL, '2020-07-14 18:00:14');
+INSERT INTO `sys_oper_log` VALUES (55, '作战任务基本信息', 2, 'com.ruoyi.web.controller.data.TaskController.editSave()', 'POST', 1, 'admin', '研发部门', '/data/task/edit', '127.0.0.1', '内网IP', '{\n  \"id\" : [ \"3\" ],\n  \"sn\" : [ \"1003\" ],\n  \"name\" : [ \"日常监测04\" ],\n  \"type\" : [ \"0\" ],\n  \"purpose\" : [ \"监控南海区域无线信号\" ],\n  \"region\" : [ \"南海海域空域\" ],\n  \"source\" : [ \"上级指示\" ],\n  \"startTime\" : [ \"2020-05-25\" ],\n  \"endTime\" : [ \"2020-05-30\" ],\n  \"description\" : [ \"监控南海区域无线信号\" ],\n  \"remarks\" : [ \"\" ],\n  \"status\" : [ \"1\" ],\n  \"pic\" : [ \"\" ],\n  \"video\" : [ \"\" ]\n}', '{\n  \"msg\" : \"操作成功\",\n  \"code\" : 0\n}', 0, NULL, '2020-07-20 15:25:28');
 COMMIT;
 
 -- ----------------------------
@@ -983,7 +1048,7 @@ CREATE TABLE `sys_post` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`post_id`)
+  PRIMARY KEY (`post_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='岗位信息表';
 
 -- ----------------------------
@@ -1013,7 +1078,7 @@ CREATE TABLE `sys_role` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`role_id`)
+  PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='角色信息表';
 
 -- ----------------------------
@@ -1031,7 +1096,7 @@ DROP TABLE IF EXISTS `sys_role_dept`;
 CREATE TABLE `sys_role_dept` (
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
-  PRIMARY KEY (`role_id`,`dept_id`)
+  PRIMARY KEY (`role_id`,`dept_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色和部门关联表';
 
 -- ----------------------------
@@ -1050,7 +1115,7 @@ DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
-  PRIMARY KEY (`role_id`,`menu_id`)
+  PRIMARY KEY (`role_id`,`menu_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
@@ -1219,14 +1284,14 @@ CREATE TABLE `sys_user` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '/profile/avatar/2020/05/20/2e31c401ec24a99a5303be4045b482f0.png', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-07-14 09:43:21', 'admin', '2018-03-16 11:33:00', 'ry', '2020-07-14 09:43:20', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '/profile/avatar/2020/05/20/2e31c401ec24a99a5303be4045b482f0.png', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-07-20 15:24:11', 'admin', '2018-03-16 11:33:00', 'ry', '2020-07-20 15:25:10', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '演示', '00', 'test@qq.com', '15666666666', '1', '', 'd919bbead3db1765fbdd24b45990768e', '60795d', '0', '0', '127.0.0.1', '2020-05-06 11:29:56', 'admin', '2018-03-16 11:33:00', 'admin', '2020-05-06 12:29:06', '测试员');
 INSERT INTO `sys_user` VALUES (100, 105, 'yanshi', '演示数据', '00', 'yanshi@qq.com', '13900020002', '0', '', '5ad4cd40511dd8d1ee1d9d60b5f18a49', '507737', '0', '0', '127.0.0.1', '2020-05-06 12:34:35', 'admin', '2020-05-06 12:29:40', '', '2020-05-06 12:34:44', NULL);
 COMMIT;
@@ -1247,15 +1312,8 @@ CREATE TABLE `sys_user_online` (
   `start_timestamp` datetime DEFAULT NULL COMMENT 'session创建时间',
   `last_access_time` datetime DEFAULT NULL COMMENT 'session最后访问时间',
   `expire_time` int(5) DEFAULT '0' COMMENT '超时时间，单位为分钟',
-  PRIMARY KEY (`sessionId`)
+  PRIMARY KEY (`sessionId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='在线用户记录';
-
--- ----------------------------
--- Records of sys_user_online
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_user_online` VALUES ('98f64714-4e6e-4f47-8e5f-952a0dc7f992', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome 8', 'Mac OS X', 'on_line', '2020-07-14 09:43:18', '2020-07-14 11:16:45', -60000);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_user_post
@@ -1264,7 +1322,7 @@ DROP TABLE IF EXISTS `sys_user_post`;
 CREATE TABLE `sys_user_post` (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `post_id` bigint(20) NOT NULL COMMENT '岗位ID',
-  PRIMARY KEY (`user_id`,`post_id`)
+  PRIMARY KEY (`user_id`,`post_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户与岗位关联表';
 
 -- ----------------------------
@@ -1282,7 +1340,7 @@ DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  PRIMARY KEY (`user_id`,`role_id`)
+  PRIMARY KEY (`user_id`,`role_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户和角色关联表';
 
 -- ----------------------------
@@ -1307,7 +1365,7 @@ CREATE TABLE `t_ability` (
   `scope` varchar(64) DEFAULT NULL COMMENT '范围',
   `direction` varchar(32) DEFAULT NULL COMMENT '方向',
   `mode` varchar(32) DEFAULT NULL COMMENT '干扰方式',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COMMENT='设备能力表';
 
 -- ----------------------------
@@ -1335,13 +1393,13 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_customer`;
 CREATE TABLE `t_customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) DEFAULT NULL,
-  `company` varchar(255) DEFAULT NULL,
-  `startTime` datetime DEFAULT NULL,
-  `cardNumber` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `name` varchar(64) DEFAULT NULL COMMENT '姓名',
+  `company` varchar(255) DEFAULT NULL COMMENT '公司',
+  `startTime` datetime DEFAULT NULL COMMENT '时间',
+  `cardNumber` varchar(64) DEFAULT NULL COMMENT '卡号',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='客户关系表';
 
 -- ----------------------------
 -- Table structure for t_detection
@@ -1353,7 +1411,7 @@ CREATE TABLE `t_detection` (
   `frequency` varchar(64) DEFAULT NULL COMMENT '频率',
   `scope` varchar(64) DEFAULT NULL COMMENT '范围',
   `direction` varchar(32) DEFAULT NULL COMMENT '方向',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='侦测表';
 
 -- ----------------------------
@@ -1379,8 +1437,6 @@ CREATE TABLE `t_device` (
   `function` int(8) DEFAULT NULL COMMENT '设备类型（1：侦测，2：干扰，3：发射，4：侦测干扰，5：侦扰播，6：电源车）',
   `status` int(8) DEFAULT NULL COMMENT '状态（1：开/0：关/-1：异常）',
   `classify` varchar(32) DEFAULT NULL COMMENT '分类（车载、机载、舰载、便携）',
-  `revert_system` varchar(64) DEFAULT NULL COMMENT '归属系统',
-  `grade` int(4) DEFAULT NULL COMMENT '等级',
   `uptime` datetime DEFAULT NULL COMMENT '开机时间',
   `location` varchar(64) DEFAULT NULL COMMENT '部署地',
   `longitude` varchar(16) DEFAULT NULL COMMENT '经度',
@@ -1389,44 +1445,45 @@ CREATE TABLE `t_device` (
   `level` int(4) DEFAULT '0' COMMENT '等级',
   `mtbf` int(11) DEFAULT '0' COMMENT '无故障运行时间',
   `mtbf_default` int(11) DEFAULT '0' COMMENT '默认无故障运行时间',
+  `repare_time` int(11) DEFAULT NULL COMMENT '维修时间',
   `pic` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `video` varchar(255) DEFAULT NULL COMMENT '视频地址',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COMMENT='设备表';
 
 -- ----------------------------
 -- Records of t_device
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_device` VALUES (3, '3100001', '发射机', '广电总局', 1, 6, 1, '固定', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 100, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (5, '3200001', 'XX型干扰机', 'XXX基地', 0, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 120, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (7, '3200002', 'A01干扰机', 'XXX基地', 0, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 300, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (9, '3100002', 'X发射机', '广电总局', 1, 6, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 309, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (11, '3100003', 'S01发射机', '广电总局', 1, 6, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 205, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (13, '3100004', 'D05发射机', '广电总局', 1, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 197, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (15, '3100005', 'Y99发射机', '广电总局', 1, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 340, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (17, '3100006', 'UX22发射机', '广电总局', 1, 6, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 540, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (19, '3200003', 'WY干扰机', '432部', 0, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 454, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (21, '3200004', 'CX干扰机', 'XXX基地', 0, 4, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 666, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (23, '3300001', 'ZX侦测机', '324基地', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 655, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (25, '3300002', 'MX监测机', '广电总局', 1, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 345, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (27, '3300003', 'XX侦测机', '东方基地', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 543, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (29, '3300004', 'JM侦测机', '324基地', 0, 3, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 568, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (31, '3120001', 'X901发射机', '645基地', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 243, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (32, '3120002', 'JS03发射机', '645基地', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 343, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (33, '3120003', 'GH09型发射机', '645基地', 0, 6, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 232, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (34, '3120004', 'H型发射机', '678部队', 0, 6, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 123, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (35, '3120005', 'W01J发射机', '678部队', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 324, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (36, '3120006', 'LJ发射机', 'XX基地', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 307, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (37, '3120005', 'YT发射车', '4592部', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 233, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (38, '3200005', 'YT引导车', '4354部队', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 455, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (39, '3600001', 'YT电源车', 'A基地', 0, 80, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 435, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (40, '3400001', 'RCT侦测干扰', 'B基地', 0, 7, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 327, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (41, '3120007', 'LJ发射机', 'LJ基地', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 438, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (42, '3120008', 'YT发射车', '一体化基地', 0, 6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 154, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (43, '3200006', 'YT引导车', '一体化基地', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 187, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (44, '3600002', 'YT电源车', '一体化基地', 0, 80, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 198, 50, NULL, NULL);
-INSERT INTO `t_device` VALUES (45, '3400002', 'RCT侦测干扰', '一体化基地', 0, 7, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 167, 50, NULL, NULL);
+INSERT INTO `t_device` VALUES (3, '3100001', '发射机', '广电总局', 1, 6, 1, '固定', NULL, NULL, '119.305033', '26.077786', NULL, 0, 100, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (5, '3200001', 'XX型干扰机', 'XXX基地', 0, 4, 1, NULL, NULL, NULL, '109.183535', '18.338375', NULL, 1, 120, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (7, '3200002', 'A01干扰机', 'XXX基地', 0, 4, 1, NULL, NULL, NULL, '122.237567', '30.032083', NULL, 2, 300, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (9, '3100002', 'X发射机', '广电总局', 1, 6, 0, NULL, NULL, NULL, '118.142716', '24.427253', NULL, 0, 309, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (11, '3100003', 'S01发射机', '广电总局', 1, 6, -1, NULL, NULL, NULL, '119.305033', '26.077786', NULL, 0, 205, 200, 3, NULL, NULL);
+INSERT INTO `t_device` VALUES (13, '3100004', 'D05发射机', '广电总局', 1, 6, 1, NULL, NULL, NULL, '118.142716', '24.427253', NULL, 1, 197, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (15, '3100005', 'Y99发射机', '广电总局', 1, 6, 1, NULL, NULL, NULL, '119.011359', '25.458299', NULL, 0, 340, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (17, '3100006', 'UX22发射机', '广电总局', 1, 6, 0, NULL, NULL, NULL, '119.011359', '25.458299', NULL, 2, 540, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (19, '3200003', 'WY干扰机', '432部', 0, 4, 1, NULL, NULL, NULL, '109.183535', '18.338375', NULL, 1, 454, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (21, '3200004', 'CX干扰机', 'XXX基地', 0, 4, -1, NULL, NULL, NULL, '110.517339', '18.781443', NULL, 0, 666, 200, 2, NULL, NULL);
+INSERT INTO `t_device` VALUES (23, '3300001', 'ZX侦测机', '324基地', 0, 3, 1, NULL, NULL, NULL, '111.023264', '19.655312', NULL, 2, 655, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (25, '3300002', 'MX监测机', '广电总局', 1, 2, 1, NULL, NULL, NULL, '110.869762', '19.536525', NULL, 2, 345, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (27, '3300003', 'XX侦测机', '东方基地', 0, 3, 1, NULL, NULL, NULL, '112.337476', '16.838941', NULL, 1, 543, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (29, '3300004', 'JM侦测机', '324基地', 0, 3, -1, NULL, NULL, NULL, '122.237567', '30.032083', NULL, 0, 568, 200, 5, NULL, NULL);
+INSERT INTO `t_device` VALUES (31, '3120001', 'X901发射机', '645基地', 0, 6, 1, NULL, NULL, NULL, '112.337476', '16.838941', NULL, 1, 243, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (32, '3120002', 'JS03发射机', '645基地', 0, 6, 1, NULL, NULL, NULL, '108.663811', '19.039722', NULL, 1, 343, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (33, '3120003', 'GH09型发射机', '645基地', 0, 6, 0, NULL, NULL, NULL, '110.517339', '18.781443', NULL, 2, 232, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (34, '3120004', 'H型发射机', '678部队', 0, 6, -1, NULL, NULL, NULL, '108.663811', '19.039722', NULL, 2, 123, 200, 7, NULL, NULL);
+INSERT INTO `t_device` VALUES (35, '3120005', 'W01J发射机', '678部队', 0, 6, 1, NULL, NULL, NULL, '111.130153', '21.500863', NULL, 2, 324, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (36, '3120006', 'LJ发射机', 'XX基地', 0, 6, 1, NULL, NULL, NULL, '111.130153', '21.500863', NULL, 1, 307, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (37, '3120005', 'YT发射车', '4592部', 0, 6, 1, NULL, NULL, NULL, '110.879861', '19.541969', NULL, 0, 233, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (38, '3200005', 'YT引导车', '4354部队', 0, 3, 1, NULL, NULL, NULL, '110.879861', '19.541969', NULL, 1, 455, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (39, '3600001', 'YT电源车', 'A基地', 0, 80, 1, NULL, NULL, NULL, '110.879861', '19.541969', NULL, 1, 435, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (40, '3400001', 'RCT侦测干扰', 'B基地', 0, 7, 1, NULL, NULL, NULL, '110.879861', '19.541969', NULL, 1, 327, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (41, '3120007', 'LJ发射机', 'LJ基地', 0, 6, 1, NULL, NULL, NULL, '109.173141', '21.462117', NULL, 2, 438, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (42, '3120008', 'YT发射车', '一体化基地', 0, 6, 1, NULL, NULL, NULL, '110.602419', '20.901709', NULL, 0, 154, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (43, '3200006', 'YT引导车', '一体化基地', 0, 3, 1, NULL, NULL, NULL, '110.602419', '20.901709', NULL, 2, 187, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (44, '3600002', 'YT电源车', '一体化基地', 0, 80, 1, NULL, NULL, NULL, '110.602419', '20.901709', NULL, 0, 198, 200, NULL, NULL, NULL);
+INSERT INTO `t_device` VALUES (45, '3400002', 'RCT侦测干扰', '一体化基地', 0, 7, 1, NULL, NULL, NULL, '110.602419', '20.901709', NULL, 0, 167, 200, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1437,7 +1494,7 @@ CREATE TABLE `t_device_ability` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `device_id` int(11) DEFAULT NULL COMMENT '设备ID',
   `ability_id` int(11) DEFAULT NULL COMMENT '能力ID，与能力关联（侦测、干扰、发射）',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备能力表';
 
 -- ----------------------------
@@ -1452,7 +1509,7 @@ CREATE TABLE `t_disturbed` (
   `scope` varchar(64) DEFAULT NULL COMMENT '范围',
   `direction` varchar(32) DEFAULT NULL COMMENT '方向',
   `mode` varchar(32) DEFAULT NULL COMMENT '干扰方式',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='干扰功能表';
 
 -- ----------------------------
@@ -1487,7 +1544,7 @@ CREATE TABLE `t_enemy` (
   `status` int(8) DEFAULT NULL COMMENT '状态（0：失效，1：有效，地图能显示位置）',
   `pic` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `video` varchar(255) DEFAULT NULL COMMENT '视频地址',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COMMENT='敌情目标表';
 
 -- ----------------------------
@@ -1530,7 +1587,7 @@ CREATE TABLE `t_equipsys` (
   `altitude` varchar(16) DEFAULT NULL COMMENT '海拔',
   `pic` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `video` varchar(255) DEFAULT NULL COMMENT '视频地址',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='装备系统表';
 
 -- ----------------------------
@@ -1553,7 +1610,7 @@ CREATE TABLE `t_equipsys_detail` (
   `equipsys_id` int(11) DEFAULT NULL COMMENT '系统ID',
   `type` int(8) DEFAULT NULL COMMENT '装备类型（0：台站，1：设备，2：系统）',
   `equipment_id` int(11) DEFAULT NULL COMMENT '装备ID，与台站或设备表关联',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='装备系统详情表';
 
 -- ----------------------------
@@ -1598,7 +1655,7 @@ CREATE TABLE `t_station` (
   `language` varchar(32) DEFAULT NULL COMMENT '语言',
   `pic` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `video` varchar(255) DEFAULT NULL COMMENT '视频地址',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COMMENT='台站信息';
 
 -- ----------------------------
@@ -1632,7 +1689,7 @@ CREATE TABLE `t_station_device` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `station_id` int(11) DEFAULT NULL COMMENT '台站ID',
   `device_id` int(11) DEFAULT NULL COMMENT '设备ID',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='台站设备表';
 
 -- ----------------------------
@@ -1668,15 +1725,15 @@ COMMIT;
 DROP TABLE IF EXISTS `t_subscribe`;
 CREATE TABLE `t_subscribe` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-  `feed_code` varchar(64) DEFAULT NULL COMMENT '订阅源标识',
-  `feed_name` varchar(64) DEFAULT NULL COMMENT '订阅源名称',
-  `data_code` varchar(64) DEFAULT NULL COMMENT '订阅数据标识',
-  `data_name` varchar(64) DEFAULT NULL COMMENT '订阅数据名称',
-  `data_category` varchar(32) DEFAULT NULL COMMENT '订阅数据分类 装备系统 equipsys 台站数据 station 设备数据 device 任务数据 task 任务执行信息：task_exec 敌情数据 enemy 气象数据 meteorology 电离层数据 ionosphere ',
-  `status` int(8) DEFAULT NULL COMMENT '订阅状态，0：未订阅，1：已订阅',
+  `feed_code` varchar(64) DEFAULT NULL COMMENT '源标识',
+  `feed_name` varchar(64) DEFAULT NULL COMMENT '源名称',
+  `data_code` varchar(64) DEFAULT NULL COMMENT '数据标识',
+  `data_name` varchar(64) DEFAULT NULL COMMENT '数据名称',
+  `subcategory` varchar(32) DEFAULT NULL COMMENT '数据子分类',
+  `is_subscribe` int(4) DEFAULT NULL COMMENT '是否订阅，0：未订阅，1：已订阅',
   `dt_subscribe` datetime DEFAULT NULL COMMENT '订阅时间',
   `dt_unsubscribe` datetime DEFAULT NULL COMMENT '退订时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订阅关系表';
 
 -- ----------------------------
@@ -1698,7 +1755,7 @@ CREATE TABLE `t_task` (
   `status` int(8) DEFAULT NULL COMMENT '状态（0：未开始，1：进行中，2：已完成）',
   `pic` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `video` varchar(255) DEFAULT NULL COMMENT '视频地址',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='作战任务基本信息表';
 
 -- ----------------------------
@@ -1707,7 +1764,7 @@ CREATE TABLE `t_task` (
 BEGIN;
 INSERT INTO `t_task` VALUES (1, '1001', '监测南海方向', 0, '监测南海方向非法电磁目标', '南海海域', '上级单位', '2020-05-09 00:00:00', '2020-05-31 00:00:00', '监测南海方向非法电磁目标', NULL, 2, NULL, NULL);
 INSERT INTO `t_task` VALUES (2, '1002', '干扰南海方向', 1, '干扰南海方向非法电磁目标', '南海方向', '上级单位', '2020-07-01 12:20:54', '2020-07-20 12:20:58', '干扰南海方向非法电磁目标', NULL, 0, NULL, NULL);
-INSERT INTO `t_task` VALUES (3, '1003', '日常监测', 0, '监控南海区域无线信号', '南海海域空域', '上级指示', '2020-05-25 00:00:00', '2020-05-30 00:00:00', '监控南海区域无线信号', NULL, 1, NULL, NULL);
+INSERT INTO `t_task` VALUES (3, '1003', '日常监测04', 0, '监控南海区域无线信号', '南海海域空域', '上级指示', '2020-05-25 00:00:00', '2020-05-30 00:00:00', '监控南海区域无线信号', NULL, 1, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1722,7 +1779,7 @@ CREATE TABLE `t_task_detail` (
   `equipment_id` int(11) DEFAULT NULL COMMENT '参与装备ID，依据装备类型与不同表关联',
   `start_time` datetime DEFAULT NULL COMMENT '开始时间',
   `end_time` datetime DEFAULT NULL COMMENT '结束时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='作战任务详情表';
 
 -- ----------------------------
@@ -1753,7 +1810,7 @@ CREATE TABLE `t_task_exec` (
   `altitude` varchar(16) DEFAULT NULL COMMENT '海拔',
   `speed` int(8) DEFAULT NULL COMMENT '速度',
   `direction` varchar(32) DEFAULT NULL COMMENT '方向',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='作战任务执行信息表';
 
 -- ----------------------------
@@ -1771,6 +1828,20 @@ INSERT INTO `t_task_exec` VALUES (10, 3, NULL, '2020-05-27 01:05:23', '敌方设
 COMMIT;
 
 -- ----------------------------
+-- Table structure for t_train
+-- ----------------------------
+DROP TABLE IF EXISTS `t_train`;
+CREATE TABLE `t_train` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `train_code` varchar(64) DEFAULT NULL COMMENT '车次代码',
+  `start_station` varchar(64) DEFAULT NULL COMMENT '始发站',
+  `start_time` datetime DEFAULT NULL COMMENT '始发时间',
+  `arrive_station` varchar(64) DEFAULT NULL COMMENT '经过站',
+  `arrive_tme` datetime DEFAULT NULL COMMENT '到达时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='车次信息表';
+
+-- ----------------------------
 -- Table structure for t_transmitting
 -- ----------------------------
 DROP TABLE IF EXISTS `t_transmitting`;
@@ -1781,7 +1852,7 @@ CREATE TABLE `t_transmitting` (
   `frequency` varchar(64) DEFAULT NULL COMMENT '频率',
   `scope` varchar(64) DEFAULT NULL COMMENT '覆盖范围，与功率相关',
   `direction` varchar(32) DEFAULT NULL COMMENT '方向',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='发射系统';
 
 -- ----------------------------
@@ -1797,6 +1868,12 @@ INSERT INTO `t_transmitting` VALUES (11, '600kW', NULL, 'MW1116kHz', NULL, NULL)
 COMMIT;
 
 -- ----------------------------
+-- View structure for v_device_bar
+-- ----------------------------
+DROP VIEW IF EXISTS `v_device_bar`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_bar` AS select '分组' AS `Series`,`t_device`.`name` AS `Argument`,`t_device`.`mtbf` AS `Value` from `t_device` order by `t_device`.`mtbf` desc limit 0,8;
+
+-- ----------------------------
 -- View structure for v_device_func_statistics
 -- ----------------------------
 DROP VIEW IF EXISTS `v_device_func_statistics`;
@@ -1809,10 +1886,28 @@ DROP VIEW IF EXISTS `v_device_func_statistics_chart`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_func_statistics_chart` AS select '分组' AS `Series`,`t`.`name` AS `Argument`,count(1) AS `Value` from (select `sis`.`t_device`.`id` AS `id`,(case `sis`.`t_device`.`function` when '1' then '广播设备' when '2' then '监测设备' when '3' then '侦测设备' when '4' then '干扰设备' when '5' then '通信设备' when '6' then '发射设备' when '7' then '侦干一体' when '8' then '侦扰播一体' else '其它设备' end) AS `name` from `sis`.`t_device`) `t` group by `t`.`name`;
 
 -- ----------------------------
+-- View structure for v_device_labels
+-- ----------------------------
+DROP VIEW IF EXISTS `v_device_labels`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_labels` AS select `t_device`.`name` AS `name`,`t_device`.`repare_time` AS `repare_time` from `t_device` order by `t_device`.`repare_time` desc limit 0,4;
+
+-- ----------------------------
 -- View structure for v_device_mtbf_statistics
 -- ----------------------------
 DROP VIEW IF EXISTS `v_device_mtbf_statistics`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_mtbf_statistics` AS select `t_device`.`mtbf` AS `mtbf`,(`t_device`.`mtbf` - `t_device`.`mtbf_default`) AS `exceeded` from `t_device`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_mtbf_statistics` AS select `t1`.`Series` AS `Series`,(case `t1`.`flag` when '1' then '超出无故障时间' else '无故障时间内 ' end) AS `Argument`,count(1) AS `Value` from (select '分组' AS `Series`,`sis`.`t_device`.`id` AS `id`,(case when (`sis`.`t_device`.`mtbf` > `sis`.`t_device`.`mtbf_default`) then 1 else 0 end) AS `flag` from `sis`.`t_device`) `t1` group by `t1`.`flag`;
+
+-- ----------------------------
+-- View structure for v_device_mtbf_statistics_pie
+-- ----------------------------
+DROP VIEW IF EXISTS `v_device_mtbf_statistics_pie`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_mtbf_statistics_pie` AS select count(0) AS `total`,sum(if((`t_device`.`mtbf` >= `t_device`.`mtbf_default`),1,0)) AS `exceeded`,sum(if((`t_device`.`mtbf` < `t_device`.`mtbf_default`),1,0)) AS `unexceeded` from `t_device`;
+
+-- ----------------------------
+-- View structure for v_device_status_pie
+-- ----------------------------
+DROP VIEW IF EXISTS `v_device_status_pie`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_status_pie` AS select '分组' AS `Series`,`t`.`name` AS `Argument`,count(1) AS `Value` from (select (case `sis`.`t_device`.`status` when '0' then '关闭设备' when '1' then '开启设备' else '故障设备' end) AS `name` from `sis`.`t_device`) `t` group by `t`.`name`;
 
 -- ----------------------------
 -- View structure for v_device_status_statistics
@@ -1821,10 +1916,16 @@ DROP VIEW IF EXISTS `v_device_status_statistics`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_status_statistics` AS select count(0) AS `total`,sum(if((`t_device`.`status` = '1'),1,0)) AS `num_open`,sum(if((`t_device`.`status` = '0'),1,0)) AS `num_close`,sum(if((`t_device`.`status` = '-1'),1,0)) AS `num_excep` from `t_device`;
 
 -- ----------------------------
+-- View structure for v_device_table
+-- ----------------------------
+DROP VIEW IF EXISTS `v_device_table`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_device_table` AS select `td`.`id` AS `序号`,`td`.`name` AS `设备名称`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `运行状态`,`td`.`mtbf` AS `运行时长`,`td`.`belongsto` AS `所属单位`,`t1`.`name` AS `所属系统`,`t1`.`location` AS `地址`,`td`.`level` AS `等级` from (`sis`.`t_device` `td` join (select `ts`.`name` AS `name`,`ts`.`belongsto` AS `belongsto`,`ts`.`owner` AS `owner`,`ts`.`location` AS `location`,`tsd`.`device_id` AS `device_id` from (`sis`.`t_station` `ts` join `sis`.`t_station_device` `tsd`) where (`ts`.`id` = `tsd`.`station_id`)) `t1` on((`td`.`id` = `t1`.`device_id`)));
+
+-- ----------------------------
 -- View structure for v_equipsys_device
 -- ----------------------------
 DROP VIEW IF EXISTS `v_equipsys_device`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_equipsys_device` AS select `td`.`name` AS `NAME`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `STATUS`,(case `td`.`owner` when '1' then '民用' else '军用' end) AS `owner`,`td`.`mtbf` AS `mtbf`,`td`.`belongsto` AS `belongsto`,`t1`.`NAME` AS `tosys`,`t1`.`location` AS `location`,`td`.`level` AS `LEVEL` from (`sis`.`t_device` `td` join (select `te`.`name` AS `NAME`,`te`.`belongsto` AS `belongsto`,`te`.`owner` AS `owner`,`te`.`location` AS `location`,`ted`.`equipment_id` AS `equipment_id` from (`sis`.`t_equipsys` `te` join `sis`.`t_equipsys_detail` `ted`) where ((`te`.`id` = `ted`.`equipsys_id`) and (`ted`.`type` = 1))) `t1` on((`td`.`id` = `t1`.`equipment_id`)));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_equipsys_device` AS select `td`.`id` AS `id`,`td`.`name` AS `name`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `status`,(case `td`.`owner` when '1' then '民用' else '军用' end) AS `owner`,`td`.`mtbf` AS `mtbf`,`td`.`belongsto` AS `belongsto`,`t1`.`name` AS `tosys`,`t1`.`location` AS `location`,`td`.`level` AS `level` from (`sis`.`t_device` `td` join (select `te`.`name` AS `name`,`te`.`belongsto` AS `belongsto`,`te`.`owner` AS `owner`,`te`.`location` AS `location`,`ted`.`equipment_id` AS `equipment_id` from (`sis`.`t_equipsys` `te` join `sis`.`t_equipsys_detail` `ted`) where ((`te`.`id` = `ted`.`equipsys_id`) and (`ted`.`type` = 1))) `t1` on((`td`.`id` = `t1`.`equipment_id`)));
 
 -- ----------------------------
 -- View structure for v_equipsys_type_statistics
@@ -1833,16 +1934,34 @@ DROP VIEW IF EXISTS `v_equipsys_type_statistics`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_equipsys_type_statistics` AS select `t`.`name` AS `name`,count(1) AS `count` from (select `sis`.`t_equipsys`.`id` AS `id`,(case `sis`.`t_equipsys`.`type` when '1' then '一体化系统' when '2' then '一体化车组' else '无' end) AS `name` from `sis`.`t_equipsys`) `t` group by `t`.`name`;
 
 -- ----------------------------
+-- View structure for v_station_curve
+-- ----------------------------
+DROP VIEW IF EXISTS `v_station_curve`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_curve` AS select '分组' AS `Series`,`t`.`name` AS `Argument`,count(1) AS `Value` from (select `sis`.`t_station`.`id` AS `id`,(case `sis`.`t_station`.`type` when '1' then '广播台' when '2' then '监测台' when '3' then '侦测台' when '4' then '干扰台' when '5' then '通信台' when '6' then '发射台' when '7' then '侦干一体' when '8' then '侦扰播一体' else '其它台' end) AS `name` from `sis`.`t_station`) `t` group by `t`.`name`;
+
+-- ----------------------------
 -- View structure for v_station_device
 -- ----------------------------
 DROP VIEW IF EXISTS `v_station_device`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_device` AS select `td`.`name` AS `NAME`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `STATUS`,(case `td`.`owner` when '1' then '民用' else '军用' end) AS `owner`,`td`.`mtbf` AS `mtbf`,`td`.`belongsto` AS `belongsto`,`t1`.`NAME` AS `tosys`,`t1`.`location` AS `location`,`td`.`level` AS `LEVEL` from (`sis`.`t_device` `td` join (select `ts`.`name` AS `NAME`,`ts`.`belongsto` AS `belongsto`,`ts`.`owner` AS `owner`,`ts`.`location` AS `location`,`tsd`.`device_id` AS `device_id` from (`sis`.`t_station` `ts` join `sis`.`t_station_device` `tsd`) where (`ts`.`id` = `tsd`.`station_id`)) `t1` on((`td`.`id` = `t1`.`device_id`)));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_device` AS select `td`.`id` AS `id`,`td`.`name` AS `name`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `status`,(case `td`.`owner` when '1' then '民用' else '军用' end) AS `owner`,`td`.`mtbf` AS `mtbf`,`td`.`belongsto` AS `belongsto`,`t1`.`name` AS `tosys`,`t1`.`location` AS `location`,`td`.`level` AS `level` from (`sis`.`t_device` `td` join (select `ts`.`name` AS `name`,`ts`.`belongsto` AS `belongsto`,`ts`.`owner` AS `owner`,`ts`.`location` AS `location`,`tsd`.`device_id` AS `device_id` from (`sis`.`t_station` `ts` join `sis`.`t_station_device` `tsd`) where (`ts`.`id` = `tsd`.`station_id`)) `t1` on((`td`.`id` = `t1`.`device_id`)));
+
+-- ----------------------------
+-- View structure for v_station_owner_pie
+-- ----------------------------
+DROP VIEW IF EXISTS `v_station_owner_pie`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_owner_pie` AS select '分组' AS `Series`,`t`.`owner` AS `Argument`,count(1) AS `Value` from (select `sis`.`t_station`.`id` AS `id`,(case `sis`.`t_station`.`owner` when '1' then '民用' else '军用' end) AS `owner` from `sis`.`t_station`) `t` group by `t`.`owner`;
 
 -- ----------------------------
 -- View structure for v_station_owner_statistics
 -- ----------------------------
 DROP VIEW IF EXISTS `v_station_owner_statistics`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_owner_statistics` AS select `t`.`owner` AS `owner`,count(1) AS `count` from (select `sis`.`t_station`.`id` AS `id`,(case `sis`.`t_station`.`owner` when '1' then '民用' else '军用' end) AS `owner` from `sis`.`t_station`) `t` group by `t`.`owner`;
+
+-- ----------------------------
+-- View structure for v_station_pie
+-- ----------------------------
+DROP VIEW IF EXISTS `v_station_pie`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_pie` AS select '分组' AS `Series`,`t`.`name` AS `Argument`,count(1) AS `Value` from (select `sis`.`t_station`.`id` AS `id`,(case `sis`.`t_station`.`type` when '1' then '广播台' when '2' then '监测台' when '3' then '侦测台' when '4' then '干扰台' when '5' then '通信台' when '6' then '发射台' when '7' then '侦干一体' when '8' then '侦扰播一体' else '其它台' end) AS `name` from `sis`.`t_station` where ((`sis`.`t_station`.`type` = '3') or (`sis`.`t_station`.`type` = '4'))) `t` group by `t`.`name`;
 
 -- ----------------------------
 -- View structure for v_station_type_statistics
@@ -1855,5 +1974,11 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_station_type_statistic
 -- ----------------------------
 DROP VIEW IF EXISTS `v_task`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_task` AS select `tmp`.`id` AS `id`,`tmp`.`name` AS `name`,`tmp`.`type` AS `type`,`tmp`.`purpose` AS `purpose`,`tmp`.`region` AS `region`,`tmp`.`source` AS `source`,`tmp`.`start_time` AS `start_time`,`tmp`.`end_time` AS `end_time`,`tmp`.`description` AS `description`,`tmp`.`remarks` AS `remarks`,`tmp`.`status` AS `status`,(case when isnull(group_concat(`tmp`.`exec_unit` separator ',')) then ' ' else group_concat(`tmp`.`exec_unit` separator ',') end) AS `exec_unit`,(case when isnull(group_concat(`tmp`.`exec_device` separator ',')) then ' ' else group_concat(`tmp`.`exec_device` separator ',') end) AS `exec_device` from (select `t`.`id` AS `id`,`t`.`name` AS `name`,(case `t`.`type` when '0' then '监测' when '1' then '干扰' when '2' then '广播' else '通信' end) AS `type`,`t`.`purpose` AS `purpose`,`t`.`region` AS `region`,`t`.`source` AS `source`,`t`.`start_time` AS `start_time`,`t`.`end_time` AS `end_time`,`t`.`description` AS `description`,`t`.`remarks` AS `remarks`,(case `t`.`status` when '0' then '未开始' when '1' then '进行中' when '2' then '已完成' else '未开始' end) AS `status`,`td`.`equipment_type` AS `equipment_type`,`td`.`equipment_id` AS `equipment_id`,`td`.`exec_unit` AS `exec_unit`,(case `td`.`equipment_type` when '1' then `es`.`name` when '2' then `s`.`name` else `d`.`name` end) AS `exec_device` from ((((`sis`.`t_task` `t` left join `sis`.`t_task_detail` `td` on((`t`.`id` = `td`.`task_id`))) left join `sis`.`t_equipsys` `es` on(((`td`.`equipment_id` = `es`.`id`) and (`td`.`equipment_type` = 1)))) left join `sis`.`t_station` `s` on(((`td`.`equipment_id` = `s`.`id`) and (`td`.`equipment_type` = 2)))) left join `sis`.`t_device` `d` on(((`td`.`equipment_id` = `d`.`id`) and (`td`.`equipment_type` = 3))))) `tmp` group by `tmp`.`id`,`tmp`.`name`,`tmp`.`type`,`tmp`.`purpose`,`tmp`.`region`,`tmp`.`source`,`tmp`.`start_time`,`tmp`.`end_time`,`tmp`.`description`,`tmp`.`remarks`,`tmp`.`status`;
+
+-- ----------------------------
+-- View structure for v_test
+-- ----------------------------
+DROP VIEW IF EXISTS `v_test`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_test` AS select `td`.`id` AS `id`,`td`.`name` AS `name`,(case `td`.`status` when '1' then '开' when '-1' then '异常' else '关' end) AS `status`,(case `td`.`owner` when '1' then '民用' else '军用' end) AS `owner`,`td`.`mtbf` AS `mtbf`,`td`.`belongsto` AS `belongsto`,`t1`.`name` AS `tosys`,`t1`.`location` AS `location`,`td`.`level` AS `level`,`t1`.`longitude` AS `longitude`,`t1`.`latitude` AS `latitude` from (`sis`.`t_device` `td` join (select `te`.`name` AS `name`,`te`.`belongsto` AS `belongsto`,`te`.`owner` AS `owner`,`te`.`location` AS `location`,`ted`.`equipment_id` AS `equipment_id`,`te`.`longitude` AS `longitude`,`te`.`latitude` AS `latitude` from (`sis`.`t_equipsys` `te` join `sis`.`t_equipsys_detail` `ted`) where ((`te`.`id` = `ted`.`equipsys_id`) and (`ted`.`type` = 1))) `t1` on((`td`.`id` = `t1`.`equipment_id`)));
 
 SET FOREIGN_KEY_CHECKS = 1;

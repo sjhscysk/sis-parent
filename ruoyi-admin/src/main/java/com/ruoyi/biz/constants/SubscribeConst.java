@@ -7,13 +7,13 @@ public interface SubscribeConst {
      */
     class  SubscribeStatus {
         /**
+         * 未订阅/退订
+         */
+        public static final int UNSUBSCRIBE = 0;
+        /**
          * 订阅
          */
-        public static final int SUBSCRIBE = 0;
-        /**
-         * 退订
-         */
-        public static final int UNSUBSCRIBE = 1;
+        public static final int SUBSCRIBE = 1;
     }
 
 }
