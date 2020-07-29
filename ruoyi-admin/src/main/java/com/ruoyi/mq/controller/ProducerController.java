@@ -6,9 +6,7 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.mq.producer.Producer;
 import com.ruoyi.biz.domain.Subscribe;
 import com.ruoyi.biz.service.SubscribeService;
-import com.ruoyi.biz.train.TrainClient;
 import com.ruoyi.biz.weather.WeatherClient;
-import com.ruoyi.webservice.gen.TrainDetailInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,9 +40,7 @@ public class ProducerController {
     @Log(title = "车次数据", businessType = BusinessType.IMPORT)
     @RequestMapping("/train/{code}")
     public String test02(@PathVariable String code) {
-        List<TrainDetailInfo> list = TrainClient.getDetailInfoByTrainCode(code);
-        String json = JSON.toJSONString(list);
-
+        String json = JSON.toJSONString("list");
         Subscribe subscribe = new Subscribe();
         subscribe.setDataCode("train");
         List<Subscribe> ls = subscribeService.selectSubscribeList(subscribe);

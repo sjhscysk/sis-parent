@@ -5,7 +5,6 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.biz.constants.SubscribeConst;
 import com.ruoyi.biz.domain.Subscribe;
 import com.ruoyi.biz.service.SubscribeService;
-import com.ruoyi.biz.train.TrainClient;
 import com.ruoyi.biz.weather.WeatherClient;
 import com.ruoyi.system.domain.SysDictData;
 import com.ruoyi.system.service.ISysDictDataService;
@@ -144,20 +143,6 @@ public class SubscribeEndpoint {
         List<String> list = arrayOfString.getString();
         list.addAll(WeatherClient.getWeatherbyCityName(request.getTheCityName()));
         response.setGetWeatherbyCityNameResult(arrayOfString);
-        return response;
-    }
-
-    @PayloadRoot(namespace = WsConst.NAMESPACE_URI, localPart = "getDetailInfoByTrainCodeRequest")
-    @ResponsePayload
-    public GetDetailInfoByTrainCodeResponse getDetailInfoByTrainCode(@RequestPayload GetDetailInfoByTrainCodeRequest request) {
-        GetDetailInfoByTrainCodeResponse response = new GetDetailInfoByTrainCodeResponse();
-        response.setCode(0);
-        response.setMessage("success");
-
-        TrainDetailInfoArray array = new TrainDetailInfoArray();
-        List<TrainDetailInfo> list = TrainClient.getDetailInfoByTrainCode(request.getTrainCode());
-        array.getTrainDetailInfo().addAll(list);
-        response.setData(array);
         return response;
     }
 }

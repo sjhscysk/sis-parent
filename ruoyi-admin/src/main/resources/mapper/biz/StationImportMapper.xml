@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.biz.mapper.StationImportMapper">
+    
+    <resultMap type="StationImport" id="StationImportResult">
+        <result property="id"    column="id"    />
+        <result property="sn"    column="sn"    />
+        <result property="name"    column="name"    />
+        <result property="belongsto"    column="belongsto"    />
+        <result property="owner"    column="owner"    />
+        <result property="theaterCommond"    column="theater_commond"    />
+        <result property="type"    column="type"    />
+        <result property="status"    column="status"    />
+        <result property="location"    column="location"    />
+        <result property="scope"    column="scope"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="altitude"    column="altitude"    />
+        <result property="channelName"    column="channel_name"    />
+        <result property="runTime"    column="run_time"    />
+        <result property="language"    column="language"    />
+        <result property="pic"    column="pic"    />
+        <result property="video"    column="video"    />
+    </resultMap>
+
+    <sql id="selectStationImportVo">
+        select id, sn, name, belongsto, owner, theater_commond, type, status, location, scope, longitude, latitude, altitude, channel_name, run_time, language, pic, video from t_station_import
+    </sql>
+
+    <select id="selectStationImportList" parameterType="StationImport" resultMap="StationImportResult">
+        <include refid="selectStationImportVo"/>
+        <where>  
+            <if test="sn != null  and sn != ''"> and sn = #{sn}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="belongsto != null  and belongsto != ''"> and belongsto = #{belongsto}</if>
+            <if test="owner != null "> and owner = #{owner}</if>
+            <if test="theaterCommond != null  and theaterCommond != ''"> and theater_commond = #{theaterCommond}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="location != null  and location != ''"> and location = #{location}</if>
+            <if test="scope != null  and scope != ''"> and scope = #{scope}</if>
+            <if test="longitude != null  and longitude != ''"> and longitude = #{longitude}</if>
+            <if test="latitude != null  and latitude != ''"> and latitude = #{latitude}</if>
+            <if test="altitude != null  and altitude != ''"> and altitude = #{altitude}</if>
+            <if test="channelName != null  and channelName != ''"> and channel_name like concat('%', #{channelName}, '%')</if>
+            <if test="runTime != null "> and run_time = #{runTime}</if>
+            <if test="language != null  and language != ''"> and language = #{language}</if>
+            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
+            <if test="video != null  and video != ''"> and video = #{video}</if>
+        </where>
+    </select>
+    
+    <select id="selectStationImportById" parameterType="Long" resultMap="StationImportResult">
+        <include refid="selectStationImportVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStationImport" parameterType="StationImport" useGeneratedKeys="true" keyProperty="id">
+        insert into t_station_import
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sn != null">sn,</if>
+            <if test="name != null">name,</if>
+            <if test="belongsto != null">belongsto,</if>
+            <if test="owner != null">owner,</if>
+            <if test="theaterCommond != null">theater_commond,</if>
+            <if test="type != null">type,</if>
+            <if test="status != null">status,</if>
+            <if test="location != null">location,</if>
+            <if test="scope != null">scope,</if>
+            <if test="longitude != null">longitude,</if>
+            <if test="latitude != null">latitude,</if>
+            <if test="altitude != null">altitude,</if>
+            <if test="channelName != null">channel_name,</if>
+            <if test="runTime != null">run_time,</if>
+            <if test="language != null">language,</if>
+            <if test="pic != null">pic,</if>
+            <if test="video != null">video,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sn != null">#{sn},</if>
+            <if test="name != null">#{name},</if>
+            <if test="belongsto != null">#{belongsto},</if>
+            <if test="owner != null">#{owner},</if>
+            <if test="theaterCommond != null">#{theaterCommond},</if>
+            <if test="type != null">#{type},</if>
+            <if test="status != null">#{status},</if>
+            <if test="location != null">#{location},</if>
+            <if test="scope != null">#{scope},</if>
+            <if test="longitude != null">#{longitude},</if>
+            <if test="latitude != null">#{latitude},</if>
+            <if test="altitude != null">#{altitude},</if>
+            <if test="channelName != null">#{channelName},</if>
+            <if test="runTime != null">#{runTime},</if>
+            <if test="language != null">#{language},</if>
+            <if test="pic != null">#{pic},</if>
+            <if test="video != null">#{video},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStationImport" parameterType="StationImport">
+        update t_station_import
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sn != null">sn = #{sn},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="belongsto != null">belongsto = #{belongsto},</if>
+            <if test="owner != null">owner = #{owner},</if>
+            <if test="theaterCommond != null">theater_commond = #{theaterCommond},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="scope != null">scope = #{scope},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="altitude != null">altitude = #{altitude},</if>
+            <if test="channelName != null">channel_name = #{channelName},</if>
+            <if test="runTime != null">run_time = #{runTime},</if>
+            <if test="language != null">language = #{language},</if>
+            <if test="pic != null">pic = #{pic},</if>
+            <if test="video != null">video = #{video},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStationImportById" parameterType="Long">
+        delete from t_station_import where id = #{id}
+    </delete>
+
+    <delete id="deleteStationImportByIds" parameterType="String">
+        delete from t_station_import where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
