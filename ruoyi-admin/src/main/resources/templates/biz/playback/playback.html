@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('态势回放')" />
+</head>
+<body>
+<div class="main-content">
+    <form id="form-playback" class="form-horizontal">
+        <h4 class="form-header h4">回放信息</h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label is-required">态势数据：</label>
+                    <div class="col-sm-11">
+                        <label th:each="role:${roles}" class="check-box">
+                            <input name="role" type="checkbox" th:value="${role.dictCode}" th:text="${role.dictLabel}" th:disabled="${role.status == '1'}">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label is-required">回放速率：</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input id="rate" name="rate" style="width: 100px;float: right" placeholder="请输入回放速率" type="number" min="1.0" max="500.0" step="1.0" value="10.0" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label is-required">回放时间：</label>
+                    <div class="col-sm-4">
+                        <div class="input-group" style="display: flex;flex-direction: row;align-items: center; width: 240px">
+                            <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+                            <span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+                            <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-4">
+        <div class="form-group">
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-play"></i>回 放</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-sm btn-default" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var prefix = ctx + "biz/playback";
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            var data = $("#form-playback").serializeArray();
+            var roleIds = $.form.selectCheckeds("role");
+            data.push({"name": "roleIds", "value": roleIds});
+            $.operate.saveModal(prefix + "/play", data);
+        }
+    }
+</script>
+</body>
+</html>
