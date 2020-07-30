@@ -98,4 +98,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+    <delete id="truncate">
+        truncate table t_ts_enemy;
+    </delete>
+
 </mapper>

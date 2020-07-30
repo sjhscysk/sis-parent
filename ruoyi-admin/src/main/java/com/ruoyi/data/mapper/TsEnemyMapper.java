@@ -58,4 +58,11 @@ public interface TsEnemyMapper
      * @return 结果
      */
     public int deleteTsEnemyByIds(String[] ids);
+
+    /**
+     * 清空数据
+     *
+     * @return
+     */
+    public int truncate();
 }

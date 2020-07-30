@@ -58,4 +58,11 @@ public interface TsEnemyService
      * @return 结果
      */
     public int deleteTsEnemyById(Long id);
+
+    /**
+     * 清空数据
+     *
+     * @return
+     */
+    public int truncate();
 }

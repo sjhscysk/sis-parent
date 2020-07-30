@@ -2,9 +2,13 @@ package com.ruoyi.biz.controller;
 
 import com.ruoyi.biz.domain.Playback;
 import com.ruoyi.biz.domain.Subscribe;
+import com.ruoyi.biz.domain.TsEnemyHistory;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.bean.BeanUtils;
+import com.ruoyi.data.domain.TsEnemy;
+import com.ruoyi.data.service.TsEnemyService;
 import com.ruoyi.framework.web.domain.Server;
 import com.ruoyi.system.domain.SysDictData;
 import com.ruoyi.system.domain.SysUser;
@@ -33,6 +37,8 @@ public class TsEnemyHistoryController extends BaseController
 
     @Autowired
     private TsEnemyHistoryService tsEnemyHistoryService;
+    @Autowired
+    private TsEnemyService tsEnemyService;
     @Autowired
     private ISysDictDataService dictDataService;
 
@@ -63,10 +69,21 @@ public class TsEnemyHistoryController extends BaseController
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                //
+                List<TsEnemyHistory> list = tsEnemyHistoryService.selectTsEnemyHistoryList(new TsEnemyHistory());
+                list.forEach(entity->{
+                    TsEnemy tsEnemy = new TsEnemy();
+                    BeanUtils.copyProperties(entity, tsEnemy);
+                    tsEnemyService.truncate();
+                    tsEnemyService.insertTsEnemy(tsEnemy);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         });
         t.start();
-        return AjaxResult.success("设置完成，回放即将开始....");
+        return AjaxResult.success("设置完成，态势回放即将开始....");
     }
 }

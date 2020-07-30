@@ -54,7 +54,9 @@ public class TsEnemyServiceImpl implements TsEnemyService
     @Override
     public int insertTsEnemy(TsEnemy tsEnemy)
     {
-        tsEnemy.setCreateTime(DateUtils.getNowDate());
+        if (DateUtils.getNowDate() == null) {
+            tsEnemy.setCreateTime(DateUtils.getNowDate());
+        }
         return tsEnemyMapper.insertTsEnemy(tsEnemy);
     }
 
@@ -92,5 +94,10 @@ public class TsEnemyServiceImpl implements TsEnemyService
     public int deleteTsEnemyById(Long id)
     {
         return tsEnemyMapper.deleteTsEnemyById(id);
+    }
+
+    @Override
+    public int truncate() {
+        return tsEnemyMapper.truncate();
     }
 }

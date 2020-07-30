@@ -38,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="frequency != null  and frequency != ''"> and frequency = #{frequency}</if>
             <if test="power != null  and power != ''"> and power = #{power}</if>
         </where>
+        order by create_time ASC
     </select>
 
     <select id="selectTsEnemyHistoryById" parameterType="Long" resultMap="TsEnemyHistoryResult">
